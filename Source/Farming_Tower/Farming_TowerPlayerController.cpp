@@ -26,6 +26,7 @@ void AFarming_TowerPlayerController::BeginPlay()
 {
 	if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Farming_TowerPlayerController BeginPlay"));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Second message!"));	
 	}
 	// Call the base class  
 	Super::BeginPlay();
