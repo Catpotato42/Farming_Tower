@@ -24,6 +24,9 @@ AFarming_TowerPlayerController::AFarming_TowerPlayerController()
 
 void AFarming_TowerPlayerController::BeginPlay()
 {
+	if (GEngine) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Farming_TowerPlayerController BeginPlay"));
+	}
 	// Call the base class  
 	Super::BeginPlay();
 }
@@ -74,14 +77,7 @@ void AFarming_TowerPlayerController::OnSetDestinationTriggered()
 	// We look for the location in the world where the player has pressed the input
 	FHitResult Hit;
 	bool bHitSuccessful = false;
-	if (bIsTouch)
-	{
-		bHitSuccessful = GetHitResultUnderFinger(ETouchIndex::Touch1, ECollisionChannel::ECC_Visibility, true, Hit);
-	}
-	else
-	{
-		bHitSuccessful = GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, true, Hit);
-	}
+	bHitSuccessful = GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, true, Hit);
 
 	// If we hit a surface, cache the location
 	if (bHitSuccessful)
@@ -103,9 +99,13 @@ void AFarming_TowerPlayerController::OnSetDestinationReleased()
 	// If it was a short press
 	if (FollowTime <= ShortPressThreshold)
 	{
-		// We move there and spawn some particles
-		UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, CachedDestination);
-		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, FXCursor, CachedDestination, FRotator::ZeroRotator, FVector(1.f, 1.f, 1.f), true, true, ENCPoolMethod::None, true);
+		// We move 5 unit to the right of the cursor and spawn some particles
+		FVector Right = FVector::CrossProduct(FVector::UpVector, (CachedDestination - GetPawn()->GetActorLocation()).GetSafeNormal());
+		FVector NewDestination = CachedDestination + Right * 5.f;
+		UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, NewDestination);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, FXCursor, NewDestination, FRotator::ZeroRotator, FVector(1.f, 1.f, 1.f), true, true, ENCPoolMethod::None, true);
+		//UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, CachedDestination);
+		//UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, FXCursor, CachedDestination, FRotator::ZeroRotator, FVector(1.f, 1.f, 1.f), true, true, ENCPoolMethod::None, true);
 	}
 
 	FollowTime = 0.f;
