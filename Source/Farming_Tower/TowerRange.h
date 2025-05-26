@@ -24,5 +24,22 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	// Returns the closest enemy actor
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	AActor* GetClosestEnemy() const;
+
+	// Indicates whether closest enemy is in range
+	UPROPERTY(BlueprintReadOnly, Category = "Targeting")
+	bool bIsEnemyInRange = false;
+
+	// Settable range value (in cm)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Targeting")
+	float DetectionRange = 1000.f;
+
+private:
+
+	AActor* ClosestEnemy = nullptr;
+
+	void UpdateClosestEnemy();
 		
 };

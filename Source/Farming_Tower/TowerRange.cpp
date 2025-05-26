@@ -2,6 +2,7 @@
 
 
 #include "TowerRange.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UTowerRange::UTowerRange()
@@ -29,6 +30,57 @@ void UTowerRange::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	UpdateClosestEnemy();
 }
 
+void UTowerRange::UpdateClosestEnemy()
+{
+	TArray<AActor*> FoundEnemies;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
+
+	AActor* Owner = GetOwner();
+	if (!Owner) return;
+
+	FVector OwnerLocation = Owner->GetActorLocation();
+	float ClosestDistanceSq = FLT_MAX;
+	AActor* NearestEnemy = nullptr;
+
+	for (AActor* Enemy : FoundEnemies)
+	{
+		if (!Enemy || Enemy == Owner) continue;
+
+		FVector EnemyLocation = Enemy->GetActorLocation();
+
+		// Only consider XY distance
+		float DX = EnemyLocation.X - OwnerLocation.X;
+		float DY = EnemyLocation.Y - OwnerLocation.Y;
+		float DistanceSq = DX * DX + DY * DY;
+
+		if (DistanceSq < ClosestDistanceSq)
+		{
+			ClosestDistanceSq = DistanceSq;
+			NearestEnemy = Enemy;
+		}
+	}
+
+	ClosestEnemy = NearestEnemy;
+	bIsEnemyInRange = ClosestEnemy && FMath::Sqrt(ClosestDistanceSq) <= DetectionRange;
+
+	if (GEngine)
+	{
+		if (ClosestEnemy)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 0.f, FColor::Green,
+				FString::Printf(TEXT("Closest Enemy: %s"), *ClosestEnemy->GetName()));
+		}
+		else
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 0.f, FColor::Red, TEXT("No enemy in range."));
+		}
+	}
+}
+
+AActor* UTowerRange::GetClosestEnemy() const
+{
+	return ClosestEnemy;
+}
