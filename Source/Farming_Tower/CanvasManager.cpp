@@ -1,12 +1,20 @@
 #include "CanvasManager.h"
+#include "Components/TextBlock.h"
+#include "Blueprint/WidgetTree.h"
 
 
-void UCanvasManager::UpdateCoins(int n)
+void UCanvasManager::UpdateCoins(int32 n)
 {
-    /*FText Label = FText::FromString("Coins: ");
-    FText Amount = FText::AsNumber(Coins);
-    FText Combined = FText::Format(FText::FromString("{0}{1}"), Label, Amount);*/
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Coins: %d"), n));
+    }
+    UE_LOG(LogTemp, Warning, TEXT("Widget name is: %s"), *this->GetName());
 
-    //if (CoinsText)
-    //    CoinsText->SetText(FText::FromString("Coins: " + n));
+    /*UTextBlock* CoinsText = Cast<UTextBlock>(WidgetTree->FindWidget("CoinsText"));
+    if (CoinsText)
+    {
+        FString txt = FString::Printf(TEXT("Coins: %d"), n);
+        CoinsText->SetText(FText::FromString(txt));
+    }*/
 }

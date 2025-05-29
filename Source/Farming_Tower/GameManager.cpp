@@ -7,11 +7,11 @@ void UGameManager::Init()
 
     if (canvasPrefab)
     {
-        canvas = CreateWidget<UCanvasManager>(this, canvasPrefab);
-        if (canvas)
-        {
+        canvas = CreateWidget<UCanvasManager>(GetWorld(), canvasPrefab);
+        if (IsValid(canvas))
             canvas->AddToViewport();
-        }
+        else
+            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Canvas not created.");
     }
     coins = 0;
 }
@@ -20,7 +20,10 @@ void UGameManager::Init()
 void UGameManager::AddCoins(int n)
 {
     coins += n;
-    canvas->UpdateCoins(coins);
+    if (IsValid(canvas))
+        canvas->UpdateCoins(coins);
+    else
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "CanvasManager is not valid! Cannot update coins.");
 }
 
 bool UGameManager::SpendCoins(int n)
