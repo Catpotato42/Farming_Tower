@@ -63,19 +63,33 @@ void UTowerRange::UpdateClosestEnemy()
 		}
 	}
 
-	ClosestEnemy = NearestEnemy;
-	bIsEnemyInRange = ClosestEnemy && FMath::Sqrt(ClosestDistanceSq) <= DetectionRange;
-
-	if (GEngine)
+	float Distance = FMath::Sqrt(ClosestDistanceSq);
+	float DetectionBuffer = 25.0f;  // Adjust this buffer as needed
+	
+	// Only count enemy if it's actually within range plus buffer
+	float EffectiveRange = DetectionRange + DetectionBuffer;
+	if (NearestEnemy && Distance <= EffectiveRange)
 	{
-		if (ClosestEnemy)
+		ClosestEnemy = NearestEnemy;
+		bIsEnemyInRange = true;
+
+		if (GEngine)
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 0.f, FColor::Green,
-				FString::Printf(TEXT("Closest Enemy: %s"), *ClosestEnemy->GetName()));
+				FString::Printf(TEXT("Closest Enemy: %s | Distance: %.2f (within %.2f range)"),
+					*ClosestEnemy->GetName(), Distance, EffectiveRange));
 		}
-		else
+	}
+	else
+	{
+		ClosestEnemy = nullptr;
+		bIsEnemyInRange = false;
+
+		if (GEngine)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 0.f, FColor::Red, TEXT("No enemy in range."));
+			GEngine->AddOnScreenDebugMessage(-1, 0.f, FColor::Red,
+				FString::Printf(TEXT("No enemy in range. Closest enemy distance: %.2f (range %.2f)"),
+					Distance, EffectiveRange));
 		}
 	}
 }

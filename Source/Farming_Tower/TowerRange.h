@@ -34,7 +34,7 @@ public:
 
 	// Settable range value (in cm)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Targeting")
-	float DetectionRange = 1000.f;
+	float DetectionRange = 100.f;
 
 private:
 
