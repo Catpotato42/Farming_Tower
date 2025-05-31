@@ -13,7 +13,6 @@ class FARMING_TOWER_API UCanvasManager : public UUserWidget
 public:
 	void UpdateCoins(int32 n);
 	
-	//UPROPERTY(meta = (BindWidget))
-	//class UTextBlock* CoinsText;
-	
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock* CoinsText;
 };

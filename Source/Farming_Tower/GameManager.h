@@ -23,7 +23,7 @@ public:
 	bool SpendCoins(int n);
 
 	//Canvas
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite)
 	class UCanvasManager* canvas;
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UCanvasManager> canvasPrefab;
