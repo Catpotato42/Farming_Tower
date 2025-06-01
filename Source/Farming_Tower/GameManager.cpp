@@ -28,7 +28,7 @@ void UGameManager::AddCoins(int n)
 
 bool UGameManager::SpendCoins(int n)
 {
-    if (coins > n)
+    if (coins >= n)
     {
         coins -= n;
         canvas->UpdateCoins(coins);
