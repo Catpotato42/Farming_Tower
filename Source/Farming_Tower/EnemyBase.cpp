@@ -12,10 +12,15 @@ AEnemyBase::AEnemyBase()
     SphereComp->InitSphereRadius(32.0f); // Optional: set collision radius
     SphereComp->SetCollisionProfileName(TEXT("Pawn")); // Or "OverlapAllDynamic" if needed
 
-    // Optional: Visual mesh (just to see it in game)
-    // You can also assign a proper static mesh asset via Blueprint later
     UStaticMeshComponent* Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualMesh"));
     Mesh->SetupAttachment(RootComponent);
+
+    // Load the engine's default sphere mesh and assign it
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereMesh(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
+    if (SphereMesh.Succeeded())
+    {
+        Mesh->SetStaticMesh(SphereMesh.Object);
+    }
 
     Tags.Add(FName("Enemy"));
 }
