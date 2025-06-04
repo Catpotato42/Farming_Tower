@@ -7,6 +7,8 @@ void UGameManager::Init()
 
     AEnemySpawner* Spawner = Cast<AEnemySpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), AEnemySpawner::StaticClass()));
     coins = 0;
+    round = 1;
+    setup = true;
 }
 
 
@@ -14,7 +16,7 @@ void UGameManager::StartRound()
 {
     setup = false;
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Round started!"));
-    //hide canvas elements
+    canvas->HideTowerUI();
 
     if (enemySpawner)
         enemySpawner->StartRound(round);
@@ -25,8 +27,8 @@ void UGameManager::EndRound()
     setup = true;
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Ending round..."));
     round++;
-    //update round text
-    //show canvas elements
+    canvas->UpdateRound(round);
+    canvas->ShowTowerUI();
 }
 
 
