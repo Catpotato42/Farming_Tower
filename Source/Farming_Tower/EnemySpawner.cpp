@@ -64,7 +64,13 @@ void AEnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
     if (AEnemyBase* enemy = Cast<AEnemyBase>(spawned))
     {
         enemy->SetSpawner(this);
+        
+        if (AssignedPath)
+        {
+            enemy->SetPath(AssignedPath->SplineComponent);
+        }
     }
+
 }
 
 void AEnemySpawner::NotifyEnemyKilled()

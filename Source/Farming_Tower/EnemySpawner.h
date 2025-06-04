@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "FEnemySpawnInfo.h"
 #include "FRoundInfo.h"
+#include "PathSplineActor.h"
 #include "EnemySpawner.generated.h"
 
 UCLASS()
@@ -26,6 +27,10 @@ public:
 
     UPROPERTY(EditAnywhere)
     class UGameManager* gameManager;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    APathSplineActor* AssignedPath;
+
 
 private:
     int enemiesSpawnedThisRound = 0;
