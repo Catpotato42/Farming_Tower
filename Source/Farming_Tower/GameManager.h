@@ -1,7 +1,8 @@
 #pragma once
 
 #include "CanvasManager.h"
-#include "EnemySpawner.h" 
+#include "EnemySpawner.h"
+#include "TowerPlacement.h"
 
 #include "Kismet/GameplayStatics.h"
 #include "CoreMinimal.h"
