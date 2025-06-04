@@ -45,7 +45,7 @@ public:
 
 	//Enemies
 	UPROPERTY(EditDefaultsOnly, Category = "Enemies")
-	class AEnemySpawner* enemySpawner;
+	TArray<AEnemySpawner*> EnemySpawners;
 
 
 private:

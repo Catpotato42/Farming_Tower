@@ -21,6 +21,7 @@ AEnemySpawner::AEnemySpawner()
 
 void AEnemySpawner::StartRound(int currentRound)
 {
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("StartRound called..."));
     TArray<FEnemySpawnInfo> toSpawn;
 
     if (currentRound - 1 < RoundInfos.Num())
@@ -48,6 +49,8 @@ void AEnemySpawner::StartRound(int currentRound)
             GetWorld()->GetTimerManager().SetTimerForNextTick([this, enemyInfo]()
             {
                 SpawnEnemy(enemyInfo.EnemyClass);
+                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Spawned a Dude..."));
+                
             });
             enemiesSpawnedThisRound++;
         }
