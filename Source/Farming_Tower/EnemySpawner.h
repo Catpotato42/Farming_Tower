@@ -12,6 +12,12 @@ class FARMING_TOWER_API AEnemySpawner : public AActor
     GENERATED_BODY()
 
 public:
+    // Constructor declaration
+    AEnemySpawner();
+
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
+
     void StartRound(int currentRound);
     void NotifyEnemyKilled();
 
@@ -26,4 +32,7 @@ private:
     int enemiesKilledThisRound = 0;
 
     void SpawnEnemy(TSubclassOf<AActor> enemyClass);
+
+    UPROPERTY(VisibleAnywhere)
+    USceneComponent* Root;
 };

@@ -4,6 +4,21 @@
 #include "EnemyBase.h"
 #include "GameManager.h"
 
+void AEnemySpawner::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+AEnemySpawner::AEnemySpawner()
+{
+    PrimaryActorTick.bCanEverTick = false;
+
+    Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+    RootComponent = Root;
+
+    // Optional: add visual/debug component so you can see it
+}
+
 void AEnemySpawner::StartRound(int currentRound)
 {
     TArray<FEnemySpawnInfo> toSpawn;

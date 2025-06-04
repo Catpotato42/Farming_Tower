@@ -37,5 +37,5 @@ protected:
 
     void MoveAlongPath(float DeltaTime);
     void OnReachedEnd();
-    void Die(); // This should be public if you're triggering death from outside
+    void Die();
 };
