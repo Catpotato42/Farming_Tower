@@ -4,7 +4,7 @@
 #include "EnemyBase.h"
 #include "GameManager.h"
 
-void EnemySpawner::StartRound(int currentRound)
+void AEnemySpawner::StartRound(int currentRound)
 {
     TArray<FEnemySpawnInfo> toSpawn;
 
@@ -18,7 +18,7 @@ void EnemySpawner::StartRound(int currentRound)
         for (const auto& spawnInfo : RoundInfos.Last().EnemiesToSpawn)
         {
             FEnemySpawnInfo scaled = spawnInfo;
-            scaled.Count += 2 * (currentRound - RoundInfos.Num());
+            scaled.Quantity += 2 * (currentRound - RoundInfos.Num());
             toSpawn.Add(scaled);
         }
     }
@@ -28,7 +28,7 @@ void EnemySpawner::StartRound(int currentRound)
 
     for (const auto& enemyInfo : toSpawn)
     {
-        for (int i = 0; i < enemyInfo.Count; ++i)
+        for (int i = 0; i < enemyInfo.Quantity; ++i)
         {
             GetWorld()->GetTimerManager().SetTimerForNextTick([this, enemyInfo]()
             {
@@ -39,7 +39,7 @@ void EnemySpawner::StartRound(int currentRound)
     }
 }
 
-void EnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
+void AEnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
 {
     if (!enemyClass) return;
 
@@ -52,7 +52,7 @@ void EnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
     }
 }
 
-void EnemySpawner::NotifyEnemyKilled()
+void AEnemySpawner::NotifyEnemyKilled()
 {
     enemiesKilledThisRound++;
 

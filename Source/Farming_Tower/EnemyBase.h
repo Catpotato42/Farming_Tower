@@ -2,13 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "EnemySpawner.h"
 #include "EnemyBase.generated.h"
 
+
 class USplineComponent;
-class EnemySpawner; // Forward declare your spawner class
+class AEnemySpawner; // Forward declare your spawner class
 
 UCLASS()
-class YOURGAME_API AEnemyBase : public AActor
+class FARMING_TOWER_API AEnemyBase : public AActor
 {
     GENERATED_BODY()
 
@@ -19,7 +21,7 @@ public:
     virtual void BeginPlay() override;
 
     void SetPath(USplineComponent* InSpline);
-    void SetSpawner(EnemySpawner* InSpawner);
+    void SetSpawner(AEnemySpawner* InSpawner);
 
 protected:
     UPROPERTY()
@@ -31,7 +33,7 @@ protected:
     float Speed = 200.0f;
 
     UPROPERTY()
-    EnemySpawner* Spawner;
+    AEnemySpawner* Spawner;
 
     void MoveAlongPath(float DeltaTime);
     void OnReachedEnd();

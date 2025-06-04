@@ -1,4 +1,3 @@
-// EnemyBase.cpp
 #include "EnemyBase.h"
 #include "Components/SplineComponent.h"
 

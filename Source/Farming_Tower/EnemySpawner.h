@@ -2,12 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "EnemySpawnInfo.h"
-#include "RoundInfo.h"
+#include "FEnemySpawnInfo.h"
+#include "FRoundInfo.h"
 #include "EnemySpawner.generated.h"
 
 UCLASS()
-class YOURGAME_API EnemySpawner : public AActor
+class FARMING_TOWER_API AEnemySpawner : public AActor
 {
     GENERATED_BODY()
 
@@ -19,7 +19,7 @@ public:
     TArray<FRoundInfo> RoundInfos;
 
     UPROPERTY(EditAnywhere)
-    class GameManager* gameManager;
+    class UGameManager* gameManager;
 
 private:
     int enemiesSpawnedThisRound = 0;
