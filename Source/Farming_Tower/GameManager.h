@@ -1,9 +1,14 @@
 #pragma once
 
 #include "CanvasManager.h"
+#include "EnemySpawner.h" 
+
+#include "Kismet/GameplayStatics.h"
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+
 #include "GameManager.generated.h"
+
 
 
 UCLASS()
@@ -13,6 +18,16 @@ class FARMING_TOWER_API UGameManager : public UGameInstance
 
 public:
 	virtual void Init() override;
+
+	//Game State
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	int32 round;
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	bool setup;
+	UFUNCTION(BlueprintCallable)
+	void StartRound();
+	UFUNCTION(BlueprintCallable)
+	void EndRound();
 
 	//Coins
 	UFUNCTION(BlueprintCallable)
@@ -28,10 +43,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UCanvasManager> canvasPrefab;
 
+	//Enemies
+	UPROPERTY(EditDefaultsOnly, Category = "Enemies")
+	class AEnemySpawner* enemySpawner;
+
+
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	int32 coins;
-	
-	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	int32 roundNumber;
 };
