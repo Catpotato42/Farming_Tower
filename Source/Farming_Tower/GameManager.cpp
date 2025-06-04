@@ -17,7 +17,7 @@ void UGameManager::StartRound()
     //hide canvas elements
 
     if (enemySpawner)
-        enemySpawner->SpawnEnemies(round);
+        enemySpawner->StartRound(round);
 }
 
 void UGameManager::EndRound()

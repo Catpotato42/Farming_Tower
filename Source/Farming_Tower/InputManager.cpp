@@ -12,6 +12,7 @@ void AInputManager::BeginPlay()
         InputComponent->BindKey(EKeys::N, IE_Pressed, this, &AInputManager::NextRound);
 }
 
+void AInputManager::SetupInputComponent() {}
 
 void AInputManager::NextRound()
 {
