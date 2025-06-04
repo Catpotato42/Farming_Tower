@@ -61,8 +61,3 @@ void AEnemySpawner::NotifyEnemyKilled()
         gameManager->EndRound();
     }
 }
-
-void AEnemyBase::SetSpawner(AEnemySpawner* InSpawner)
-{
-    Spawner = InSpawner;
-}

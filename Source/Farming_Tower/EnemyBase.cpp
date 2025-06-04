@@ -59,3 +59,8 @@ void AEnemyBase::Die()
 
     Destroy();
 }
+
+void AEnemyBase::SetSpawner(AEnemySpawner* InSpawner)
+{
+    Spawner = InSpawner;
+}
