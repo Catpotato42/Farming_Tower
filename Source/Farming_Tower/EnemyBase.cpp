@@ -1,10 +1,23 @@
 #include "EnemyBase.h"
+#include "Components/SphereComponent.h"
 #include "Components/SplineComponent.h"
 
 AEnemyBase::AEnemyBase()
 {
     PrimaryActorTick.bCanEverTick = true;
+
+    // Create and set the root collision component
+    USphereComponent* SphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
+    RootComponent = SphereComp;
+    SphereComp->InitSphereRadius(32.0f); // Optional: set collision radius
+    SphereComp->SetCollisionProfileName(TEXT("Pawn")); // Or "OverlapAllDynamic" if needed
+
+    // Optional: Visual mesh (just to see it in game)
+    // You can also assign a proper static mesh asset via Blueprint later
+    UStaticMeshComponent* Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualMesh"));
+    Mesh->SetupAttachment(RootComponent);
 }
+
 
 void AEnemyBase::SetPath(USplineComponent* InSpline)
 {
@@ -47,7 +60,8 @@ void AEnemyBase::MoveAlongPath(float DeltaTime)
 
 void AEnemyBase::OnReachedEnd()
 {
-    Die(); // Or just Destroy()
+    //Attack/Notify decreased life
+    Die();
 }
 
 void AEnemyBase::Die()
