@@ -17,6 +17,11 @@ void UGameManager::StartRound()
     setup = false;
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Round started!"));
     canvas->HideTowerUI();
+    ATowerPlacement* TowerPawn = Cast<ATowerPlacement>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+    if (TowerPawn)
+    {
+        TowerPawn->CancelPlacement();
+    }
 
     if (enemySpawner)
         enemySpawner->StartRound(round);
