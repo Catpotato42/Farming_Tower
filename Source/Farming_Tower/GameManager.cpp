@@ -5,7 +5,21 @@ void UGameManager::Init()
 {
     Super::Init();
 
-    AEnemySpawner* Spawner = Cast<AEnemySpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), AEnemySpawner::StaticClass()));
+    TArray<AActor*> FoundSpawners;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), FoundSpawners);
+    EnemySpawners.Empty();
+
+    for (AActor* Actor : FoundSpawners)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Found a spawner!"));
+        AEnemySpawner* Spawner = Cast<AEnemySpawner>(Actor);
+        if (Spawner)
+        {
+            EnemySpawners.Add(Spawner);
+            Spawner->gameManager = this; // Set reference back to GameManager
+        }
+    }
+
     coins = 0;
     round = 1;
     setup = true;
@@ -14,6 +28,21 @@ void UGameManager::Init()
 
 void UGameManager::StartRound()
 {
+    TArray<AActor*> FoundSpawners;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), FoundSpawners);
+    EnemySpawners.Empty();
+
+    for (AActor* Actor : FoundSpawners)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Found a spawner!"));
+        AEnemySpawner* Spawner = Cast<AEnemySpawner>(Actor);
+        if (Spawner)
+        {
+            EnemySpawners.Add(Spawner);
+            Spawner->gameManager = this; // Set reference back to GameManager
+        }
+    }
+    
     setup = false;
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Round started!"));
     canvas->HideTowerUI();
@@ -23,8 +52,13 @@ void UGameManager::StartRound()
         TowerPawn->CancelPlacement();
     }
 
-    if (enemySpawner)
-        enemySpawner->StartRound(round);
+    for (AEnemySpawner* Spawner : EnemySpawners)
+    {
+        if (Spawner)
+        {
+            Spawner->StartRound(round);
+        }
+    }
 }
 
 void UGameManager::EndRound()
