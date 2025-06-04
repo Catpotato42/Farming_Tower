@@ -8,7 +8,7 @@ class USplineComponent;
 class EnemySpawner; // Forward declare your spawner class
 
 UCLASS()
-class YOURGAME_API AEnemyBase : public AActor
+class FARMING_TOWER_API AEnemyBase : public AActor
 {
     GENERATED_BODY()
 
@@ -31,7 +31,7 @@ protected:
     float Speed = 200.0f;
 
     UPROPERTY()
-    EnemySpawner* Spawner;
+    AEnemySpawner* Spawner;
 
     void MoveAlongPath(float DeltaTime);
     void OnReachedEnd();

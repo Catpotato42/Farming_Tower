@@ -7,7 +7,7 @@
 #include "EnemySpawner.generated.h"
 
 UCLASS()
-class YOURGAME_API EnemySpawner : public AActor
+class YOURGAME_API AEnemySpawner : public AActor
 {
     GENERATED_BODY()
 
@@ -19,7 +19,7 @@ public:
     TArray<FRoundInfo> RoundInfos;
 
     UPROPERTY(EditAnywhere)
-    class GameManager* gameManager;
+    class UGameManager* gameManager;
 
 private:
     int enemiesSpawnedThisRound = 0;

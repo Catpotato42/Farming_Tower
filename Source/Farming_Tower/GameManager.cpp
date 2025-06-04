@@ -5,18 +5,28 @@ void UGameManager::Init()
 {
     Super::Init();
 
-    /*if (canvasPrefab)
-    {
-        canvas = CreateWidget<UCanvasManager>(GetWorld(), canvasPrefab);
-        if (IsValid(canvas))
-        {
-            canvas->AddToViewport();
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Canvas successful!");
-        }
-        else
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, "Canvas not created.");
-    }*/
+    AEnemySpawner* Spawner = Cast<AEnemySpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), AEnemySpawner::StaticClass()));
     coins = 0;
+}
+
+
+void UGameManager::StartRound()
+{
+    setup = false;
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Round started!"));
+    //hide canvas elements
+
+    if (enemySpawner)
+        enemySpawner->SpawnEnemies(round);
+}
+
+void UGameManager::EndRound()
+{
+    setup = true;
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Ending round..."));
+    round++;
+    //update round text
+    //show canvas elements
 }
 
 

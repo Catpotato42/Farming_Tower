@@ -4,7 +4,7 @@
 #include "EnemyBase.h"
 #include "GameManager.h"
 
-void EnemySpawner::StartRound(int currentRound)
+void AEnemySpawner::StartRound(int currentRound)
 {
     TArray<FEnemySpawnInfo> toSpawn;
 
@@ -39,7 +39,7 @@ void EnemySpawner::StartRound(int currentRound)
     }
 }
 
-void EnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
+void AEnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
 {
     if (!enemyClass) return;
 
@@ -52,7 +52,7 @@ void EnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
     }
 }
 
-void EnemySpawner::NotifyEnemyKilled()
+void AEnemySpawner::NotifyEnemyKilled()
 {
     enemiesKilledThisRound++;
 
