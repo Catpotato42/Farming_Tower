@@ -1,73 +1,153 @@
 [
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CanvasManager.cpp",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\CanvasManager.cpp",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CanvasManager.h",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\CanvasManager.h",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Farming_Tower.Build.cs",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\EnemyBase.cpp",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Farming_Tower.cpp",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\EnemyBase.h",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Farming_Tower.h",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\EnemySpawner.cpp",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\GameManager.cpp",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\EnemySpawner.h",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\GameManager.h",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\FEnemySpawnInfo.h",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\TowerRange.cpp",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\FRoundInfo.h",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\TowerRange.h",
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\Farming_Tower.Build.cs",
 		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\Farming_Tower.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\Farming_Tower.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\GameManager.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\GameManager.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\InputManager.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\InputManager.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\PathSplineActor.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\PathSplineActor.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\TowerRange.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\TowerRange.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	}
