@@ -16,6 +16,8 @@ AEnemyBase::AEnemyBase()
     // You can also assign a proper static mesh asset via Blueprint later
     UStaticMeshComponent* Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualMesh"));
     Mesh->SetupAttachment(RootComponent);
+
+    Tags.Add(FName("Enemy"));
 }
 
 
