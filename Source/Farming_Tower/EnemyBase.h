@@ -5,9 +5,9 @@
 #include "EnemySpawner.h"
 #include "EnemyBase.generated.h"
 
-
+class UGameManager;
 class USplineComponent;
-class AEnemySpawner; // Forward declare your spawner class
+class AEnemySpawner; // Forward declare spawner class
 
 UCLASS()
 class FARMING_TOWER_API AEnemyBase : public AActor
@@ -22,6 +22,9 @@ public:
 
     void SetPath(USplineComponent* InSpline);
     void SetSpawner(AEnemySpawner* InSpawner);
+
+    UFUNCTION()
+    void ApplyDamage(float DamageAmount);
 
 protected:
     UPROPERTY()
@@ -38,7 +41,8 @@ protected:
     UPROPERTY(EditAnywhere, Category = "Enemy")
     float Health = 50.0f;
 
-
+    UPROPERTY()
+    UGameManager* GameManager;
 
     UPROPERTY()
     AEnemySpawner* Spawner;

@@ -7,6 +7,7 @@ void UGameManager::Init()
 
     coins = 0;
     round = 1;
+    health = 10;
     setup = true;
 }
 
@@ -71,4 +72,8 @@ bool UGameManager::SpendCoins(int n)
         return true;
     }
     else return false;
+}
+
+void UGameManager::DecreaseHealth(int n) {
+    health -= n;
 }

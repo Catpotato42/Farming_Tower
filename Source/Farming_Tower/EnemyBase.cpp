@@ -1,4 +1,5 @@
 #include "EnemyBase.h"
+#include "GameManager.h"
 #include "Components/SphereComponent.h"
 #include "Components/SplineComponent.h"
 
@@ -24,6 +25,8 @@ void AEnemyBase::Tick(float DeltaTime)
 void AEnemyBase::BeginPlay()
 {
     Super::BeginPlay();
+
+    GameManager = Cast<UGameManager>(GetGameInstance());
 
     if (!PathSpline)
     {
@@ -51,8 +54,20 @@ void AEnemyBase::MoveAlongPath(float DeltaTime)
 
 void AEnemyBase::OnReachedEnd()
 {
-    //Attack/Notify decreased life
+    if (GameManager) {
+        GameManager->DecreaseHealth(1);
+    }
+    
     Die();
+}
+
+void AEnemyBase::ApplyDamage(float DamageAmount)
+{
+    Health -= DamageAmount;
+    if (Health <= 0.0f)
+    {
+        Die();
+    }
 }
 
 void AEnemyBase::Die()
