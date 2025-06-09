@@ -7,6 +7,8 @@
 #include "PathSplineActor.h"
 #include "EnemySpawner.generated.h"
 
+class AEnemyBase;
+
 UCLASS()
 class FARMING_TOWER_API AEnemySpawner : public AActor
 {
@@ -36,7 +38,7 @@ private:
     int enemiesSpawnedThisRound = 0;
     int enemiesKilledThisRound = 0;
 
-    void SpawnEnemy(TSubclassOf<AActor> enemyClass);
+    void SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass);
 
     UPROPERTY(VisibleAnywhere)
     USceneComponent* Root;

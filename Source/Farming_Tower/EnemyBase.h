@@ -32,6 +32,14 @@ protected:
     UPROPERTY(EditAnywhere, Category="Enemy")
     float Speed = 200.0f;
 
+    UPROPERTY(EditAnywhere, Category = "Enemy")
+    TSubclassOf<AEnemyBase> EnemyToSpawn;
+
+    UPROPERTY(EditAnywhere, Category = "Enemy")
+    float Health = 50.0f;
+
+
+
     UPROPERTY()
     AEnemySpawner* Spawner;
 

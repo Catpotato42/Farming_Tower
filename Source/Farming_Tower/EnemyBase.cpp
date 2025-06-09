@@ -6,22 +6,6 @@ AEnemyBase::AEnemyBase()
 {
     PrimaryActorTick.bCanEverTick = true;
 
-    // Create and set the root collision component
-    USphereComponent* SphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
-    RootComponent = SphereComp;
-    SphereComp->InitSphereRadius(32.0f); // Optional: set collision radius
-    SphereComp->SetCollisionProfileName(TEXT("Pawn")); // Or "OverlapAllDynamic" if needed
-
-    UStaticMeshComponent* Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualMesh"));
-    Mesh->SetupAttachment(RootComponent);
-
-    // Load the engine's default sphere mesh and assign it
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereMesh(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
-    if (SphereMesh.Succeeded())
-    {
-        Mesh->SetStaticMesh(SphereMesh.Object);
-    }
-
     Tags.Add(FName("Enemy"));
 }
 

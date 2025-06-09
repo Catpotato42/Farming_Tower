@@ -50,14 +50,13 @@ void AEnemySpawner::StartRound(int currentRound)
             {
                 SpawnEnemy(enemyInfo.EnemyClass);
                 GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Spawned a Dude..."));
-                
             });
             enemiesSpawnedThisRound++;
         }
     }
 }
 
-void AEnemySpawner::SpawnEnemy(TSubclassOf<AActor> enemyClass)
+void AEnemySpawner::SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass)
 {
     if (!enemyClass) return;
 

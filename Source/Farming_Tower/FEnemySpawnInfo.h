@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "FEnemySpawnInfo.generated.h"
 
+class AEnemyBase;
+
 USTRUCT(BlueprintType)
 struct FEnemySpawnInfo
 {
@@ -10,7 +12,7 @@ struct FEnemySpawnInfo
 
     // Which type of enemy to spawn
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TSubclassOf<AActor> EnemyClass;
+    TSubclassOf<AEnemyBase> EnemyClass;
 
     // How many of them to spawn
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
