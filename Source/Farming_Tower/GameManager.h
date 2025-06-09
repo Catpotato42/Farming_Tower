@@ -38,6 +38,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool SpendCoins(int n);
 
+	//Health
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	float health;
+	UFUNCTION(BlueprintCallable)
+	void DecreaseHealth(int n);
+
+
 	//Canvas
 	UPROPERTY(BlueprintReadWrite)
 	class UCanvasManager* canvas;
