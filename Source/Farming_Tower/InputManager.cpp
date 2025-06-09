@@ -20,5 +20,5 @@ void AInputManager::NextRound()
     if (GameManager->setup)
         GameManager->StartRound();
     else
-        GameManager->EndRound();       
+        GameManager->EndRound();
 }
