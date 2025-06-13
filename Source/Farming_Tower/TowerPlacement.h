@@ -13,4 +13,10 @@ class FARMING_TOWER_API ATowerPlacement : public APawn
 public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
     void CancelPlacement();
+
+	UFUNCTION(BlueprintCallable)
+	int GetRiverDistance(FVector loc);
+
+private:
+	bool CheckRiverDistance(FVector loc, int distance);
 };
