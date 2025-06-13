@@ -13,7 +13,7 @@ void ACactusTower::Shoot_Implementation()
 {
     if (!ProjectileClass) return;
 
-    FVector SpawnLocation = GetActorLocation();
+    FVector SpawnLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset);
     FRotator Rotation;
 
     // Fire in 8 directions (every 45 degrees)
@@ -39,6 +39,7 @@ void ACactusTower::Shoot_Implementation()
             Projectile->MovementComponent->Velocity = Direction * ProjectileSpeed;
             Projectile->SetLifeSpan(MaxProjectileDistance / ProjectileSpeed); // time = distance / speed
             Projectile->Range = ProjectileRange;
+            Projectile->Damage = TowerDamage;
         }
     }
 }

@@ -39,7 +39,7 @@ protected:
     TSubclassOf<AEnemyBase> EnemyToSpawn;
 
     UPROPERTY(EditAnywhere, Category = "Enemy")
-    float Health = 50.0f;
+    float Health = 20.0f;
 
     UPROPERTY()
     UGameManager* GameManager;

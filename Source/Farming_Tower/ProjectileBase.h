@@ -23,10 +23,13 @@ protected:
 
 public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-    float Damage = 10.0f;
+    float Damage = 0.0f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     float Range = 1000.0f;  //travel length
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+    bool Gravity = false;  //Gravity on
 
     UPROPERTY(VisibleAnywhere)
     class USphereComponent* CollisionComponent;

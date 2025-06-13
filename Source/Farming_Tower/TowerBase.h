@@ -32,5 +32,13 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     float ShootInterval = 1.0f;
 
+    //Projectile spawn height
+    UPROPERTY(EditAnywhere, Category = "Combat")
+    float SpawnHeightOffset = 50.f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+    float TowerDamage = 10.f;
+
+
     float TimeSinceLastShot = 0.0f;
 };

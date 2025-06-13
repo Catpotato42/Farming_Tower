@@ -19,6 +19,10 @@ void AProjectileBase::BeginPlay()
 
     StartLocation = GetActorLocation();
 
+    if (!Gravity) {
+        MovementComponent->ProjectileGravityScale = 0.0f;
+    }
+
     if (CollisionComponent)
     {
         CollisionComponent->OnComponentHit.AddDynamic(this, &AProjectileBase::OnProjectileHit);
