@@ -2,14 +2,14 @@
 
 int ATowerPlacement::GetRiverDistance(FVector loc)
 {
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 10; i++)
     {
         if (CheckRiverDistance(loc, i+1))
         {
             return i;
         }
     }
-    return 2;
+    return 10;
 }
 
 bool ATowerPlacement::CheckRiverDistance(FVector loc, int distance)
