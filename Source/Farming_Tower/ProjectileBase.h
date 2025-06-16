@@ -26,7 +26,7 @@ public:
     float Damage = 0.0f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-    float Range = 1000.0f;  //travel length
+    float Range = 0;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     bool Gravity = false;  //Gravity on
