@@ -25,6 +25,8 @@ public:
     void Shoot();
     virtual void Shoot_Implementation();
 
+    virtual void UpdateState();
+
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     UTowerRange* TowerRangeComponent;
@@ -41,7 +43,6 @@ protected:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     int TowerLevel = 0;
-
 
     float TimeSinceLastShot = 0.0f;
 };
