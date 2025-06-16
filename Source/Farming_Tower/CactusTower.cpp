@@ -16,11 +16,10 @@ void ACactusTower::Shoot_Implementation()
     FVector SpawnLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset);
     FRotator Rotation;
 
-    // Fire in 8 directions (every 45 degrees)
-    for (int i = 0; i < 8; ++i)
+    // Fire in *amount* directions
+    for (int i = 0; i <= ProjectileAmount; ++i)
     {
-        float AngleDegrees = i * 45.0f;
-        float Radians = FMath::DegreesToRadians(AngleDegrees);
+        float Radians = i * (2 * PI / ProjectileAmount);
 
         const float ProjectileRange = TowerRangeComponent->DetectionRange;
         FVector Direction = FVector(FMath::Cos(Radians), FMath::Sin(Radians), 0.f);

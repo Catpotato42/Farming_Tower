@@ -39,6 +39,9 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     float TowerDamage = 10.f;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+    int TowerLevel = 0;
+
 
     float TimeSinceLastShot = 0.0f;
 };

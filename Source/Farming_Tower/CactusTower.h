@@ -27,4 +27,8 @@ public:
     // Max travel distance before destroying
     UPROPERTY(EditAnywhere, Category = "Combat")
     float MaxProjectileDistance = 1000.f;
+
+    //Projectile amount, should never be 0 or crash will happen
+    UPROPERTY(EditAnywhere, Category = "Combat")
+    int ProjectileAmount = 8;
 };
