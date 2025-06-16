@@ -24,6 +24,19 @@ void ATowerBase::Tick(float DeltaTime)
         Shoot();
         TimeSinceLastShot = 0.0f;
     }
+
+    if (TowerUI)
+    {
+        FVector CameraLocation = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->GetCameraLocation();
+        FRotator LookAtRotation = (CameraLocation - TowerUI->GetComponentLocation()).Rotation();
+        //LookAtRotation.Roll = 0.0f;
+        FRotator ConstrainedRotation(0.f, LookAtRotation.Yaw, 0.f);
+        TowerUI->SetWorldRotation(ConstrainedRotation);
+    }
+    else
+    {
+        TowerUI = FindComponentByClass<UWidgetComponent>();
+    }
 }
 
 void ATowerBase::Shoot_Implementation()

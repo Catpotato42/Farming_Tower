@@ -1,9 +1,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "TowerPlacement.h"
+
+#include "Kismet/GameplayStatics.h"
+#include "Components/WidgetComponent.h"
+
 #include "GameFramework/Actor.h"
 #include "TowerBase.generated.h"
+
 
 class UTowerRange;
 
@@ -27,14 +33,16 @@ public:
     virtual void Shoot_Implementation();
 
     virtual void UpdateState();
-    void SetTowerPlacement(ATowerPlacement* NewTowerPlacement)
-    {
-        TowerPlacement = NewTowerPlacement;
-    }
+    
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tower Placement")
+    ATowerPlacement* TowerPlacement;
 
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     UTowerRange* TowerRangeComponent;
+
+    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "UI", meta = (AllowPrivateAccess = "true"))
+    class UWidgetComponent* TowerUI;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     float ShootInterval = 1.0f;
@@ -50,7 +58,4 @@ protected:
     int TowerLevel = 1;
 
     float TimeSinceLastShot = 0.0f;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tower Placement")
-    ATowerPlacement* TowerPlacement;
 };
