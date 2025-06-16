@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "TowerBase.h"
 
 
 void UGameManager::Init()
@@ -14,6 +15,19 @@ void UGameManager::Init()
 
 void UGameManager::StartRound()
 {
+    //update towers
+    TArray<AActor*> AllTowers;
+    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Tower"), AllTowers);
+    for (AActor* Actor : AllTowers)
+    {
+        ATowerBase* Tower = Cast<ATowerBase>(Actor);
+        if (Tower)
+        {
+            Tower->UpdateState();
+        }
+    }
+
+    //spawn enemies
     TArray<AActor*> FoundSpawners;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), FoundSpawners);
     EnemySpawners.Empty();

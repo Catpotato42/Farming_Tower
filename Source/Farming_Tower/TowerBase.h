@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "TowerPlacement.h"
 #include "GameFramework/Actor.h"
 #include "TowerBase.generated.h"
 
@@ -25,6 +26,12 @@ public:
     void Shoot();
     virtual void Shoot_Implementation();
 
+    virtual void UpdateState();
+    void SetTowerPlacement(ATowerPlacement* NewTowerPlacement)
+    {
+        TowerPlacement = NewTowerPlacement;
+    }
+
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     UTowerRange* TowerRangeComponent;
@@ -40,8 +47,10 @@ protected:
     float TowerDamage = 10.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-    int TowerLevel = 0;
-
+    int TowerLevel = 1;
 
     float TimeSinceLastShot = 0.0f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tower Placement")
+    ATowerPlacement* TowerPlacement;
 };

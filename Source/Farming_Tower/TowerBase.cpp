@@ -29,5 +29,12 @@ void ATowerBase::Tick(float DeltaTime)
 void ATowerBase::Shoot_Implementation()
 {
     // Intentionally empty: subclasses should override this
-    UE_LOG(LogTemp, Warning, TEXT("Base tower shoot called - override this in a child class."));
+    UE_LOG(LogTemp, Warning, TEXT("Base tower shoot called - override this."));
+}
+
+void ATowerBase::UpdateState()
+{
+    // Intentionally empty: subclasses should override this
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Base tower update called - override this."));
+    UE_LOG(LogTemp, Warning, TEXT("Base tower update called - override this."));
 }

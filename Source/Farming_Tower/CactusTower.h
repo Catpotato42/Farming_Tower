@@ -11,6 +11,7 @@ class FARMING_TOWER_API ACactusTower : public ATowerBase
 
 public:
     ACactusTower();
+    virtual void UpdateState() override;
 
 protected:
     virtual void Shoot_Implementation() override;

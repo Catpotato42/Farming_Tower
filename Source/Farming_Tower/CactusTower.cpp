@@ -42,3 +42,27 @@ void ACactusTower::Shoot_Implementation()
         }
     }
 }
+
+void ACactusTower::UpdateState()
+{
+    // Compute level change based on resources
+    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("River distance: %d"), riverDist));
+
+    if (riverDist < 2) //decrease level if wet
+        TowerLevel--;
+    else if (riverDist > 5 && TowerLevel < 5) //increase level if dry
+        TowerLevel++;
+
+    if (TowerLevel == 0)
+    {
+        Destroy();
+    }
+    else
+    {
+        //change stats based on level
+    }
+    
+    // Log the current state for debugging
+    UE_LOG(LogTemp, Warning, TEXT("Cactus Tower updated: Level %d"), TowerLevel);
+}
