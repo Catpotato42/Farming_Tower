@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
 #include "ProjectileBase.generated.h"
 
 UCLASS()
@@ -11,7 +12,7 @@ class FARMING_TOWER_API AProjectileBase : public AActor
 
 public:
     AProjectileBase();
-
+    
 protected:
     virtual void BeginPlay() override;
 
@@ -31,8 +32,8 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     bool Gravity = false;  //Gravity on
 
-    UPROPERTY(VisibleAnywhere)
-    class USphereComponent* CollisionComponent;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced, Category = "Setup")
+    USphereComponent* MyCollisionComponent = nullptr;
 
     UPROPERTY(VisibleAnywhere)
     class UProjectileMovementComponent* MovementComponent;

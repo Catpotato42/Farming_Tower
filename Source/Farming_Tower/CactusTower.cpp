@@ -21,7 +21,7 @@ void ACactusTower::Shoot_Implementation()
     {
         float Radians = i * (2 * PI / ProjectileAmount);
 
-        const float ProjectileRange = TowerRangeComponent->DetectionRange + 50.0f;
+        const float ProjectileRange = TowerRangeComponent->DetectionRange + 50.0f; //How far the projectiles go
         FVector Direction = FVector(FMath::Cos(Radians), FMath::Sin(Radians), 0.f);
         FRotator SpawnRotation = Direction.Rotation();
 
@@ -36,7 +36,6 @@ void ACactusTower::Shoot_Implementation()
         if (Projectile)
         {
             Projectile->MovementComponent->Velocity = Direction * ProjectileSpeed;
-            Projectile->SetLifeSpan(MaxProjectileDistance / ProjectileSpeed); // time = distance / speed
             Projectile->Range = ProjectileRange;
             Projectile->Damage = TowerDamage;
         }
