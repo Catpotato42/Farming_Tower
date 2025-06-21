@@ -41,6 +41,9 @@ protected:
     UPROPERTY(EditAnywhere, Category = "Enemy")
     float Health = 10.0f;
 
+    UPROPERTY(EditAnywhere, Category = "Enemy")
+    float CoinAmount = 0.0f;
+
     UPROPERTY()
     UGameManager* GameManager;
 
@@ -50,4 +53,5 @@ protected:
     void MoveAlongPath(float DeltaTime);
     void OnReachedEnd();
     void Die();
+    void DieNoCoins();
 };

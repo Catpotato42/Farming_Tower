@@ -38,6 +38,12 @@ private:
     int enemiesSpawnedThisRound = 0;
     int enemiesKilledThisRound = 0;
 
+    TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawnQueue;
+    int32 CurrentSpawnIndex = 0;
+    FTimerHandle SpawnTimerHandle;
+    float SpawnInterval = 0.5f;
+
+    void SpawnNextEnemy();
     void SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass);
 
     UPROPERTY(VisibleAnywhere)
