@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "TowerBase.h"
+#include "TowerUI.h"
 #include "CactusTower.generated.h"
 
 UCLASS()
@@ -32,4 +33,7 @@ public:
     //Projectile amount, should never be 0 or crash will happen
     UPROPERTY(EditAnywhere, Category = "Combat")
     int ProjectileAmount = 8;
+
+private:
+    
 };

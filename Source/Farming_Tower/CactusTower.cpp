@@ -64,4 +64,13 @@ void ACactusTower::UpdateState()
     
     // Log the current state for debugging
     UE_LOG(LogTemp, Warning, TEXT("Cactus Tower updated: Level %d"), TowerLevel);
+    if (TowerUI)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Tower Level: %d"), TowerLevel));
+        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
+        if (UIScript)
+        {
+            UIScript->UpdateLevel(TowerLevel);
+        }
+    }
 }
