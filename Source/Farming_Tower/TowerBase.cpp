@@ -28,11 +28,9 @@ void ATowerBase::Tick(float DeltaTime)
 
     if (TowerUI)
     {
-        FVector CameraLocation = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->GetCameraLocation();
-        FRotator LookAtRotation = (CameraLocation - TowerUI->GetComponentLocation()).Rotation();
-        //LookAtRotation.Roll = 0.0f;
-        FRotator ConstrainedRotation(0.f, LookAtRotation.Yaw, 0.f);
-        TowerUI->SetWorldRotation(ConstrainedRotation);
+        FRotator CameraRotation = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->GetCameraRotation();
+        FRotator OppositeRotation = CameraRotation + FRotator(90.f, 180.f, 0.f);
+        TowerUI->SetWorldRotation(OppositeRotation);
     }
     else
     {

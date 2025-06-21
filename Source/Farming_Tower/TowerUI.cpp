@@ -33,7 +33,7 @@ void UTowerUI::UpdateUI(int32 dir, int32 water)
     {
         StateText->SetText(FText::FromString(TEXT("Dying")));
         StateText->SetColorAndOpacity(FSlateColor(RedColor));
-        LevelDir->SetText(FText::FromString(FString::Printf(TEXT("-%d"), dir)));
+        LevelDir->SetText(FText::FromString(FString::Printf(TEXT("%d"), dir)));
         LevelDir->SetColorAndOpacity(FSlateColor(RedColor));
     }
     else if (dir > 0)
