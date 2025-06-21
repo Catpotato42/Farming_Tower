@@ -58,7 +58,7 @@ void AEnemyBase::OnReachedEnd()
         GameManager->DecreaseHealth(1);
     }
     
-    Die();
+    DieNoCoins();
 }
 
 void AEnemyBase::ApplyDamage(float DamageAmount)
@@ -71,6 +71,19 @@ void AEnemyBase::ApplyDamage(float DamageAmount)
 }
 
 void AEnemyBase::Die()
+{
+    if (Spawner)
+    {
+        Spawner->NotifyEnemyKilled();
+    }
+    if (GameManager) {
+        GameManager->AddCoins(CoinAmount);
+    }
+
+    Destroy();
+}
+
+void AEnemyBase::DieNoCoins()
 {
     if (Spawner)
     {

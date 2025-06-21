@@ -28,6 +28,8 @@ void AProjectileBase::BeginPlay()
     if (MyCollisionComponent)
     {
         MyCollisionComponent->OnComponentHit.AddDynamic(this, &AProjectileBase::OnProjectileHit);
+        MyCollisionComponent->SetNotifyRigidBodyCollision(true);
+        MyCollisionComponent->SetGenerateOverlapEvents(true);
     }
     else
     {
