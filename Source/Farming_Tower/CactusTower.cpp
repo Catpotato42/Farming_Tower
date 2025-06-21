@@ -80,10 +80,10 @@ void ACactusTower::UpdateState()
     else
     {
         //change stats based on level
+        SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
     }
     
     // Log the current state for debugging
-    UE_LOG(LogTemp, Warning, TEXT("Cactus Tower updated: Level %d"), TowerLevel);
     if (TowerUI)
     {
         UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
