@@ -87,9 +87,9 @@ void UTowerRange::UpdateClosestEnemy()
 
 		if (GEngine)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 0.f, FColor::Red,
-				FString::Printf(TEXT("No enemy in range. Closest enemy distance: %.2f (range %.2f)"),
-					Distance, EffectiveRange));
+			//GEngine->AddOnScreenDebugMessage(-1, 0.f, FColor::Red,
+			//	FString::Printf(TEXT("No enemy in range. Closest enemy distance: %.2f (range %.2f)"),
+			//		Distance, EffectiveRange));
 		}
 	}
 }

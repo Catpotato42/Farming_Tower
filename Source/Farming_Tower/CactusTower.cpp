@@ -48,7 +48,7 @@ void ACactusTower::UpdateTowerUI()
     int dir = 0;
     if (riverDist < 2) //decrease level if wet
         dir = -1;
-    else if (riverDist > 5 && TowerLevel < 5) //increase level if dry
+    else if (riverDist > 3 && TowerLevel < 5) //increase level if dry
         dir = 1;
 
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Direction: %d"), dir));
@@ -66,11 +66,11 @@ void ACactusTower::UpdateState()
 {
     // Compute level change based on resources
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("River distance: %d"), riverDist));
+    GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Green, FString::Printf(TEXT("River distance: %d"), riverDist));
 
     if (riverDist < 2) //decrease level if wet
         TowerLevel--;
-    else if (riverDist > 5 && TowerLevel < 5) //increase level if dry
+    else if (riverDist > 3 && TowerLevel < 5) //increase level if dry
         TowerLevel++;
 
     if (TowerLevel == 0)
@@ -79,11 +79,30 @@ void ACactusTower::UpdateState()
     }
     else
     {
-        //change stats based on level
-        SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
+        GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Yellow, FString::Printf(TEXT("Tower Level: %d"), TowerLevel));
+        switch (TowerLevel) {
+            case 1:
+                ProjectileAmount = 6;
+                break;
+            case 2:
+                ProjectileAmount = 8;
+                break;
+            case 3:
+                ProjectileAmount = 8;
+                break;
+            case 4:
+                ProjectileAmount = 10;
+                break;
+            case 5:
+                ProjectileAmount = 12;
+                break;
+            default:
+            break;
+        }
     }
     
     // Log the current state for debugging
+    UE_LOG(LogTemp, Warning, TEXT("Cactus Tower updated: Level %d"), TowerLevel);
     if (TowerUI)
     {
         UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
