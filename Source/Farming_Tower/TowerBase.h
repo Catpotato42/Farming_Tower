@@ -41,7 +41,7 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     UTowerRange* TowerRangeComponent;
 
-    UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "UI", meta = (AllowPrivateAccess = "true"))
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
     class UWidgetComponent* TowerUI;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")

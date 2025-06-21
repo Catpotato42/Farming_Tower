@@ -11,6 +11,7 @@ ATowerBase::ATowerBase()
 void ATowerBase::BeginPlay()
 {
     Super::BeginPlay();
+    TowerUI = FindComponentByClass<UWidgetComponent>();
 }
 
 void ATowerBase::Tick(float DeltaTime)
