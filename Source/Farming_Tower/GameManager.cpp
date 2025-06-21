@@ -63,6 +63,18 @@ void UGameManager::StartRound()
 
 void UGameManager::EndRound()
 {
+    //update towers
+    TArray<AActor*> AllTowers;
+    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Tower"), AllTowers);
+    for (AActor* Actor : AllTowers)
+    {
+        ATowerBase* Tower = Cast<ATowerBase>(Actor);
+        if (Tower)
+        {
+            Tower->UpdateTowerUI();
+        }
+    }
+
     setup = true;
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Ending round..."));
     round++;

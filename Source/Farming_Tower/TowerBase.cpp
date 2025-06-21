@@ -52,3 +52,10 @@ void ATowerBase::UpdateState()
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Base tower update called - override this."));
     UE_LOG(LogTemp, Warning, TEXT("Base tower update called - override this."));
 }
+
+void ATowerBase::UpdateTowerUI()
+{
+    // Intentionally empty: subclasses should override this
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Base UI update called - override this."));
+    UE_LOG(LogTemp, Warning, TEXT("Base UI update called - override this."));
+}

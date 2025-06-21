@@ -33,6 +33,9 @@ public:
     virtual void Shoot_Implementation();
 
     virtual void UpdateState();
+
+    UFUNCTION(BlueprintCallable)
+    virtual void UpdateTowerUI();
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tower Placement")
     ATowerPlacement* TowerPlacement;
