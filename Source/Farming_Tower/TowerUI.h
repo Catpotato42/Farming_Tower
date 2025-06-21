@@ -12,9 +12,27 @@ class FARMING_TOWER_API UTowerUI : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable)
-	void UpdateLevel(int32 n);
+	void UpdateLevel(int32 newLevel);
+	void UpdateUI(int32 dir, int32 water);
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* LevelText;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UTextBlock* WaterText;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UTextBlock* StateText;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UTextBlock* LevelDir;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	FLinearColor RedColor = FLinearColor(1.0f, 0.0f, 0.0f, 1.0f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	FLinearColor YellowColor = FLinearColor(0.8f, 0.8f, 0.1f, 1.0f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	FLinearColor GreenColor = FLinearColor(0.1f, 1.0f, 0.2f, 1.0f);
 };
