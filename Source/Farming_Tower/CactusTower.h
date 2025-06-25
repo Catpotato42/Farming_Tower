@@ -12,7 +12,6 @@ class FARMING_TOWER_API ACactusTower : public ATowerBase
 public:
     ACactusTower();
     virtual void UpdateState() override;
-    virtual void UpdateTowerUI() override;
     virtual int IsGoodPlacement() override;
 
 protected:

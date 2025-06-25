@@ -4,9 +4,9 @@
 int ACactusIndicator::IsGoodPlacement()
 {
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    if (riverDist < 2) //decrease level if wet
+    if (riverDist < 3) //decrease level if wet
         return -1;
-    else if (riverDist > 3) //increase level if dry
+    else if (riverDist > 4) //increase level if dry
         return 1;
     return 0;
 }

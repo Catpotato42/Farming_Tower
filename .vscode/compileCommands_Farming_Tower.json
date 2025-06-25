@@ -1,5 +1,21 @@
 [
 	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\CactusIndicator.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\CactusIndicator.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\CactusTower.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
@@ -120,6 +136,22 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\IndicatorBase.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\IndicatorBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\InputManager.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
@@ -193,6 +225,38 @@
 	},
 	{
 		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\ProjectileNonHoming.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\SniperIndicator.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\SniperIndicator.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\SniperTower.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ianst\\GitHub\\Farming_Tower\\Source\\Farming_Tower\\SniperTower.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\ianst\\GitHub\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"

@@ -46,12 +46,11 @@ int ACactusTower::IsGoodPlacement()
 {
     //Same as indicator
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    int dir = 0;
-    if (riverDist < 2) //decrease level if wet
-        dir = -1;
-    else if (riverDist > 3 && TowerLevel < 5) //increase level if dry
-        dir = 1;
-    return dir;
+    if (riverDist < 3) //decrease level if wet
+        return -1;
+    else if (riverDist > 4 && TowerLevel < 5) //increase level if dry
+        return 1;
+    return 0;
 }
 
 

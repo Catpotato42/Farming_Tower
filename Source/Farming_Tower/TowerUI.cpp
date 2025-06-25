@@ -27,7 +27,7 @@ void UTowerUI::UpdateUI(int32 dir, int32 water)
         LevelDir->SetVisibility(ESlateVisibility::Visible);
 
     if (WaterText)
-        WaterText->SetText(FText::FromString(FString::Printf(TEXT("Water: %d"), water+1)));
+        WaterText->SetText(FText::FromString(FString::Printf(TEXT("Water: %d"), water)));
 
     if (dir < 0)
     {
