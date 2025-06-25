@@ -20,7 +20,15 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+public:
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	void UpdateIsEnemyInRangeOnly()
+
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	void UpdateClosestEnemyToTower();
+
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	void UpdateClosestEnemyToEnd();
 
 	// Returns the closest enemy actor
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
@@ -50,9 +58,5 @@ private:
 	AActor* ClosestEnemy = nullptr;
 
 	AActor* ClosestEnemyToEnd = nullptr;
-
-	void UpdateClosestEnemyToTower();
-
-	void UpdateClosestEnemyToEnd();
 		
 };

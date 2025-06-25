@@ -24,6 +24,35 @@ void UTowerRange::BeginPlay()
 	
 }
 
+void UTowerRange::UpdateIsEnemyInRangeOnly()
+{
+	TArray<AActor*> FoundEnemies;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
+
+	AActor* Owner = GetOwner();
+	if (!Owner) return;
+
+	FVector OwnerLocation = Owner->GetActorLocation();
+	float EffectiveRangeSq = FMath::Square(DetectionRange + DetectionBuffer);
+	bIsEnemyInRange = false;
+
+	for (AActor* Enemy : FoundEnemies)
+	{
+		if (!Enemy || Enemy == Owner) continue;
+
+		FVector EnemyLocation = Enemy->GetActorLocation();
+		float DX = EnemyLocation.X - OwnerLocation.X;
+		float DY = EnemyLocation.Y - OwnerLocation.Y;
+		float DistanceSq = DX * DX + DY * DY;
+
+		if (DistanceSq <= EffectiveRangeSq)
+		{
+			bIsEnemyInRange = true;
+			return;
+		}
+	}
+}
+
 void UTowerRange::UpdateClosestEnemyToTower()
 {
 	TArray<AActor*> FoundEnemies;

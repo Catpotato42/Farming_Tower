@@ -15,7 +15,18 @@ class FARMING_TOWER_API ASniperTower : public ATowerBase
 	GENERATED_BODY()
 public:
 	ASniperTower();
-	
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TSubclassOf<class AProjectileBase> ProjectileClass;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float ProjectileSpeed = 1200.f;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float MaxProjectileDistance = 2000.f;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float SpawnHeightOffset = 50.f;
 protected:
     virtual void Shoot_Implementation() override;
 };
