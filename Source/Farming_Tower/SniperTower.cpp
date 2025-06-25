@@ -10,6 +10,11 @@
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
+ASniperTower::ASniperTower()
+{
+    
+}
+
 void ASniperTower::Shoot_Implementation()
 {
     if (!ProjectileClass || !TowerRangeComponent) return;
