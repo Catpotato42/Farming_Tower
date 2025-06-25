@@ -2,10 +2,14 @@
 
 
 #include "SniperTower.h"
+#include "TowerRange.h"
+#include "ProjectileBase.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h
 
 void ASniperTower::ShootImplementation()
 {
-    if (!ProjectileClass) return;
+    if (!ProjectileClass || !TowerRangeComponent) return;
 
     TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRangeByEndProgress();
     FVector StartLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset);
