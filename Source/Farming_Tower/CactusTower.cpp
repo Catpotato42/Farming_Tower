@@ -62,6 +62,7 @@ void ACactusTower::UpdateTowerUI()
     }
 }
 
+
 void ACactusTower::UpdateState()
 {
     // Compute level change based on resources
@@ -111,4 +112,5 @@ void ACactusTower::UpdateState()
             UIScript->UpdateLevel(TowerLevel);
         }
     }
+    SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
 }
