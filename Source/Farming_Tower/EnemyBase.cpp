@@ -38,11 +38,11 @@ void AEnemyBase::MoveAlongPath(float DeltaTime)
 {
     if (!PathSpline) return;
 
-    DistanceTravelled += Speed * DeltaTime;
+    DistanceTraveled += Speed * DeltaTime;
 
-    const float SplineLength = PathSpline->GetSplineLength();
+    SplineLength = PathSpline->GetSplineLength();
 
-    if (DistanceTravelled >= SplineLength)
+    if (DistanceTraveled >= SplineLength)
     {
         OnReachedEnd();
         return;

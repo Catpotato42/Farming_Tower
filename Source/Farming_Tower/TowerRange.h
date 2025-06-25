@@ -21,12 +21,18 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	// Returns the closest enemy actor
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
 	AActor* GetClosestEnemy() const;
+
+	// Returns the closest enemy actor to the end within range of the tower
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	AActor* GetClosestEnemyToEnd() const;
+
+	// Returns all enemy actors within range of tower sorted ascending by closeness to the end
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	TArray<AActor*> GetSortedEnemiesInRangeByEndProgress() const;
 
 	// Indicates whether closest enemy is in range
 	UPROPERTY(BlueprintReadOnly, Category = "Targeting")
@@ -36,10 +42,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Targeting")
 	float DetectionRange = 100.f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Targeting")
+	float DetectionBuffer = 25.0f;
+
 private:
 
 	AActor* ClosestEnemy = nullptr;
 
-	void UpdateClosestEnemy();
+	AActor* ClosestEnemyToEnd = nullptr;
+
+	void UpdateClosestEnemyToTower();
+
+	void UpdateClosestEnemyToEnd();
 		
 };
