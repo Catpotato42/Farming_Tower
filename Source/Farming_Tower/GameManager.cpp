@@ -8,7 +8,7 @@ void UGameManager::Init()
 
     coins = 0;
     round = 1;
-    health = 10;
+    health = 20;
     setup = true;
 }
 
@@ -100,6 +100,13 @@ bool UGameManager::SpendCoins(int n)
     else return false;
 }
 
-void UGameManager::DecreaseHealth(int n) {
+void UGameManager::DecreaseHealth(int n)
+{
     health -= n;
+    canvas->UpdateHealth(health);
+    if (health <= 0)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Game Over!"));
+        //show game over UI
+    }
 }

@@ -30,4 +30,8 @@ public:
 	void UpdateRound(int32 n);
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* RoundText;
+
+	void UpdateHealth(int32 n);
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock* HealthText;
 };

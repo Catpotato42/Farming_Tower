@@ -9,7 +9,7 @@ void AInputManager::BeginPlay()
     EnableInput(GetWorld()->GetFirstPlayerController());
     
     if (InputComponent)
-        InputComponent->BindKey(EKeys::N, IE_Pressed, this, &AInputManager::NextRound);
+        InputComponent->BindKey(EKeys::C, IE_Pressed, this, &AInputManager::AddCoins);
 }
 
 void AInputManager::SetupInputComponent() {}
@@ -21,4 +21,11 @@ void AInputManager::NextRound()
         GameManager->StartRound();
     else
         GameManager->EndRound();
+}
+
+void AInputManager::AddCoins()
+{
+    UGameManager* GameManager = GetGameInstance<UGameManager>();
+    if (GameManager)
+        GameManager->AddCoins(5);
 }

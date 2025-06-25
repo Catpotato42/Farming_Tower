@@ -42,15 +42,22 @@ void ACactusTower::Shoot_Implementation()
     }
 }
 
-void ACactusTower::UpdateTowerUI()
+int ACactusTower::IsGoodPlacement()
 {
+    //Same as indicator
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
     int dir = 0;
     if (riverDist < 2) //decrease level if wet
         dir = -1;
     else if (riverDist > 3 && TowerLevel < 5) //increase level if dry
         dir = 1;
+    return dir;
+}
 
+
+void ACactusTower::UpdateTowerUI()
+{
+    int dir = IsGoodPlacement();
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Direction: %d"), dir));
     if (TowerUI)
     {
@@ -61,7 +68,6 @@ void ACactusTower::UpdateTowerUI()
         }
     }
 }
-
 
 void ACactusTower::UpdateState()
 {

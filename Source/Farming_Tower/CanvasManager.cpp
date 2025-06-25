@@ -38,3 +38,12 @@ void UCanvasManager::UpdateRound(int32 n)
         RoundText->SetText(FText::FromString(txt));
     }
 }
+
+void UCanvasManager::UpdateHealth(int32 n)
+{
+    if (HealthText)
+    {
+        FString txt = FString::Printf(TEXT("Health: %d"), n);
+        HealthText->SetText(FText::FromString(txt));
+    }
+}

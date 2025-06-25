@@ -14,4 +14,5 @@ protected:
     virtual void SetupInputComponent();
 	
 	void NextRound();
+    void AddCoins();
 };
