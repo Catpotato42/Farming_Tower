@@ -20,10 +20,14 @@ void ATowerBase::Tick(float DeltaTime)
 
     TimeSinceLastShot += DeltaTime;
 
-    if (TowerRangeComponent && TowerRangeComponent->bIsEnemyInRange && TimeSinceLastShot >= ShootInterval)
+    if (TowerRangeComponent)
     {
-        Shoot();
-        TimeSinceLastShot = 0.0f;
+        TowerRangeComponent->UpdateClosestEnemyToTower();
+        if (TowerRangeComponent->bIsEnemyInRange && TimeSinceLastShot >= ShootInterval)
+        {
+            Shoot();
+            TimeSinceLastShot = 0.0f;
+        }
     }
 
     if (TowerUI)

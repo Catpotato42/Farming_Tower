@@ -25,12 +25,13 @@ public:
 
     UFUNCTION()
     void ApplyDamage(float DamageAmount);
+    
+    float SplineLength = 0.0f; //used for tower calculations
+    float DistanceTraveled = 0.0f; //used for tower calculations
 
 protected:
     UPROPERTY()
     USplineComponent* PathSpline;
-
-    float DistanceTravelled = 0.0f;
 
     UPROPERTY(EditAnywhere, Category="Enemy")
     float Speed = 200.0f;

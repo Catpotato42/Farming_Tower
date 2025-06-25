@@ -9,7 +9,7 @@ UTowerRange::UTowerRange()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	//PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
 }
@@ -24,16 +24,7 @@ void UTowerRange::BeginPlay()
 	
 }
 
-
-// Called every frame
-void UTowerRange::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	UpdateClosestEnemy();
-}
-
-void UTowerRange::UpdateClosestEnemy()
+void UTowerRange::UpdateClosestEnemyToTower()
 {
 	TArray<AActor*> FoundEnemies;
 	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
@@ -64,7 +55,6 @@ void UTowerRange::UpdateClosestEnemy()
 	}
 
 	float Distance = FMath::Sqrt(ClosestDistanceSq);
-	float DetectionBuffer = 25.0f;  // Adjust this buffer as needed
 	
 	// Only count enemy if it's actually within range plus buffer
 	float EffectiveRange = DetectionRange + DetectionBuffer;
@@ -97,4 +87,102 @@ void UTowerRange::UpdateClosestEnemy()
 AActor* UTowerRange::GetClosestEnemy() const
 {
 	return ClosestEnemy;
+}
+
+void UTowerRange::UpdateClosestEnemyToEnd()
+{
+	TArray<AActor*> FoundEnemies;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
+	AActor* Owner = GetOwner();
+	if (!Owner) return;
+
+	AActor* FarthestEnemy = nullptr;
+	float EffectiveRange = DetectionRange + DetectionBuffer;
+	FVector OwnerLocation = Owner->GetActorLocation();
+	float SmallestRemainingDist = FLT_MAX;
+	AActor* BestCandidate = nullptr;
+
+
+	for (AActor* Enemy : FoundEnemies)
+	{
+		if (!Enemy || Enemy == Owner) continue;
+
+		FVector EnemyLocation = Enemy->GetActorLocation();
+
+		float DX = EnemyLocation.X - OwnerLocation.X;
+		float DY = EnemyLocation.Y - OwnerLocation.Y;
+		float DistanceSq = DX * DX + DY * DY;
+
+		if (DistanceSq > EffectiveRange * EffectiveRange) continue; // Only count enemy if it's actually within range plus buffer
+
+		AEnemyBase* Typed = Cast<AEnemyBase>(Enemy);
+		if (!Typed) continue;
+
+		float Remaining = Typed->SplineLength - Typed->DistanceTraveled;
+
+		if (Remaining < SmallestRemainingDist)
+		{
+			SmallestRemainingDist = Remaining;
+			BestCandidate = Enemy;
+		}
+	}
+
+	if (BestCandidate)
+	{
+		ClosestEnemyToEnd = BestCandidate;
+	}
+	else
+	{
+		ClosestEnemyToEnd = nullptr;
+	}
+}
+
+AActor* UTowerRange::GetClosestEnemyToEnd() const
+{
+	return ClosestEnemyToEnd;
+}
+
+TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByEndProgress() const
+{
+	TArray<AActor*> FoundEnemies;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
+
+	TArray<AActor*> SortedEnemies;
+	AActor* Owner = GetOwner();
+	if (!Owner) return SortedEnemies;
+
+	const FVector OwnerLocation = Owner->GetActorLocation();
+	const float EffectiveRangeSq = FMath::Square(DetectionRange + DetectionBuffer);
+
+	TArray<TPair<float, AActor*>> Candidates;
+
+	for (AActor* Enemy : FoundEnemies)
+	{
+		if (!Enemy || Enemy == Owner) continue;
+
+		const FVector EnemyLocation = Enemy->GetActorLocation();
+		const float DX = EnemyLocation.X - OwnerLocation.X;
+		const float DY = EnemyLocation.Y - OwnerLocation.Y;
+		const float DistanceSq = DX * DX + DY * DY;
+
+		if (DistanceSq > EffectiveRangeSq) continue;
+
+		AEnemyBase* Typed = Cast<AEnemyBase>(Enemy);
+		if (!Typed) continue;
+
+		const float Remaining = Typed->SplineLength - Typed->DistanceTraveled;
+		Candidates.Add(TPair<float, AActor*>(Remaining, Enemy));
+	}
+
+	Candidates.Sort([](const TPair<float, AActor*>& A, const TPair<float, AActor*>& B)
+	{
+		return A.Key < B.Key;
+	});
+
+	for (const auto& Pair : Candidates)
+	{
+		SortedEnemies.Add(Pair.Value);
+	}
+
+	return SortedEnemies;
 }
