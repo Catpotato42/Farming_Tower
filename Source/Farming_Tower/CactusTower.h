@@ -14,6 +14,7 @@ public:
     ACactusTower();
     virtual void UpdateState() override;
     virtual void UpdateTowerUI() override;
+    virtual int IsGoodPlacement() override;
 
 protected:
     virtual void Shoot_Implementation() override;
