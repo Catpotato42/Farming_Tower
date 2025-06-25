@@ -2,12 +2,15 @@
 
 
 #include "SniperTower.h"
+#include "TowerBase.h"
 #include "TowerRange.h"
 #include "ProjectileBase.h"
 #include "Kismet/GameplayStatics.h"
-#include "Engine/World.h
+#include "Engine/World.h"
+#include "GameFramework/Actor.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 
-void ASniperTower::ShootImplementation()
+void ASniperTower::Shoot_Implementation()
 {
     if (!ProjectileClass || !TowerRangeComponent) return;
 

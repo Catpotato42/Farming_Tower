@@ -2,6 +2,7 @@
 
 
 #include "TowerRange.h"
+#include "EnemyBase.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties

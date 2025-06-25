@@ -22,7 +22,7 @@ protected:
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
-	void UpdateIsEnemyInRangeOnly()
+	void UpdateIsEnemyInRangeOnly();
 
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
 	void UpdateClosestEnemyToTower();

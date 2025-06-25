@@ -48,7 +48,7 @@ void AEnemyBase::MoveAlongPath(float DeltaTime)
         return;
     }
 
-    FVector NewLocation = PathSpline->GetLocationAtDistanceAlongSpline(DistanceTravelled, ESplineCoordinateSpace::World);
+    FVector NewLocation = PathSpline->GetLocationAtDistanceAlongSpline(DistanceTraveled, ESplineCoordinateSpace::World);
     SetActorLocation(NewLocation);
 }
 
