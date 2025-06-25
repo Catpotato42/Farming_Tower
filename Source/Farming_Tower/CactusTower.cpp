@@ -55,30 +55,14 @@ int ACactusTower::IsGoodPlacement()
 }
 
 
-void ACactusTower::UpdateTowerUI()
-{
-    int dir = IsGoodPlacement();
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Direction: %d"), dir));
-    if (TowerUI)
-    {
-        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
-        if (UIScript)
-        {
-            UIScript->UpdateUI(dir, riverDist);
-        }
-    }
-}
-
 void ACactusTower::UpdateState()
 {
     // Compute level change based on resources
+    int dir = IsGoodPlacement();
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
     GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Green, FString::Printf(TEXT("River distance: %d"), riverDist));
 
-    if (riverDist < 2) //decrease level if wet
-        TowerLevel--;
-    else if (riverDist > 3 && TowerLevel < 5) //increase level if dry
-        TowerLevel++;
+    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 5);
 
     if (TowerLevel == 0)
     {
@@ -92,24 +76,23 @@ void ACactusTower::UpdateState()
                 ProjectileAmount = 6;
                 break;
             case 2:
-                ProjectileAmount = 8;
+                ProjectileAmount = 6;
                 break;
             case 3:
-                ProjectileAmount = 8;
+                ProjectileAmount = 10;
                 break;
             case 4:
                 ProjectileAmount = 10;
                 break;
             case 5:
-                ProjectileAmount = 12;
+                ProjectileAmount = 16;
                 break;
             default:
             break;
         }
     }
     
-    // Log the current state for debugging
-    UE_LOG(LogTemp, Warning, TEXT("Cactus Tower updated: Level %d"), TowerLevel);
+    // Update UI & scale
     if (TowerUI)
     {
         UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());

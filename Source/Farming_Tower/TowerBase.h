@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 
 #include "TowerPlacement.h"
+#include "TowerUI.h"
 
 #include "Kismet/GameplayStatics.h"
 #include "Components/WidgetComponent.h"
@@ -32,8 +33,8 @@ public:
     void Shoot();
     virtual void Shoot_Implementation();
 
+    virtual int IsGoodPlacement() { return 0;}
     virtual void UpdateState();
-
     UFUNCTION(BlueprintCallable)
     virtual void UpdateTowerUI();
     

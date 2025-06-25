@@ -12,7 +12,7 @@ class FARMING_TOWER_API AIndicatorBase : public AActor
 	GENERATED_BODY()
 	
 public:
-	virtual int IsGoodPlacement();
+	virtual int IsGoodPlacement() { return 0; };
 	
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     ATowerPlacement* TowerPlacement;

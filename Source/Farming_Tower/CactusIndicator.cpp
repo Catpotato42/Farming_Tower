@@ -1,5 +1,6 @@
 #include "CactusIndicator.h"
 
+
 int ACactusIndicator::IsGoodPlacement()
 {
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());

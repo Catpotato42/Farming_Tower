@@ -57,7 +57,15 @@ void ATowerBase::UpdateState()
 
 void ATowerBase::UpdateTowerUI()
 {
-    // Intentionally empty: subclasses should override this
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Base UI update called - override this."));
-    UE_LOG(LogTemp, Warning, TEXT("Base UI update called - override this."));
+    int dir = IsGoodPlacement();
+    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Direction: %d"), dir));
+    if (TowerUI)
+    {
+        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
+        if (UIScript)
+        {
+            UIScript->UpdateUI(dir, riverDist);
+        }
+    }
 }
