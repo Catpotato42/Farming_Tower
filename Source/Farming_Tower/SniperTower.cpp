@@ -62,3 +62,77 @@ void ASniperTower::Shoot_Implementation()
     }
 }
 
+
+int ASniperTower::IsGoodPlacement()
+{
+    int total = 0;
+
+    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
+    if (riverDist < 2 || riverDist > 5) //bad if immediately next to river or too far
+        total--;
+    
+    float zPos = GetActorLocation().Z;
+    if (zPos > 250)
+        total++;
+    else if (zPos < 100)
+        total--;
+
+    if (total < 0)
+        return -1;
+    return total;
+}
+
+
+
+void ASniperTower::UpdateState()
+{
+    // Compute level change based on resources
+    int dir = IsGoodPlacement();
+    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
+
+    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 5);
+
+    if (TowerLevel == 0)
+    {
+        Destroy();
+    }
+    else
+    {
+        GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Yellow, FString::Printf(TEXT("Tower Level: %d"), TowerLevel));
+        switch (TowerLevel) {
+            case 1:
+                TowerDamage = 10.f;
+                ShootInterval = 3.0f;
+                break;
+            case 2:
+                ProjectileAmount = 10.f;
+                ShootInterval = 2.5f;
+                break;
+            case 3:
+                ProjectileAmount = 20.f;
+                ShootInterval = 2.5f;
+                break;
+            case 4:
+                ProjectileAmount = 20.f;
+                ShootInterval = 2.0f;
+                break;
+            case 5:
+                ProjectileAmount = 30.f;
+                ShootInterval = 1.5f;
+                break;
+            default:
+            break;
+        }
+    }
+    
+    // Update UI & scale
+    if (TowerUI)
+    {
+        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
+        if (UIScript)
+        {
+            UIScript->UpdateLevel(TowerLevel);
+        }
+    }
+    SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
+}
