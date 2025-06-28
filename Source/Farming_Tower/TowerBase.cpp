@@ -62,9 +62,11 @@ void ATowerBase::UpdateTowerUI()
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Direction: %d"), dir));
     if (TowerUI)
     {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("TowerUI is valid")));
         UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
         if (UIScript)
         {
+            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Script is valid"));
             UIScript->UpdateUI(dir, riverDist);
         }
     }

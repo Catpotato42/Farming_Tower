@@ -105,19 +105,19 @@ void ASniperTower::UpdateState()
                 ShootInterval = 3.0f;
                 break;
             case 2:
-                ProjectileAmount = 10.f;
+                TowerDamage = 10.f;
                 ShootInterval = 2.5f;
                 break;
             case 3:
-                ProjectileAmount = 20.f;
+                TowerDamage = 20.f;
                 ShootInterval = 2.5f;
                 break;
             case 4:
-                ProjectileAmount = 20.f;
+                TowerDamage = 20.f;
                 ShootInterval = 2.0f;
                 break;
             case 5:
-                ProjectileAmount = 30.f;
+                TowerDamage = 30.f;
                 ShootInterval = 1.5f;
                 break;
             default:
@@ -133,6 +133,14 @@ void ASniperTower::UpdateState()
         {
             UIScript->UpdateLevel(TowerLevel);
         }
+        else
+        {
+            GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Red, TEXT("Tower UI script not found!"));
+        }
+    }
+    else
+    {
+        GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Red, TEXT("Tower UI not set!"));
     }
     SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
 }
