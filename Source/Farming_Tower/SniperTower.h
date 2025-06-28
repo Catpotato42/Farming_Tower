@@ -19,13 +19,16 @@ public:
     virtual int IsGoodPlacement() override;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
-	TSubclassOf<class AProjectileBase> ProjectileClass;
+	TSubclassOf<class AProjectileHoming> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float ProjectileSpeed = 3000.f;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float MaxProjectileDistance = 2000.f;
+
+	UPROPERTY(EditAnywhere)
+	float AimHeightOffset = 0.0f;
 	
 protected:
     virtual void Shoot_Implementation() override;

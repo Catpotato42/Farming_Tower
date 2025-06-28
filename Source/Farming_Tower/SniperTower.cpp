@@ -5,6 +5,8 @@
 #include "TowerBase.h"
 #include "TowerRange.h"
 #include "ProjectileBase.h"
+#include "ProjectileHoming.h"
+#include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
@@ -29,7 +31,8 @@ void ASniperTower::Shoot_Implementation()
         if (!Enemy) continue;
 
         FHitResult HitResult;
-        FVector EndLocation = Enemy->GetActorLocation();
+        FVector EndLocation = Enemy->GetActorLocation() + FVector(0, 0, AimHeightOffset);
+
 
         bool bHit = GetWorld()->LineTraceSingleByChannel(
             HitResult,
@@ -41,21 +44,22 @@ void ASniperTower::Shoot_Implementation()
 
         if (bHit && HitResult.GetActor() == Enemy)
         {
-            FRotator FireRotation = (EndLocation - StartLocation).Rotation();
             FActorSpawnParameters SpawnParams;
 
-            AProjectileBase* Projectile = GetWorld()->SpawnActor<AProjectileBase>(
+            AProjectileHoming* HomingProjectile = GetWorld()->SpawnActor<AProjectileHoming>(
                 ProjectileClass,
                 StartLocation,
-                FireRotation,
+                FRotator::ZeroRotator,
                 SpawnParams
             );
+            DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, 1.f, 0, 2.f);
 
-            if (Projectile)
+            if (HomingProjectile)
             {
-                Projectile->MovementComponent->Velocity = FireRotation.Vector() * ProjectileSpeed;
-                Projectile->Range = MaxProjectileDistance;
-                Projectile->Damage = TowerDamage;
+                HomingProjectile->ProjectileSpeed = ProjectileSpeed;
+                HomingProjectile->SetHomingTarget(Enemy);
+                HomingProjectile->Range = MaxProjectileDistance;
+                HomingProjectile->Damage = TowerDamage;
             }
             break;
         }
