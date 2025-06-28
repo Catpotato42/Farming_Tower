@@ -6,7 +6,7 @@ void UGameManager::Init()
 {
     Super::Init();
 
-    coins = 0;
+    coins = 20;
     round = 1;
     health = 20;
     setup = true;
