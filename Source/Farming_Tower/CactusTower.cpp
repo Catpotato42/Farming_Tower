@@ -59,7 +59,6 @@ void ACactusTower::UpdateState()
     // Compute level change based on resources
     int dir = IsGoodPlacement();
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Green, FString::Printf(TEXT("River distance: %d"), riverDist));
 
     TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 5);
 

@@ -1,20 +1,17 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "TowerBase.h"
-#include "SniperTower.generated.h"
+#include "MortarTower.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
-class FARMING_TOWER_API ASniperTower : public ATowerBase
+class FARMING_TOWER_API AMortarTower : public ATowerBase
 {
 	GENERATED_BODY()
+	
 public:
-	ASniperTower();
+	AMortarTower();
     virtual void UpdateState() override;
     virtual int IsGoodPlacement() override;
 
