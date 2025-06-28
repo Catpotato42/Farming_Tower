@@ -48,7 +48,7 @@ int ACactusTower::IsGoodPlacement()
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
     if (riverDist < 3) //decrease level if wet
         return -1;
-    else if (riverDist > 4 && TowerLevel < 5) //increase level if dry
+    else if (riverDist > 4) //increase level if dry
         return 1;
     return 0;
 }
@@ -56,48 +56,35 @@ int ACactusTower::IsGoodPlacement()
 
 void ACactusTower::UpdateState()
 {
-    // Compute level change based on resources
-    int dir = IsGoodPlacement();
-    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-
-    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 5);
-
-    if (TowerLevel == 0)
+    Super::UpdateState();
+    if (TowerLevel >= 15)
     {
-        Destroy();
+        ProjectileAmount = 16;
+        TowerDamage = 20.f;
+        ShootInterval = 0.75f;
+    }
+    else if (TowerLevel >= 11)
+    {
+        ProjectileAmount = 12;
+        TowerDamage = 15.f;
+        ShootInterval = 1.0f;
+    }
+    else if (TowerLevel >= 7)
+    {
+        ProjectileAmount = 8;
+        TowerDamage = 15.f;
+        ShootInterval = 1.0f;
+    }
+    else if (TowerLevel >= 4)
+    {
+        ProjectileAmount = 8;
+        TowerDamage = 10.f;
+        ShootInterval = 1.5f;
     }
     else
     {
-        GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Yellow, FString::Printf(TEXT("Tower Level: %d"), TowerLevel));
-        switch (TowerLevel) {
-            case 1:
-                ProjectileAmount = 6;
-                break;
-            case 2:
-                ProjectileAmount = 6;
-                break;
-            case 3:
-                ProjectileAmount = 10;
-                break;
-            case 4:
-                ProjectileAmount = 10;
-                break;
-            case 5:
-                ProjectileAmount = 16;
-                break;
-            default:
-            break;
-        }
+        ProjectileAmount = 5;
+        TowerDamage = 10.f;
+        ShootInterval = 1.5f;
     }
-    
-    // Update UI & scale
-    if (TowerUI)
-    {
-        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
-        if (UIScript)
-        {
-            UIScript->UpdateLevel(TowerLevel);
-        }
-    }
-    SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
 }

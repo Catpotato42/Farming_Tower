@@ -27,56 +27,32 @@ int AMortarTower::IsGoodPlacement()
 
 void AMortarTower::UpdateState()
 {
-    // Compute level change based on resources
-    int dir = IsGoodPlacement();
-    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Green, FString::Printf(TEXT("River distance: %d"), riverDist));
-
-    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 5);
-
-    if (TowerLevel == 0)
+    Super::UpdateState();
+    if (TowerLevel >= 15)
     {
-        Destroy();
+        TowerDamage = 25.f;
+        ProjectileSize = 2.0f;
+    }
+    else if (TowerLevel >= 11)
+    { 
+        TowerDamage = 15.f;
+        ProjectileSize = 2.0f;
+    }
+    else if (TowerLevel >= 7)
+    {
+        TowerDamage = 15.f;
+        ProjectileSize = 1.5f;
+    }
+    else if (TowerLevel >= 4)
+    {
+        TowerDamage = 15.f;
+        ProjectileSize = 1.5f;
     }
     else
     {
-        GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Yellow, FString::Printf(TEXT("Tower Level: %d"), TowerLevel));
-        switch (TowerLevel) {
-            case 1:
-                TowerDamage = 10.f;
-                ProjectileSize = 1.5f;
-                break;
-            case 2:
-                TowerDamage = 15.f;
-                ProjectileSize = 1.5f;
-                break;
-            case 3:
-                TowerDamage = 15.f;
-                ProjectileSize = 1.5f;
-                break;
-            case 4:
-                TowerDamage = 15.f;
-                ProjectileSize = 2.0f;
-                break;
-            case 5:
-                TowerDamage = 25.f;
-                ProjectileSize = 2.0f;
-                break;
-            default:
-            break;
-        }
+        TowerDamage = 10.f;
+        ProjectileSize = 1.5f;
     }
-    
-    // Update UI & scale
-    if (TowerUI)
-    {
-        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
-        if (UIScript)
-        {
-            UIScript->UpdateLevel(TowerLevel);
-        }
-    }
-    SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
 }
 
 

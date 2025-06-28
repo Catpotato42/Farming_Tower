@@ -50,24 +50,50 @@ void ATowerBase::Shoot_Implementation()
 
 void ATowerBase::UpdateState()
 {
-    // Intentionally empty: subclasses should override this
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Base tower update called - override this."));
-    UE_LOG(LogTemp, Warning, TEXT("Base tower update called - override this."));
+    // Compute level change based on resources
+    int dir = IsGoodPlacement();
+    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
+
+    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 15);
+    if (TowerLevel >= 15)
+        DisplayLevel = 5;
+    else if (TowerLevel >= 11)
+        DisplayLevel = 4;
+    else if (TowerLevel >= 7)
+        DisplayLevel = 3;
+    else if (TowerLevel >= 4)
+        DisplayLevel = 2;
+    else
+        DisplayLevel = 1;
+
+    if (TowerLevel == 0)
+    {
+        Destroy();
+    }
+
+    // Update UI & scale
+    if (TowerUI)
+    {
+        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
+        if (UIScript)
+        {
+            UIScript->UpdateLevel(DisplayLevel);
+        }
+    }
+    SetActorScale3D(FVector(0.5f + 0.05f * TowerLevel));
 }
 
 void ATowerBase::UpdateTowerUI()
 {
     int dir = IsGoodPlacement();
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Direction: %d"), dir));
     if (TowerUI)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("TowerUI is valid")));
         UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
         if (UIScript)
         {
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Script is valid"));
-            UIScript->UpdateUI(dir, riverDist);
+            bool lvlUp = ((dir == 1) && (TowerLevel == 14 || TowerLevel == 10 || TowerLevel == 6 || TowerLevel == 3)) || ((dir == -1) && (TowerLevel == 15 || TowerLevel == 11 || TowerLevel == 7 || TowerLevel == 4 || TowerLevel == 1));
+            UIScript->UpdateUI(dir, riverDist, lvlUp);
         }
     }
 }

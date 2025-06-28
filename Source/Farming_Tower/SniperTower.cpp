@@ -90,53 +90,30 @@ int ASniperTower::IsGoodPlacement()
 
 void ASniperTower::UpdateState()
 {
-    // Compute level change based on resources
-    int dir = IsGoodPlacement();
-    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-
-    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 5);
-
-    if (TowerLevel == 0)
+    Super::UpdateState();
+    if (TowerLevel >= 15)
     {
-        Destroy();
+        TowerDamage = 60.f;
+        ShootInterval = 1.5f;
+    }
+    else if (TowerLevel >= 11)
+    {
+        TowerDamage = 40.f;
+        ShootInterval = 2.f;
+    }
+    else if (TowerLevel >= 7)
+    {
+        TowerDamage = 40.f;
+        ShootInterval = 2.5f;
+    }
+    else if (TowerLevel >= 4)
+    {
+        TowerDamage = 30.f;
+        ShootInterval = 2.5f;
     }
     else
     {
-        GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Yellow, FString::Printf(TEXT("Tower Level: %d"), TowerLevel));
-        switch (TowerLevel) {
-            case 1:
-                TowerDamage = 10.f;
-                ShootInterval = 3.0f;
-                break;
-            case 2:
-                TowerDamage = 10.f;
-                ShootInterval = 2.5f;
-                break;
-            case 3:
-                TowerDamage = 20.f;
-                ShootInterval = 2.5f;
-                break;
-            case 4:
-                TowerDamage = 20.f;
-                ShootInterval = 2.0f;
-                break;
-            case 5:
-                TowerDamage = 30.f;
-                ShootInterval = 1.5f;
-                break;
-            default:
-            break;
-        }
+        TowerDamage = 20.f;
+        ShootInterval = 3.0f;
     }
-    
-    // Update UI & scale
-    if (TowerUI)
-    {
-        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
-        if (UIScript)
-        {
-            UIScript->UpdateLevel(TowerLevel);
-        }
-    }
-    SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
 }

@@ -60,6 +60,7 @@ protected:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     int TowerLevel = 1;
+    int DisplayLevel = 1;
 
     float TimeSinceLastShot = 0.0f;
 };
