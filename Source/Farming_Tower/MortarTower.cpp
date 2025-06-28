@@ -1,6 +1,6 @@
 #include "MortarTower.h"
 
-AMortatTower::AMortarTower()
+AMortarTower::AMortarTower()
 {
     
 }
@@ -44,23 +44,23 @@ void AMortarTower::UpdateState()
         switch (TowerLevel) {
             case 1:
                 TowerDamage = 10.f;
-                ProjectileSize = 1.5f
+                ProjectileSize = 1.5f;
                 break;
             case 2:
                 TowerDamage = 15.f;
-                ProjectileSize = 1.5f
+                ProjectileSize = 1.5f;
                 break;
             case 3:
                 TowerDamage = 15.f;
-                ProjectileSize = 1.5f
+                ProjectileSize = 1.5f;
                 break;
             case 4:
                 TowerDamage = 15.f;
-                ProjectileSize = 2.0f
+                ProjectileSize = 2.0f;
                 break;
             case 5:
                 TowerDamage = 25.f;
-                ProjectileSize = 2.0f
+                ProjectileSize = 2.0f;
                 break;
             default:
             break;
