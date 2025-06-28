@@ -22,7 +22,7 @@ public:
 	TSubclassOf<class AProjectileBase> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
-	float ProjectileSpeed = 1200.f;
+	float ProjectileSpeed = 1000.f;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float MaxProjectileDistance = 2000.f;
