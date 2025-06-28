@@ -10,8 +10,6 @@ AProjectileBase::AProjectileBase()
     PrimaryActorTick.bCanEverTick = true;
 
     MovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
-    MovementComponent->InitialSpeed = 1000.f;
-    MovementComponent->MaxSpeed = 1000.f;
     MovementComponent->bShouldBounce = false;
 }
 

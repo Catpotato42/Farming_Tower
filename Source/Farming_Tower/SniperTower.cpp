@@ -105,7 +105,7 @@ void ASniperTower::UpdateState()
                 ShootInterval = 3.0f;
                 break;
             case 2:
-                ProjectileAmount = 10.f;
+                TowerDamage = 10.f;
                 ShootInterval = 2.5f;
                 break;
             case 3:
