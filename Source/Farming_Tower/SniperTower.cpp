@@ -5,6 +5,7 @@
 #include "TowerBase.h"
 #include "TowerRange.h"
 #include "ProjectileBase.h"
+#include "ProjectileHoming.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
@@ -44,18 +45,19 @@ void ASniperTower::Shoot_Implementation()
             FRotator FireRotation = (EndLocation - StartLocation).Rotation();
             FActorSpawnParameters SpawnParams;
 
-            AProjectileBase* Projectile = GetWorld()->SpawnActor<AProjectileBase>(
+            AProjectileHoming* HomingProjectile = GetWorld()->SpawnActor<AProjectileHoming>(
                 ProjectileClass,
                 StartLocation,
                 FireRotation,
                 SpawnParams
             );
 
-            if (Projectile)
+            if (HomingProjectile)
             {
-                Projectile->MovementComponent->Velocity = FireRotation.Vector() * ProjectileSpeed;
-                Projectile->Range = MaxProjectileDistance;
-                Projectile->Damage = TowerDamage;
+                HomingProjectile->SetHomingTarget(Enemy);
+                HomingProjectile->MovementComponent->Velocity = FireRotation.Vector() * ProjectileSpeed;
+                HomingProjectile->Range = MaxProjectileDistance;
+                HomingProjectile->Damage = TowerDamage;
             }
             break;
         }

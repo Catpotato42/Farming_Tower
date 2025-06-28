@@ -19,7 +19,7 @@ public:
     virtual int IsGoodPlacement() override;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
-	TSubclassOf<class AProjectileBase> ProjectileClass;
+	TSubclassOf<class AProjectileHoming> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float ProjectileSpeed = 3000.f;
