@@ -78,3 +78,9 @@ void AMortarTower::UpdateState()
     }
     SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
 }
+
+
+void AMortarTower::Shoot_Implementation()
+{
+
+}
