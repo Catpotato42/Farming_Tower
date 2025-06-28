@@ -133,14 +133,6 @@ void ASniperTower::UpdateState()
         {
             UIScript->UpdateLevel(TowerLevel);
         }
-        else
-        {
-            GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Red, TEXT("Tower UI script not found!"));
-        }
-    }
-    else
-    {
-        GEngine->AddOnScreenDebugMessage(-1, .5f, FColor::Red, TEXT("Tower UI not set!"));
     }
     SetActorScale3D(FVector(0.7f + 0.1f * TowerLevel));
 }

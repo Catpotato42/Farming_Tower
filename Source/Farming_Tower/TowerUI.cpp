@@ -3,6 +3,7 @@
 
 void UTowerUI::UpdateLevel(int32 n)
 {
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Update Level: %d"), n));
     if (LevelText)
     {
         LevelText->SetText(FText::FromString(FString::Printf(TEXT("Level: %d"), n)));
@@ -19,6 +20,7 @@ void UTowerUI::UpdateLevel(int32 n)
 
 void UTowerUI::UpdateUI(int32 dir, int32 water)
 {
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Update UI: dir=%d, water=%d"), dir, water));
     if (WaterText)
         WaterText->SetVisibility(ESlateVisibility::Visible);
     if (StateText)
