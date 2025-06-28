@@ -26,6 +26,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float MaxProjectileDistance = 2000.f;
+
+	UPROPERTY(EditAnywhere)
+	float AimHeightOffset = 0.0f;
 	
 protected:
     virtual void Shoot_Implementation() override;

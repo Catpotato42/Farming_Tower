@@ -31,7 +31,8 @@ void ASniperTower::Shoot_Implementation()
         if (!Enemy) continue;
 
         FHitResult HitResult;
-        FVector EndLocation = Enemy->GetActorLocation();
+        FVector EndLocation = Enemy->GetActorLocation() + FVector(0, 0, AimHeightOffset);
+
 
         bool bHit = GetWorld()->LineTraceSingleByChannel(
             HitResult,
@@ -51,10 +52,11 @@ void ASniperTower::Shoot_Implementation()
                 FRotator::ZeroRotator,
                 SpawnParams
             );
-            DrawDebugLine(GetWorld(), StartLocation, Enemy->GetActorLocation(), FColor::Red, false, 1.f, 0, 2.f);
+            DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, 1.f, 0, 2.f);
 
             if (HomingProjectile)
             {
+                HomingProjectile->ProjectileSpeed = ProjectileSpeed;
                 HomingProjectile->SetHomingTarget(Enemy);
                 HomingProjectile->Range = MaxProjectileDistance;
                 HomingProjectile->Damage = TowerDamage;
