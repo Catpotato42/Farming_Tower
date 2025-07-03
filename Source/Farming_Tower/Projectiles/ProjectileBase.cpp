@@ -1,9 +1,11 @@
 #include "ProjectileBase.h"
+#include "../Enemies/EnemyBase.h"
+
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/PrimitiveComponent.h"
-#include "EnemyBase.h"
 #include "Engine/Engine.h"
 #include "Logging/LogMacros.h"
+
 
 AProjectileBase::AProjectileBase()
 {

@@ -1,11 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "SniperTower.h"
 #include "TowerBase.h"
-#include "TowerRange.h"
-#include "ProjectileBase.h"
-#include "ProjectileHoming.h"
+#include "../TowerRange.h"
+#include "../Projectiles/ProjectileBase.h"
+#include "../Projectiles/ProjectileHoming.h"
+
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"

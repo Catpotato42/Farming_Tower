@@ -1,8 +1,9 @@
 #pragma once
 
+#include "EnemySpawner.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "EnemySpawner.h"
 #include "EnemyBase.generated.h"
 
 class UGameManager;

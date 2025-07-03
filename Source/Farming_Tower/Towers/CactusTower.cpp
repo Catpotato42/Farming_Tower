@@ -1,6 +1,7 @@
 #include "CactusTower.h"
-#include "TowerRange.h"
-#include "ProjectileBase.h"
+#include "../TowerRange.h"
+#include "../Projectiles/ProjectileBase.h"
+
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 

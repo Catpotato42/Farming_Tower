@@ -1,5 +1,5 @@
 #include "EnemyBase.h"
-#include "GameManager.h"
+#include "../GameManager.h"
 #include "Components/SphereComponent.h"
 #include "Components/SplineComponent.h"
 

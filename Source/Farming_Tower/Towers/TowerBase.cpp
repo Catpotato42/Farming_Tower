@@ -1,5 +1,5 @@
 #include "TowerBase.h"
-#include "TowerRange.h"
+#include "../TowerRange.h"
 
 ATowerBase::ATowerBase()
 {

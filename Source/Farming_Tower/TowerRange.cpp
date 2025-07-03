@@ -1,8 +1,5 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "TowerRange.h"
-#include "EnemyBase.h"
+#include "Enemies/EnemyBase.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties

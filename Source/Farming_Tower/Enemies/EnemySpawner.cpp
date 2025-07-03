@@ -1,8 +1,9 @@
 #include "EnemySpawner.h"
 #include "TimerManager.h"
-#include "Kismet/GameplayStatics.h"
 #include "EnemyBase.h"
-#include "GameManager.h"
+#include "../GameManager.h"
+
+#include "Kismet/GameplayStatics.h"
 
 void AEnemySpawner::BeginPlay()
 {

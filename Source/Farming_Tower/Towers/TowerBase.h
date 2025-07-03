@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 
-#include "TowerPlacement.h"
-#include "TowerUI.h"
+#include "../TowerPlacement.h"
+#include "../UI/TowerUI.h"
 
 #include "Kismet/GameplayStatics.h"
 #include "Components/WidgetComponent.h"

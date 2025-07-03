@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TowerPlacement.h"
+#include "../TowerPlacement.h"
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
