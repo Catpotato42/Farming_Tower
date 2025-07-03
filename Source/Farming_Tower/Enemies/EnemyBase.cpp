@@ -13,6 +13,15 @@ AEnemyBase::AEnemyBase()
 
 void AEnemyBase::SetPath(USplineComponent* InSpline)
 {
+    if (InSpline == nullptr)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SetPath called with null spline!"));
+        return;
+    }
+    else
+    {
+        UE_LOG(LogTemp, Log, TEXT("SetPath called with spline: %s"), *InSpline->GetName());
+    }
     PathSpline = InSpline;
 }
 
@@ -27,11 +36,6 @@ void AEnemyBase::BeginPlay()
     Super::BeginPlay();
 
     GameManager = Cast<UGameManager>(GetGameInstance());
-
-    if (!PathSpline)
-    {
-        UE_LOG(LogTemp, Error, TEXT("Enemy has no spline path!"));
-    }
 }
 
 void AEnemyBase::MoveAlongPath(float DeltaTime)
