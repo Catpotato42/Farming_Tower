@@ -28,6 +28,7 @@ void UCanvasManager::UpdateCoins(int32 n)
         FString txt = FString::Printf(TEXT("Coins: %d"), n);
         CoinsText->SetText(FText::FromString(txt));
     }
+    CheckAvailibility();
 }
 
 void UCanvasManager::UpdateRound(int32 n)

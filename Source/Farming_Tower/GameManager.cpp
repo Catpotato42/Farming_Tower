@@ -6,7 +6,7 @@ void UGameManager::Init()
 {
     Super::Init();
 
-    coins = 20;
+    coins = 30;
     round = 1;
     health = 20;
     setup = true;
@@ -34,7 +34,6 @@ void UGameManager::StartRound()
 
     for (AActor* Actor : FoundSpawners)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Found a spawner!"));
         AEnemySpawner* Spawner = Cast<AEnemySpawner>(Actor);
         if (Spawner)
         {
@@ -44,7 +43,6 @@ void UGameManager::StartRound()
     }
 
     setup = false;
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Round started!"));
     canvas->HideTowerUI();
     ATowerPlacement* TowerPawn = Cast<ATowerPlacement>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
     if (TowerPawn)
@@ -76,7 +74,6 @@ void UGameManager::EndRound()
     }
 
     setup = true;
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Ending round..."));
     round++;
     canvas->UpdateRound(round);
     canvas->ShowTowerUI();

@@ -24,6 +24,8 @@ public:
 	
 	
 	void UpdateCoins(int32 n);
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void CheckAvailibility();
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* CoinsText;
 
