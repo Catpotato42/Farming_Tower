@@ -38,10 +38,11 @@ private:
     int enemiesSpawnedThisRound = 0;
     int enemiesKilledThisRound = 0;
 
-    TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawnQueue;
-    int32 CurrentSpawnIndex = 0;
+    TArray<FEnemySpawnInfo> PendingWaves;
+    int32 CurrentWaveIndex = 0;
+    int32 EnemiesSpawnedInCurrentWave = 0;
+    int32 TotalEnemiesThisRound = 0;
     FTimerHandle SpawnTimerHandle;
-    float SpawnInterval = 0.5f;
 
     void SpawnNextEnemy();
     void SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass);
