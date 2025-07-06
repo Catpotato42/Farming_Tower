@@ -1,4 +1,9 @@
 #include "MortarTower.h"
+#include "../TowerRange.h"
+#include "../Enemies/EnemyBase.h"
+#include "Components/SplineComponent.h"
+#include "../Projectiles/ProjectileBase.h"
+#include "../Projectiles/ProjectileMortar.h"
 
 AMortarTower::AMortarTower()
 {
@@ -58,5 +63,40 @@ void AMortarTower::UpdateState()
 
 void AMortarTower::Shoot_Implementation()
 {
+    if (!ProjectileClass || !TowerRangeComponent) return;
 
+    TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRangeByEndProgress();
+    FVector StartLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset);
+
+    for (AActor* Actor : EnemyList)
+    {
+        AEnemyBase* Enemy = Cast<AEnemyBase>(Actor);
+        if (!Enemy || !Enemy->PathSpline) continue;
+
+        float Speed = Enemy->Speed;
+        float CurrentDist = Enemy->DistanceTraveled;
+
+        float PredictTime = 1.0f;
+        float FutureDistance = CurrentDist + Speed * PredictTime;
+
+        FVector PredictedLocation = Enemy->PathSpline->GetLocationAtDistanceAlongSpline(FutureDistance, ESplineCoordinateSpace::World);
+
+        FActorSpawnParameters SpawnParams;
+        AProjectileMortar* Projectile = GetWorld()->SpawnActor<AProjectileMortar>(
+            ProjectileClass,
+            StartLocation,
+            FRotator::ZeroRotator,
+            SpawnParams
+        );
+
+        if (Projectile)
+        {
+            Projectile->Damage = TowerDamage;
+            Projectile->Range = MaxProjectileDistance;
+            Projectile->Gravity = true;
+            Projectile->LaunchTowardsTarget(StartLocation, PredictedLocation, 2000.f); // Change arc height
+        }
+
+        break;
+    }
 }

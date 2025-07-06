@@ -30,12 +30,13 @@ public:
     float SplineLength = 0.0f; //used for tower calculations
     float DistanceTraveled = 0.0f; //used for tower calculations
 
-protected:
+    UPROPERTY(EditAnywhere, Category="Enemy")
+    float Speed = 200.0f;
+
     UPROPERTY()
     USplineComponent* PathSpline;
 
-    UPROPERTY(EditAnywhere, Category="Enemy")
-    float Speed = 200.0f;
+protected:
 
     UPROPERTY(EditAnywhere, Category = "Enemy")
     TSubclassOf<AEnemyBase> EnemyToSpawn;
