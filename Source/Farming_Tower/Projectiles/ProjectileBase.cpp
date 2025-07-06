@@ -51,7 +51,6 @@ void AProjectileBase::Tick(float DeltaTime)
 void AProjectileBase::OnProjectileHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
     UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Projectile hit: %s"), *OtherActor->GetName());
     if (OtherActor && OtherActor->Tags.Contains("Enemy"))
     {
         AEnemyBase* Enemy = Cast<AEnemyBase>(OtherActor);

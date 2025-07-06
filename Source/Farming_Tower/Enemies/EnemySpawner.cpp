@@ -1,6 +1,7 @@
 #include "EnemySpawner.h"
 #include "TimerManager.h"
 #include "EnemyBase.h"
+#include "Logging/LogMacros.h"
 #include "../GameManager.h"
 
 #include "Kismet/GameplayStatics.h"
@@ -16,18 +17,16 @@ AEnemySpawner::AEnemySpawner()
 
     Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
     RootComponent = Root;
-
-    // Optional: add visual/debug component so you can see it
+    //could make like a sphere for now to see location
 }
 
 void AEnemySpawner::StartRound(int currentRound)
 {
-    EnemiesToSpawnQueue.Empty();
+    PendingWaves.Empty();
 
-    TArray<FEnemySpawnInfo> toSpawn;
     if (currentRound - 1 < RoundInfos.Num())
     {
-        toSpawn = RoundInfos[currentRound - 1].EnemiesToSpawn;
+        PendingWaves = RoundInfos[currentRound - 1].EnemiesToSpawn;
     }
     else
     {
@@ -35,37 +34,73 @@ void AEnemySpawner::StartRound(int currentRound)
         {
             FEnemySpawnInfo scaled = spawnInfo;
             scaled.Quantity += 2 + (currentRound - RoundInfos.Num());
-            toSpawn.Add(scaled);
-        }
-    }
-
-    for (const auto& enemyInfo : toSpawn)
-    {
-        for (int i = 0; i < enemyInfo.Quantity; ++i)
-        {
-            EnemiesToSpawnQueue.Add(enemyInfo.EnemyClass);  // Add just the class, no struct here
+            PendingWaves.Add(scaled);
         }
     }
 
     enemiesKilledThisRound = 0;
-    CurrentSpawnIndex = 0;
+    CurrentWaveIndex = 0;
+    EnemiesSpawnedInCurrentWave = 0;
 
-    // Start the spawn timer
-    GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AEnemySpawner::SpawnNextEnemy, SpawnInterval, true);
+    TotalEnemiesThisRound = 0;
+    for (const auto& Info : PendingWaves)
+    {
+        TotalEnemiesThisRound += Info.Quantity;
+    }
+    UE_LOG(LogTemp, Warning, TEXT("Enemies in the round: %d"), TotalEnemiesThisRound);
+
+    GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AEnemySpawner::SpawnNextEnemy, PendingWaves[0].InWaveWaitTime, true);
 }
 
 void AEnemySpawner::SpawnNextEnemy()
 {
-    if (CurrentSpawnIndex >= EnemiesToSpawnQueue.Num())
+    if (CurrentWaveIndex >= PendingWaves.Num())
     {
         GetWorld()->GetTimerManager().ClearTimer(SpawnTimerHandle);
         return;
     }
 
-    TSubclassOf<AEnemyBase> EnemyClass = EnemiesToSpawnQueue[CurrentSpawnIndex];
-    SpawnEnemy(EnemyClass);
+    FEnemySpawnInfo& wave = PendingWaves[CurrentWaveIndex];
 
-    CurrentSpawnIndex++;
+    if (EnemiesSpawnedInCurrentWave < wave.Quantity)
+    {
+        SpawnEnemy(wave.EnemyClass);
+        EnemiesSpawnedInCurrentWave++;
+    }
+    else
+    { //finished the wave, go next
+        CurrentWaveIndex++;
+        EnemiesSpawnedInCurrentWave = 0;
+
+        if (CurrentWaveIndex < PendingWaves.Num())
+        {
+            FEnemySpawnInfo& nextWave = PendingWaves[CurrentWaveIndex];
+            FTimerHandle DelayHandle;
+            GetWorld()->GetTimerManager().SetTimer(
+                DelayHandle,
+                [this]()
+                {
+                    if (CurrentWaveIndex < PendingWaves.Num())
+                    {
+                        FEnemySpawnInfo& currentWave = PendingWaves[CurrentWaveIndex];
+                        GetWorld()->GetTimerManager().SetTimer(
+                            SpawnTimerHandle,
+                            this,
+                            &AEnemySpawner::SpawnNextEnemy,
+                            currentWave.InWaveWaitTime,
+                            true
+                        );
+                    }
+                },
+                wave.AfterWaveWaitTime,
+                false
+            );
+        }
+        else
+        {
+            GetWorld()->GetTimerManager().ClearTimer(SpawnTimerHandle);
+        }
+    }
 }
 
 void AEnemySpawner::SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass)
@@ -74,12 +109,13 @@ void AEnemySpawner::SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass)
 
     FVector BaseLocation = GetActorLocation();
 
-    // Random offset within a radius, e.g. 100 units
-    float Radius = 100.f;
+    // Doesn't work currently due to the spline path
+    // Random offset within a radius
+    float Radius = 500.f;
     FVector RandomOffset = FVector(
         FMath::RandRange(-Radius, Radius),
         FMath::RandRange(-Radius, Radius),
-        0.f);  // Keep Z constant
+        0.f);
 
     FVector SpawnLocation = BaseLocation + RandomOffset;
 
@@ -101,8 +137,9 @@ void AEnemySpawner::SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass)
 void AEnemySpawner::NotifyEnemyKilled()
 {
     enemiesKilledThisRound++;
+    UE_LOG(LogTemp, Warning, TEXT("Enemies killed this round: %d"), enemiesKilledThisRound);
 
-    if (enemiesKilledThisRound >= EnemiesToSpawnQueue.Num() && gameManager)
+    if (enemiesKilledThisRound >= TotalEnemiesThisRound && gameManager)
     {
         gameManager->EndRound();
     }

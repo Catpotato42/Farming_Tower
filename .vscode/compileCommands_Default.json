@@ -1,6 +1,6 @@
 [
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CactusIndicator.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\EnemyBase.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -8,7 +8,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CactusIndicator.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\EnemyBase.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -16,7 +16,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CactusTower.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\EnemySpawner.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -24,7 +24,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CactusTower.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\EnemySpawner.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -32,7 +32,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CanvasManager.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\FEnemySpawnInfo.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -40,7 +40,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\CanvasManager.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\FRoundInfo.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -48,7 +48,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\EnemyBase.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\PathSplineActor.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -56,39 +56,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\EnemyBase.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\EnemySpawner.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\EnemySpawner.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\FEnemySpawnInfo.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\FRoundInfo.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Enemies\\PathSplineActor.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -136,7 +104,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\IndicatorBase.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Indicators\\CactusIndicator.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -144,7 +112,47 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\IndicatorBase.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Indicators\\CactusIndicator.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Indicators\\IndicatorBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Indicators\\MortarIndicator.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Indicators\\MortarIndicator.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Indicators\\SniperIndicator.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Indicators\\SniperIndicator.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -168,7 +176,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\MortarIndicator.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Projectiles\\ProjectileBase.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -176,7 +184,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\MortarIndicator.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Projectiles\\ProjectileBase.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -184,7 +192,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\MortarTower.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Projectiles\\ProjectileHoming.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -192,103 +200,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\MortarTower.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\PathSplineActor.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\PathSplineActor.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\ProjectileBase.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\ProjectileBase.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\ProjectileHoming.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\ProjectileHoming.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\SniperIndicator.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\SniperIndicator.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\SniperTower.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\SniperTower.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\TowerBase.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\TowerBase.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Projectiles\\ProjectileHoming.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -328,7 +240,7 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\TowerUI.cpp",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\CactusTower.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
@@ -336,7 +248,87 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\TowerUI.h",
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\CactusTower.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\MortarTower.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\MortarTower.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\SniperTower.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\SniperTower.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\TowerBase.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\TowerBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\UI\\CanvasManager.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\UI\\CanvasManager.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\UI\\TowerUI.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\UI\\TowerUI.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Default\\Farming_Tower.1.rsp"
