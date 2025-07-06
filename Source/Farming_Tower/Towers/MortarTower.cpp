@@ -76,7 +76,7 @@ void AMortarTower::Shoot_Implementation()
         float Speed = Enemy->Speed;
         float CurrentDist = Enemy->DistanceTraveled;
 
-        float PredictTime = 1.0f;
+        float PredictTime = 1.8f;
         float FutureDistance = CurrentDist + Speed * PredictTime;
 
         FVector PredictedLocation = Enemy->PathSpline->GetLocationAtDistanceAlongSpline(FutureDistance, ESplineCoordinateSpace::World);
@@ -94,7 +94,7 @@ void AMortarTower::Shoot_Implementation()
             Projectile->Damage = TowerDamage;
             Projectile->Range = MaxProjectileDistance;
             Projectile->Gravity = true;
-            Projectile->LaunchTowardsTarget(StartLocation, PredictedLocation, 2000.f); // Change arc height
+            Projectile->LaunchTowardsTarget(StartLocation, PredictedLocation, 400.f); // Change arc height
         }
 
         break;
