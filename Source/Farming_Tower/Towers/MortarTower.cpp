@@ -66,19 +66,18 @@ void AMortarTower::Shoot_Implementation()
     if (!ProjectileClass || !TowerRangeComponent) return;
 
     TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRangeByEndProgress();
-    FVector StartLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset);
+    FVector StartLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset); // Projectile spawns above tower
 
-    for (AActor* Actor : EnemyList)
+    for (AActor* Actor : EnemyList) // Every actor in range (Closest enemies to end first!)
     {
         AEnemyBase* Enemy = Cast<AEnemyBase>(Actor);
-        if (!Enemy || !Enemy->PathSpline) continue;
+        if (!Enemy || !Enemy->PathSpline) continue; // Need spline for loc
 
-        float Speed = Enemy->Speed;
+        float Speed = Enemy->Speed; // NOT current velo as a vector or something, constant speed at which the enemy travels along spline path
         float CurrentDist = Enemy->DistanceTraveled;
 
-        float PredictTime = 1.8f;
+        float PredictTime = 1.8f; // Only independent variable, more means projectile is launched farther ahead on the path 
         float FutureDistance = CurrentDist + Speed * PredictTime;
-
         FVector PredictedLocation = Enemy->PathSpline->GetLocationAtDistanceAlongSpline(FutureDistance, ESplineCoordinateSpace::World);
 
         FActorSpawnParameters SpawnParams;
@@ -94,7 +93,8 @@ void AMortarTower::Shoot_Implementation()
             Projectile->Damage = TowerDamage;
             Projectile->Range = MaxProjectileDistance;
             Projectile->Gravity = true;
-            Projectile->LaunchTowardsTarget(StartLocation, PredictedLocation, 400.f); // Change arc height
+            Projectile->LaunchTowardsTarget(StartLocation, PredictedLocation, 400.f); 
+            // Arc height is visual only, but too high and projectile will despawn before landing (change MaxProjectileDistance for more duration)
         }
 
         break;

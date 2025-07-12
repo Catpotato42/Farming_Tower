@@ -6,10 +6,10 @@ void AProjectileMortar::LaunchTowardsTarget(const FVector& Start, const FVector&
     if (!MovementComponent) return;
 
     FVector Direction = Target - Start;
-    FVector FlatDirection = FVector(Direction.X, Direction.Y, 0.f);
-    float Distance = FlatDirection.Size();
+    FVector FlatDir = FVector(Direction.X, Direction.Y, 0.f);
+    float Distance = FlatDir.Size(); // Doesn't return amount elements in the vector, returns magnitude of the vector
 
-    float GravityZ = FMath::Abs(GetWorld()->GetGravityZ());
+    float GravityZ = GetWorld()->GetGravityZ();
     float HeightOffset = Direction.Z;
 
     if (GravityZ <= 0.f || Distance <= 0.f) return;
@@ -24,7 +24,7 @@ void AProjectileMortar::LaunchTowardsTarget(const FVector& Start, const FVector&
 
     if (TotalTime <= 0.f) return;
 
-    FVector HorizontalVelocity = FlatDirection / TotalTime;
+    FVector HorizontalVelocity = FlatDir / TotalTime;
     FVector FinalVelocity = HorizontalVelocity + FVector(0, 0, InitialZ);
     FinalVelocity = FinalVelocity.GetClampedToMaxSize(1800.f);
 
