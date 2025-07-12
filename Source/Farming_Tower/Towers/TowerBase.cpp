@@ -11,6 +11,7 @@ ATowerBase::ATowerBase()
 void ATowerBase::BeginPlay()
 {
     Super::BeginPlay();
+    TimeSinceLastShot = ShootInterval - .01f;
     TowerUI = FindComponentByClass<UWidgetComponent>();
 }
 
