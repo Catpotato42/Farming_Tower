@@ -68,12 +68,15 @@ void AEnemySpawner::SpawnNextEnemy()
         EnemiesSpawnedInCurrentWave++;
     }
     else
-    { //finished the wave, go next
+    { // finished the wave, go next
         CurrentWaveIndex++;
         EnemiesSpawnedInCurrentWave = 0;
 
         if (CurrentWaveIndex < PendingWaves.Num())
         {
+            // Clear the spawn timer
+            GetWorld()->GetTimerManager().ClearTimer(SpawnTimerHandle);
+
             FEnemySpawnInfo& nextWave = PendingWaves[CurrentWaveIndex];
             FTimerHandle DelayHandle;
             GetWorld()->GetTimerManager().SetTimer(
@@ -95,6 +98,7 @@ void AEnemySpawner::SpawnNextEnemy()
                 wave.AfterWaveWaitTime,
                 false
             );
+            UE_LOG(LogTemp, Warning, TEXT("AfterWaveWaitTime: %f"), wave.AfterWaveWaitTime);
         }
         else
         {
