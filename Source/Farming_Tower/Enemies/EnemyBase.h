@@ -26,6 +26,9 @@ public:
 
     UFUNCTION()
     void ApplyDamage(float DamageAmount);
+
+    virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+    class AController* EventInstigator, AActor* DamageCauser) override;
     
     float SplineLength = 0.0f; //used for tower calculations
     float DistanceTraveled = 0.0f; //used for tower calculations

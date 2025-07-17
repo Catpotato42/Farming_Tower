@@ -65,6 +65,13 @@ void AEnemyBase::OnReachedEnd()
     DieNoCoins();
 }
 
+float AEnemyBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,
+    AController* EventInstigator, AActor* DamageCauser)
+{
+    ApplyDamage(DamageAmount);
+    return DamageAmount;
+}
+
 void AEnemyBase::ApplyDamage(float DamageAmount)
 {
     Health -= DamageAmount;

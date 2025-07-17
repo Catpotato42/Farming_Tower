@@ -4,6 +4,7 @@
 #include "Components/SplineComponent.h"
 #include "../Projectiles/ProjectileBase.h"
 #include "../Projectiles/ProjectileMortar.h"
+#include "../Projectiles/ProjectileMortarExploding.h"
 
 AMortarTower::AMortarTower()
 {
@@ -86,7 +87,7 @@ void AMortarTower::Shoot_Implementation()
         FVector PredictedLocation = Enemy->PathSpline->GetLocationAtDistanceAlongSpline(FutureDistance, ESplineCoordinateSpace::World);
 
         FActorSpawnParameters SpawnParams;
-        AProjectileMortar* Projectile = GetWorld()->SpawnActor<AProjectileMortar>(
+        AProjectileMortarExploding* Projectile = GetWorld()->SpawnActor<AProjectileMortarExploding>(
             ProjectileClass,
             StartLocation,
             FRotator::ZeroRotator,
@@ -98,6 +99,7 @@ void AMortarTower::Shoot_Implementation()
             Projectile->Damage = TowerDamage;
             Projectile->Range = MaxProjectileDistance;
             Projectile->Gravity = true;
+            Projectile->ExplosionRadius = ExplosionRadius;
             Projectile->LaunchTowardsTarget(StartLocation, PredictedLocation, 400.f); 
             // Arc height is visual only, but too high and projectile will despawn before landing (change MaxProjectileDistance for more duration)
         }
