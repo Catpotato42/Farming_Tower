@@ -49,7 +49,7 @@ protected:
     class UWidgetComponent* TowerUI;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-    float ShootInterval = 1.0f;
+    float ShootInterval = .3f;
 
     //Projectile spawn height
     UPROPERTY(EditAnywhere, Category = "Combat")
