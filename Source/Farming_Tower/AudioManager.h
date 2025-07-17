@@ -12,6 +12,12 @@ class FARMING_TOWER_API AAudioManager : public AActor
 	GENERATED_BODY()
 	
 public:	
+	static AAudioManager* Instance;
+	void BeginPlay() override;
+
 	UFUNCTION(BlueprintImplementableEvent)
-	void FadeBattle(float time, bool in);
+	void FadeBattle(bool in);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void FadeRain(bool in);
 };

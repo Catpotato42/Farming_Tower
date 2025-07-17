@@ -22,8 +22,8 @@ void AProjectileMortarExploding::OnProjectileHit(UPrimitiveComponent* HitComp, A
     {
         if (FVector::Dist(Actor->GetActorLocation(), ExplosionLocation) <= ExplosionRadius)
         {
-            FDamageEvent DamageEvent;
-            Actor->TakeDamage(Damage, DamageEvent, GetInstigatorController(), this);
+            //FDamageEvent DamageEvent;
+            //Actor->TakeDamage(Damage, DamageEvent, GetInstigatorController(), this);
         }
     }
 
