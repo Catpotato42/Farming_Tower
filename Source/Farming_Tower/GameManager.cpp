@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include "Towers/TowerBase.h"
+#include "Components/AudioComponent.h"
 
 
 void UGameManager::Init()
@@ -57,6 +58,7 @@ void UGameManager::StartRound()
             Spawner->StartRound(round);
         }
     }
+    audio->FadeBattle(0.5f, true);
 }
 
 void UGameManager::EndRound()
@@ -77,6 +79,7 @@ void UGameManager::EndRound()
     round++;
     canvas->UpdateRound(round);
     canvas->ShowTowerUI();
+    audio->FadeBattle(0.5f, false);
 }
 
 

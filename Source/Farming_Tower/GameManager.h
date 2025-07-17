@@ -55,6 +55,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Enemies")
 	TArray<AEnemySpawner*> EnemySpawners;
 
+	//Music
+	UPROPERTY(BlueprintReadWrite)
+	class AAudioManager* audio;
 
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
