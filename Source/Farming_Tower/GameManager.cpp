@@ -88,26 +88,32 @@ void UGameManager::EndRound()
         AAudioManager::Instance->FadeBattle(false);
     }
 
-    if (FMath::RandRange(1, 100) <= 30)
+    if (FMath::RandRange(1, 100) <= 100)
     {
-        RiverFlood();
-    }
-}
-
-
-void UGameManager::RiverFlood()
-{
-    flooded = !flooded;
-    UE_LOG(LogTemp, Warning, TEXT("RiverFlood called. Flooded state: %s"), flooded ? TEXT("true") : TEXT("false"));
-    for (AActor* Flood : RiverFlood)
-    {
-        if (Flood)
+        if (!Environment)
         {
-            Flood->SetActorHiddenInGame(flooded);
-            Flood->SetActorEnableCollision(flooded);
+            TArray<AActor*> FoundEnvironments;
+            UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnvironmentManager::StaticClass(), FoundEnvironments);
+            if (GEngine)
+            {
+                FString DebugMsg = FString::Printf(TEXT("FoundEnvironments.Num() = %d"), FoundEnvironments.Num());
+                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, DebugMsg);
+            }
+            if (FoundEnvironments.Num() > 0)
+            {
+                Environment = Cast<AEnvironmentManager>(FoundEnvironments[0]);
+            }
+        }
+        if (Environment)
+        {
+            UE_LOG(LogTemp, Warning, TEXT("RiverFlood called from GameManager"));
+            Environment->RiverFlood();
         }
     }
 }
+
+
+
 
 
 void UGameManager::AddCoins(int n)

@@ -3,6 +3,7 @@
 #include "UI/CanvasManager.h"
 #include "Enemies/EnemySpawner.h"
 #include "TowerPlacement.h"
+#include "EnvironmentManager.h"
 
 #include "Kismet/GameplayStatics.h"
 #include "CoreMinimal.h"
@@ -59,10 +60,9 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	class AAudioManager* audio;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Environment")
-	TArray<AActor*> RiverFlood;
-	bool flooded = false;
-	void RiverFlood();
+	// Environment
+	UPROPERTY(BlueprintReadWrite)
+	class AEnvironmentManager* Environment;
 
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
