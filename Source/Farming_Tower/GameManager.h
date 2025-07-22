@@ -3,6 +3,7 @@
 #include "UI/CanvasManager.h"
 #include "Enemies/EnemySpawner.h"
 #include "TowerPlacement.h"
+#include "EnvironmentManager.h"
 
 #include "Kismet/GameplayStatics.h"
 #include "CoreMinimal.h"
@@ -58,6 +59,10 @@ public:
 	//Music
 	UPROPERTY(BlueprintReadWrite)
 	class AAudioManager* audio;
+
+	// Environment
+	UPROPERTY(BlueprintReadWrite)
+	class AEnvironmentManager* Environment;
 
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))

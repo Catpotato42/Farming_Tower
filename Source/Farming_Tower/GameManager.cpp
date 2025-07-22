@@ -67,6 +67,26 @@ void UGameManager::StartRound()
 
 void UGameManager::EndRound()
 {
+    //update river flood
+    if (!Environment)
+    {
+        TArray<AActor*> FoundEnvironments;
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnvironmentManager::StaticClass(), FoundEnvironments);
+        if (FoundEnvironments.Num() > 0)
+        {
+            Environment = Cast<AEnvironmentManager>(FoundEnvironments[0]);
+        }
+    }
+    if (Environment)
+    {
+        Environment->floodRounds--;
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Flood rounds left: %d"), Environment->floodRounds));
+        if (Environment->floodRounds == 1)
+            Environment->RiverFlood(true);
+        else if (Environment->floodRounds <= 0)
+            Environment->RiverFlood(false);
+    }
+
     //update towers
     TArray<AActor*> AllTowers;
     UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Tower"), AllTowers);
@@ -88,6 +108,9 @@ void UGameManager::EndRound()
         AAudioManager::Instance->FadeBattle(false);
     }
 }
+
+
+
 
 
 void UGameManager::AddCoins(int n)
