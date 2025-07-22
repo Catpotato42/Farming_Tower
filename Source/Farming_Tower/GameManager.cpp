@@ -87,6 +87,26 @@ void UGameManager::EndRound()
     {
         AAudioManager::Instance->FadeBattle(false);
     }
+
+    if (FMath::RandRange(1, 100) <= 30)
+    {
+        RiverFlood();
+    }
+}
+
+
+void UGameManager::RiverFlood()
+{
+    flooded = !flooded;
+    UE_LOG(LogTemp, Warning, TEXT("RiverFlood called. Flooded state: %s"), flooded ? TEXT("true") : TEXT("false"));
+    for (AActor* Flood : RiverFlood)
+    {
+        if (Flood)
+        {
+            Flood->SetActorHiddenInGame(flooded);
+            Flood->SetActorEnableCollision(flooded);
+        }
+    }
 }
 
 

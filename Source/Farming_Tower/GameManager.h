@@ -59,6 +59,11 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	class AAudioManager* audio;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Environment")
+	TArray<AActor*> RiverFlood;
+	bool flooded = false;
+	void RiverFlood();
+
 private:
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	int32 coins;
