@@ -88,27 +88,23 @@ void UGameManager::EndRound()
         AAudioManager::Instance->FadeBattle(false);
     }
 
-    if (FMath::RandRange(1, 100) <= 100)
+    if (!Environment)
     {
-        if (!Environment)
+        TArray<AActor*> FoundEnvironments;
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnvironmentManager::StaticClass(), FoundEnvironments);
+        if (FoundEnvironments.Num() > 0)
         {
-            TArray<AActor*> FoundEnvironments;
-            UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnvironmentManager::StaticClass(), FoundEnvironments);
-            if (GEngine)
-            {
-                FString DebugMsg = FString::Printf(TEXT("FoundEnvironments.Num() = %d"), FoundEnvironments.Num());
-                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, DebugMsg);
-            }
-            if (FoundEnvironments.Num() > 0)
-            {
-                Environment = Cast<AEnvironmentManager>(FoundEnvironments[0]);
-            }
+            Environment = Cast<AEnvironmentManager>(FoundEnvironments[0]);
         }
-        if (Environment)
-        {
-            UE_LOG(LogTemp, Warning, TEXT("RiverFlood called from GameManager"));
-            Environment->RiverFlood();
-        }
+    }
+    if (Environment)
+    {
+        Environment->floodRounds--;
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Flood rounds left: %d"), Environment->floodRounds));
+        if (Environment->floodRounds == 1)
+            Environment->RiverFlood(true);
+        else if (Environment->floodRounds <= 0)
+            Environment->RiverFlood(false);
     }
 }
 

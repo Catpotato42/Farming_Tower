@@ -9,10 +9,17 @@ class FARMING_TOWER_API AEnvironmentManager : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+	void BeginPlay() override;
+
 	//river flood
+	void RiverFlood(bool half);
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Environment")
 	TArray<AActor*> FloodActors;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Environment")
+	TArray<AActor*> HalfFloodActors;
+
 	bool flooded = false;
-	void RiverFlood();
+	int floodRounds;
 };

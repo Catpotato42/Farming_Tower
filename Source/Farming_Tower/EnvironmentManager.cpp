@@ -1,23 +1,58 @@
 #include "EnvironmentManager.h"
 
 
-void AEnvironmentManager::RiverFlood()
+void AEnvironmentManager::BeginPlay()
 {
-    flooded = !flooded;
-    for (AActor* Flood : FloodActors)
+	Super::BeginPlay();
+	
+	// Initialize flood rounds
+	floodRounds = FMath::RandRange(3, 6);
+}
+
+
+void AEnvironmentManager::RiverFlood(bool half)
+{
+	if (!half)
+	    flooded = !flooded;
+    
+	//half flood
+	for (AActor* HalfFlood : HalfFloodActors)
     {
-		USceneComponent* RootComp = Flood->GetRootComponent();
-		UPrimitiveComponent* RootPrim = Cast<UPrimitiveComponent>(Flood->GetRootComponent());
+		USceneComponent* RootComp = HalfFlood->GetRootComponent();
+		UPrimitiveComponent* RootPrim = Cast<UPrimitiveComponent>(HalfFlood->GetRootComponent());
         if (RootComp && RootPrim)
         {
-			UE_LOG(LogTemp, Warning, TEXT("Setting actor visible = %s"), flooded ? TEXT("true") : TEXT("false"));
-            Flood->SetActorHiddenInGame(!flooded);
-			RootComp->SetVisibility(flooded, true);
-			if (flooded)
+            HalfFlood->SetActorHiddenInGame(!half);
+			RootComp->SetVisibility(half, true);
+			if (half)
 				RootPrim->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 			else
 				RootPrim->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		}
     }
+	
+	//full flood
+	for (AActor* Flood : FloodActors)
+    {
+		USceneComponent* RootComp = Flood->GetRootComponent();
+		UPrimitiveComponent* RootPrim = Cast<UPrimitiveComponent>(Flood->GetRootComponent());
+        if (RootComp && RootPrim)
+        {
+            Flood->SetActorHiddenInGame(!flooded || half);
+			RootComp->SetVisibility(flooded && !half, true);
+			if (flooded && !half)
+				RootPrim->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			else
+				RootPrim->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		}
+    }
+
+	if (!half)
+	{
+		if (flooded)
+			floodRounds = FMath::RandRange(1, 4);
+		else
+			floodRounds = FMath::RandRange(4, 10);
+	}
 }
 
