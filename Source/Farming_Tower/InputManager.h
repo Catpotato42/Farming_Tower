@@ -15,4 +15,7 @@ protected:
 	
 	void NextRound();
     void AddCoins();
+    
+    void ToggleRain();
+    bool raining = false;
 };

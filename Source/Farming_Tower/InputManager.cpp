@@ -1,5 +1,6 @@
 #include "InputManager.h"
 #include "GameManager.h"
+#include "AudioManager.h"
 
 
 void AInputManager::BeginPlay()
@@ -10,6 +11,9 @@ void AInputManager::BeginPlay()
     
     if (InputComponent)
         InputComponent->BindKey(EKeys::C, IE_Pressed, this, &AInputManager::AddCoins);
+
+    if (InputComponent)
+        InputComponent->BindKey(EKeys::R, IE_Pressed, this, &AInputManager::ToggleRain);
 }
 
 void AInputManager::SetupInputComponent() {}
@@ -28,4 +32,13 @@ void AInputManager::AddCoins()
     UGameManager* GameManager = GetGameInstance<UGameManager>();
     if (GameManager)
         GameManager->AddCoins(5);
+}
+
+void AInputManager::ToggleRain()
+{
+    raining = !raining;
+    if (AAudioManager::Instance)
+    {
+        AAudioManager::Instance->FadeRain(raining);
+    }
 }

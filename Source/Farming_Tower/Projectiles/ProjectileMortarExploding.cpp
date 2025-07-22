@@ -4,6 +4,7 @@
 #include "../VFX/ExplosionSphereActor.h"
 #include "GameFramework/DamageType.h"
 #include "Engine/EngineTypes.h"
+#include "Engine/DamageEvents.h"
 
 void AProjectileMortarExploding::OnProjectileHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
     UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -23,7 +24,7 @@ void AProjectileMortarExploding::OnProjectileHit(UPrimitiveComponent* HitComp, A
         if (FVector::Dist(Actor->GetActorLocation(), ExplosionLocation) <= ExplosionRadius)
         {
             FDamageEvent DamageEvent;
-            Actor->TakeDamage(Damage, DamageEvent, GetInstigatorController(), this);
+            Actor->TakeDamage(ExplosionDamage, DamageEvent, GetInstigatorController(), this);
         }
     }
 
