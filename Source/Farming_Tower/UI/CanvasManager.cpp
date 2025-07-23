@@ -97,17 +97,17 @@ void UCanvasManager::SpawnWeatherIcon(FVector2D ScreenPosition, int index, bool 
         if (index == 0)
         {
             CanvasSlot->SetSize(FVector2D(125.f, 70.f));
-            CanvasSlot->SetPosition(ScreenPosition + FVector2D(-40, -10));
+            CanvasSlot->SetPosition(ScreenPosition + FVector2D(0, 3));
         }
         else if (index == 1)
         {
             CanvasSlot->SetSize(FVector2D(70.f, 60.f));
-            CanvasSlot->SetPosition(ScreenPosition + FVector2D(-10, -5));
+            CanvasSlot->SetPosition(ScreenPosition + FVector2D(30, 10));
         }
         else if (index == 2)
         {
             CanvasSlot->SetSize(FVector2D(105.f, 95.f));
-            CanvasSlot->SetPosition(ScreenPosition + FVector2D(-30, -20));
+            CanvasSlot->SetPosition(ScreenPosition + FVector2D(10, -8));
         }
     }
     WeatherImages.Add(NewImage);
