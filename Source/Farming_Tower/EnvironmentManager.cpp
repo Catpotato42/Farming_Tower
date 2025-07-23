@@ -1,4 +1,5 @@
 #include "EnvironmentManager.h"
+#include "AudioManager.h"
 
 
 void AEnvironmentManager::BeginPlay()
@@ -22,15 +23,36 @@ int AEnvironmentManager::UpdateForecast()
 	FString weather = WeatherForecast.IsValidIndex(0) ? WeatherForecast[0] : "Sunny";
 	if (weather == "Flood")
 	{
+		if (AAudioManager::Instance && !flooded)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Flood started"));
+			AAudioManager::Instance->FadeRain(true);
+			AAudioManager::Instance->FadeLightRain(false);
+		}
 		flooded = true;
 		RiverFlood(false);
 	}
 	else if (weather == "Half Flood")
 	{
+		if (AAudioManager::Instance)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Half flood: %d"), flooded);
+			AAudioManager::Instance->FadeLightRain(true);
+			if (flooded)
+				AAudioManager::Instance->FadeRain(false);
+			else
+				AAudioManager::Instance->FadeSun(false);
+		}
 		RiverFlood(true);
 	}
 	else
 	{
+		if (AAudioManager::Instance && flooded)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Flood ended"));
+			AAudioManager::Instance->FadeSun(true);
+			AAudioManager::Instance->FadeLightRain(false);
+		}
 		flooded = false;
 		RiverFlood(false);
 	}
@@ -73,7 +95,7 @@ int AEnvironmentManager::UpdateForecast()
 		}
 		else
 		{
-			startFloodChance += 5;
+			startFloodChance += 10;
 			WeatherForecast.Add("Sunny");
 			return 0;
 		}

@@ -1,7 +1,11 @@
 #include "CanvasManager.h"
+#include "../AudioManager.h"
+
 #include "Components/CanvasPanelSlot.h"
 #include "Components/TextBlock.h"
 #include "Blueprint/WidgetTree.h"
+
+#include "Kismet/GameplayStatics.h"
 
 
 void UCanvasManager::ShowTowerUI()
@@ -107,4 +111,13 @@ void UCanvasManager::SpawnWeatherIcon(FVector2D ScreenPosition, int index, bool 
         }
     }
     WeatherImages.Add(NewImage);
+}
+
+
+void UCanvasManager::SetAudioDilation()
+{
+    if (AAudioManager::Instance)
+    {
+        AAudioManager::Instance->CustomTimeDilation = 1.0f / UGameplayStatics::GetGlobalTimeDilation(GetWorld());
+    }
 }

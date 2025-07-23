@@ -13,6 +13,7 @@ class FARMING_TOWER_API UCanvasManager : public UUserWidget
 	GENERATED_BODY()
 	
 public:
+	//tower UI
 	void ShowTowerUI();
 	void HideTowerUI();
 	UPROPERTY(meta = (BindWidget))
@@ -23,7 +24,7 @@ public:
 	UPROPERTY(Transient, meta = (BindWidgetAnim))
 	UWidgetAnimation* HideTower;
 	
-	
+	//update values
 	void UpdateCoins(int32 n);
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void CheckAvailibility();
@@ -46,4 +47,8 @@ public:
 	TArray<UImage*> WeatherImages;
 	UPROPERTY(meta = (BindWidget))
 	class UCanvasPanel* WeatherPanel;
+
+	//time dilation
+	UFUNCTION(BlueprintCallable)
+	void SetAudioDilation();
 };
