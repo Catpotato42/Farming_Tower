@@ -8,6 +8,29 @@
 #include "Kismet/GameplayStatics.h"
 
 
+/*void UCanvasManager::NativeConstruct()
+{
+    Super::NativeConstruct();
+
+    MoveTimeline = NewObject<UTimelineComponent>(this, TEXT("MoveTimeline"));
+    MoveTimeline->RegisterComponent();
+    MoveTimeline->PrimaryComponentTick.bCanEverTick = true;
+
+    TimelineProgress.BindUFunction(this, FName("OnTimelineTick"));
+    TimelineFinished.BindUFunction(this, FName("TimelineFinished"));
+
+    if (MoveCurve)
+    {
+        MoveTimeline->AddInterpFloat(MoveCurve, TimelineProgress);
+        MoveTimeline->SetTimelineFinishedFunc(TimelineFinished);
+        MoveTimeline->SetLooping(false);
+    }
+}*/
+
+
+
+//edit canvas values
+
 void UCanvasManager::ShowTowerUI()
 {
     if (TowerUI)
@@ -53,34 +76,54 @@ void UCanvasManager::UpdateHealth(int32 n)
 }
 
 
-void UCanvasManager::SpawnWeatherIcon(FVector2D ScreenPosition, int index, bool start)
+
+//weather forecast
+
+void UCanvasManager::SpawnWeatherIcon(FVector2D position, int index, bool skipMove)
 {
-    UTexture2D* Texture = WeatherPrefabs.IsValidIndex(index) ? WeatherPrefabs[index] : nullptr;
-    if (!WeatherPanel || !Texture)
-        return;
+    WeatherPosition = position;
+    WeatherIndex = index;
 
     // Shift previous images
-    if (!start)
+    if (MoveTimeline && !skipMove)
     {
-        if (WeatherImages.Num() > 0)
+        MoveTimeline->PlayFromStart();
+    }
+    else
+    {
+        OnTimelineFinished();
+    }
+}
+
+/*void UCanvasManager::OnTimelineTick(float Value)
+{
+    if (WeatherImages.Num() > 0)
+    {
+        for (UImage* Image : WeatherImages)
         {
-            //WeatherImages[0]->RemoveFromParent();
-            for (UImage* Image : WeatherImages)
+            if (Image)
             {
-                if (Image)
+                UCanvasPanelSlot* s = Cast<UCanvasPanelSlot>(Image->Slot);
+                if (s)
                 {
-                    UCanvasPanelSlot* s = Cast<UCanvasPanelSlot>(Image->Slot);
-                    if (s)
-                    {
-                        FVector2D Position = s->GetPosition();
-                        Position.X -= 132; // Shift left
-                        s->SetPosition(Position);
-                    }
+                    FVector2D Position = s->GetPosition();
+                    int startingX = WeatherImages.IndexOfByKey(Image)*132;
+                    Position.X = FMath::Lerp(startingX, startingX - 132.f, Value);
+                    s->SetPosition(Position);
                 }
             }
-            WeatherImages.RemoveAt(0);
         }
+        WeatherImages.RemoveAt(0);
     }
+}
+
+void UCanvasManager::OnTimelineFinished()
+{
+    UE_LOG(LogTemp, Warning, TEXT("OnTimelineFinished"));
+    UTexture2D* Texture = WeatherPrefabs.IsValidIndex(WeatherIndex) ? WeatherPrefabs[WeatherIndex] : nullptr;
+    if (!WeatherPanel || !Texture)
+        return;
+    //WeatherImages[0]->RemoveFromParent();
 
     // Create image widget
     UImage* NewImage = WidgetTree->ConstructWidget<UImage>(UImage::StaticClass());
@@ -94,24 +137,24 @@ void UCanvasManager::SpawnWeatherIcon(FVector2D ScreenPosition, int index, bool 
     UCanvasPanelSlot* CanvasSlot = WeatherPanel->AddChildToCanvas(NewImage);
     if (CanvasSlot)
     {
-        if (index == 0)
+        if (WeatherIndex == 0) //sun
         {
             CanvasSlot->SetSize(FVector2D(125.f, 70.f));
-            CanvasSlot->SetPosition(ScreenPosition + FVector2D(-40, -10));
+            CanvasSlot->SetPosition(WeatherPosition + FVector2D(0, 3));
         }
-        else if (index == 1)
+        else if (WeatherIndex == 1) //light rain
         {
             CanvasSlot->SetSize(FVector2D(70.f, 60.f));
-            CanvasSlot->SetPosition(ScreenPosition + FVector2D(-10, -5));
+            CanvasSlot->SetPosition(WeatherPosition + FVector2D(30, 10));
         }
-        else if (index == 2)
+        else if (WeatherIndex == 2) //rain
         {
             CanvasSlot->SetSize(FVector2D(105.f, 95.f));
-            CanvasSlot->SetPosition(ScreenPosition + FVector2D(-30, -20));
+            CanvasSlot->SetPosition(WeatherPosition + FVector2D(10, -8));
         }
     }
     WeatherImages.Add(NewImage);
-}
+}*/
 
 
 void UCanvasManager::SetAudioDilation()
