@@ -55,6 +55,10 @@ public:
 	//Enemies
 	UPROPERTY(EditDefaultsOnly, Category = "Enemies")
 	TArray<AEnemySpawner*> EnemySpawners;
+	UPROPERTY(EditDefaultsOnly, Category = "Enemies")
+    TArray<AEnemySpawner*> FinishedSpawners;
+
+	void OnSpawnerFinished(AEnemySpawner* Spawner);
 
 	//Music
 	UPROPERTY(BlueprintReadWrite)
