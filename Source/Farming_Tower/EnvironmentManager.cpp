@@ -18,8 +18,8 @@ void AEnvironmentManager::BeginPlay()
 
 int AEnvironmentManager::UpdateForecast()
 {
-	FString weather = WeatherForecast.IsValidIndex(0) ? WeatherForecast[0] : "Sunny";
 	WeatherForecast.RemoveAt(0);
+	FString weather = WeatherForecast.IsValidIndex(0) ? WeatherForecast[0] : "Sunny";
 	if (weather == "Flood")
 	{
 		flooded = true;
@@ -49,26 +49,31 @@ int AEnvironmentManager::UpdateForecast()
 	}
 	else if (WeatherForecast[4] == "Flood")
 	{
-		if (FMath::RandRange(1, 100) < 30) //30% to stop flooding
+		UE_LOG(LogTemp, Warning, TEXT("Flood chance: %d"), stopFloodChance);
+		if (FMath::RandRange(1, 100) < stopFloodChance)
 		{
+			stopFloodChance = 20;
 			WeatherForecast.Add("Half Flood");
 			return 1;
 		}
 		else
 		{
+			stopFloodChance += 30;
 			WeatherForecast.Add("Flood");
 			return 2;
 		}	
 	}
 	else if (WeatherForecast[4] == "Sunny")
 	{
-		if (FMath::RandRange(1, 100) < 20) //10% to start flooding
+		if (FMath::RandRange(1, 100) < startFloodChance)
 		{
+			startFloodChance = 5;
 			WeatherForecast.Add("Half Flood");
 			return 1;
 		}
 		else
 		{
+			startFloodChance += 5;
 			WeatherForecast.Add("Sunny");
 			return 0;
 		}

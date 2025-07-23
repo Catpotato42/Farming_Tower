@@ -58,7 +58,6 @@ void UCanvasManager::SpawnWeatherIcon(FVector2D ScreenPosition, int index, bool 
     // Shift previous images
     if (!start)
     {
-        UE_LOG(LogTemp, Warning, TEXT("Num images: %d"), WeatherImages.Num());
         if (WeatherImages.Num() > 0)
         {
             //WeatherImages[0]->RemoveFromParent();
@@ -108,5 +107,4 @@ void UCanvasManager::SpawnWeatherIcon(FVector2D ScreenPosition, int index, bool 
         }
     }
     WeatherImages.Add(NewImage);
-     UE_LOG(LogTemp, Warning, TEXT("Num images after adding: %d"), WeatherImages.Num());
 }
