@@ -145,6 +145,6 @@ void AEnemySpawner::NotifyEnemyKilled()
 
     if (enemiesKilledThisRound >= TotalEnemiesThisRound && gameManager)
     {
-        gameManager->EndRound();
+        gameManager->OnSpawnerFinished(this);
     }
 }

@@ -43,6 +43,7 @@ void UGameManager::StartRound()
     TArray<AActor*> FoundSpawners;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), FoundSpawners);
     EnemySpawners.Empty();
+    FinishedSpawners.Empty();
 
     for (AActor* Actor : FoundSpawners)
     {
@@ -112,8 +113,6 @@ void UGameManager::EndRound()
     }
 }
 
-
-
 void UGameManager::AddCoins(int n)
 {
     coins += n;
@@ -139,5 +138,19 @@ void UGameManager::DecreaseHealth(int n)
     {
         GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Game Over!"));
         //show game over UI
+    }
+}
+
+void UGameManager::OnSpawnerFinished(AEnemySpawner* Spawner)
+{
+    if (!FinishedSpawners.Contains(Spawner))
+    {
+        FinishedSpawners.Add(Spawner);
+    }
+
+    if (FinishedSpawners.Num() >= EnemySpawners.Num())
+    {
+        FinishedSpawners.Empty(); //Reset for next round
+        EndRound();
     }
 }
