@@ -12,6 +12,10 @@ class FARMING_TOWER_API AEnvironmentManager : public AActor
 public:
 	void BeginPlay() override;
 
+	UPROPERTY()
+	TArray<FString> WeatherForecast;
+	int UpdateForecast();
+
 	//river flood
 	void RiverFlood(bool half);
 

@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/CanvasPanel.h"
+#include "Components/Image.h"
 #include "Blueprint/UserWidget.h"
 #include "CanvasManager.generated.h"
 
@@ -36,4 +37,13 @@ public:
 	void UpdateHealth(int32 n);
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* HealthText;
+
+	//weather forecast
+	void SpawnWeatherIcon(FVector2D ScreenPosition, int index, bool start=false);
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<UTexture2D*> WeatherPrefabs;
+	UPROPERTY()
+	TArray<UImage*> WeatherImages;
+	UPROPERTY(meta = (BindWidget))
+	class UCanvasPanel* WeatherPanel;
 };

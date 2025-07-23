@@ -61,6 +61,8 @@ public:
 	class AAudioManager* audio;
 
 	// Environment
+	UFUNCTION(BlueprintCallable)
+	void InitializeWeather();
 	UPROPERTY(BlueprintReadWrite)
 	class AEnvironmentManager* Environment;
 
