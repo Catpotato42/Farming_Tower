@@ -42,9 +42,6 @@ public:
 protected:
 
     UPROPERTY(EditAnywhere, Category = "Enemy")
-    TSubclassOf<AEnemyBase> EnemyToSpawn;
-
-    UPROPERTY(EditAnywhere, Category = "Enemy")
     float Health = 10.0f;
 
     UPROPERTY(EditAnywhere, Category = "Enemy")
