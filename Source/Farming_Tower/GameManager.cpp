@@ -20,7 +20,7 @@ void UGameManager::InitializeWeather()
     TArray<int> WeatherTypes = {0, 0, 0, 1, 2, 2};
     for (int i = 0; i < 6; i++)
     {
-        canvas->SpawnWeatherIcon(FVector2D(560 + (i*132), 70), WeatherTypes[i], true);
+        canvas->SpawnWeatherIcon(FVector2D(i*132, 0), WeatherTypes[i], true);
     }
 }
 
@@ -89,7 +89,7 @@ void UGameManager::EndRound()
         }
     }
     if (Environment)
-        canvas->SpawnWeatherIcon(FVector2D(1220, 70), Environment->UpdateForecast());
+        canvas->SpawnWeatherIcon(FVector2D(660, 0), Environment->UpdateForecast());
 
     //update towers
     TArray<AActor*> AllTowers;

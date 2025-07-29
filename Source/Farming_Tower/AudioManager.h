@@ -19,5 +19,11 @@ public:
 	void FadeBattle(bool in);
 
 	UFUNCTION(BlueprintImplementableEvent)
+	void FadeSun(bool in);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void FadeLightRain(bool in);
+
+	UFUNCTION(BlueprintImplementableEvent)
 	void FadeRain(bool in);
 };

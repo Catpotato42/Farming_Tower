@@ -1,4 +1,5 @@
 #include "EnvironmentManager.h"
+#include "AudioManager.h"
 
 
 void AEnvironmentManager::BeginPlay()
@@ -18,19 +19,40 @@ void AEnvironmentManager::BeginPlay()
 
 int AEnvironmentManager::UpdateForecast()
 {
-	FString weather = WeatherForecast.IsValidIndex(0) ? WeatherForecast[0] : "Sunny";
 	WeatherForecast.RemoveAt(0);
+	FString weather = WeatherForecast.IsValidIndex(0) ? WeatherForecast[0] : "Sunny";
 	if (weather == "Flood")
 	{
+		if (AAudioManager::Instance && !flooded)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Flood started"));
+			AAudioManager::Instance->FadeRain(true);
+			AAudioManager::Instance->FadeLightRain(false);
+		}
 		flooded = true;
 		RiverFlood(false);
 	}
 	else if (weather == "Half Flood")
 	{
+		if (AAudioManager::Instance)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Half flood: %d"), flooded);
+			AAudioManager::Instance->FadeLightRain(true);
+			if (flooded)
+				AAudioManager::Instance->FadeRain(false);
+			else
+				AAudioManager::Instance->FadeSun(false);
+		}
 		RiverFlood(true);
 	}
 	else
 	{
+		if (AAudioManager::Instance && flooded)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Flood ended"));
+			AAudioManager::Instance->FadeSun(true);
+			AAudioManager::Instance->FadeLightRain(false);
+		}
 		flooded = false;
 		RiverFlood(false);
 	}
@@ -49,26 +71,31 @@ int AEnvironmentManager::UpdateForecast()
 	}
 	else if (WeatherForecast[4] == "Flood")
 	{
-		if (FMath::RandRange(1, 100) < 30) //30% to stop flooding
+		UE_LOG(LogTemp, Warning, TEXT("Flood chance: %d"), stopFloodChance);
+		if (FMath::RandRange(1, 100) < stopFloodChance)
 		{
+			stopFloodChance = 20;
 			WeatherForecast.Add("Half Flood");
 			return 1;
 		}
 		else
 		{
+			stopFloodChance += 30;
 			WeatherForecast.Add("Flood");
 			return 2;
 		}	
 	}
 	else if (WeatherForecast[4] == "Sunny")
 	{
-		if (FMath::RandRange(1, 100) < 20) //10% to start flooding
+		if (FMath::RandRange(1, 100) < startFloodChance)
 		{
+			startFloodChance = 5;
 			WeatherForecast.Add("Half Flood");
 			return 1;
 		}
 		else
 		{
+			startFloodChance += 10;
 			WeatherForecast.Add("Sunny");
 			return 0;
 		}

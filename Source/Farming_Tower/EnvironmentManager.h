@@ -16,6 +16,9 @@ public:
 	TArray<FString> WeatherForecast;
 	int UpdateForecast();
 
+	int stopFloodChance = 60;
+	int startFloodChance = 5;
+
 	//river flood
 	void RiverFlood(bool half);
 

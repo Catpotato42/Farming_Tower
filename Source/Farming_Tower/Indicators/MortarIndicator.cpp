@@ -6,7 +6,9 @@ int AMortarIndicator::IsGoodPlacement()
     int total = 0;
 
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    if (riverDist > 4)
+    if (riverDist == 0)
+        return -1;
+    else if (riverDist > 4)
         total--;
     else if (riverDist < 3)
         total++;
