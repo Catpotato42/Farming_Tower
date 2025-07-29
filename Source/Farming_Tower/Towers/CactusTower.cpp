@@ -18,7 +18,7 @@ void ACactusTower::Shoot_Implementation()
     FRotator Rotation;
 
     // Fire in *amount* directions
-    for (int i = 0; i <= ProjectileAmount; ++i)
+    for (int i = 0; i < ProjectileAmount; ++i)
     {
         float Radians = i * (2 * PI / ProjectileAmount);
 

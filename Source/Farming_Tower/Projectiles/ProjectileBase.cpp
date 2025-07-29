@@ -57,8 +57,10 @@ void AProjectileBase::OnProjectileHit(UPrimitiveComponent* HitComp, AActor* Othe
         if (Enemy)
         {
             Enemy->ApplyDamage(Damage);
+            UE_LOG(LogTemp, Log, TEXT("Projectile hit enemy: %s"), *OtherActor->GetName());
+            UE_LOG(LogTemp, Log, TEXT("Damage applied: %f"), Damage);
+            UE_LOG(LogTemp, Log, TEXT("Projectile ID: %s"), *GetName());
         }
     }
-
     Destroy();
 }
