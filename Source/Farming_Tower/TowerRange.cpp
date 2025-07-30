@@ -213,3 +213,93 @@ TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByEndProgress() const
 
 	return SortedEnemies;
 }
+
+TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByHealth() const
+{
+    TArray<AActor*> FoundEnemies;
+    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
+
+    TArray<AActor*> SortedEnemies;
+    AActor* Owner = GetOwner();
+    if (!Owner) return SortedEnemies;
+
+    const FVector OwnerLocation = Owner->GetActorLocation();
+    const float EffectiveRangeSq = FMath::Square(DetectionRange + DetectionBuffer);
+
+    TArray<TPair<float, AActor*>> Candidates;
+
+    for (AActor* Enemy : FoundEnemies)
+    {
+        if (!Enemy || Enemy == Owner) continue;
+
+        const FVector EnemyLocation = Enemy->GetActorLocation();
+        const float DX = EnemyLocation.X - OwnerLocation.X;
+        const float DY = EnemyLocation.Y - OwnerLocation.Y;
+        const float DistanceSq = DX * DX + DY * DY;
+
+        if (DistanceSq > EffectiveRangeSq) continue;
+
+        AEnemyBase* Typed = Cast<AEnemyBase>(Enemy);
+        if (!Typed) continue;
+
+        Candidates.Add(TPair<float, AActor*>(Typed->Health, Enemy));
+    }
+
+    // Sort descending (highest health first)
+    Candidates.Sort([](const TPair<float, AActor*>& A, const TPair<float, AActor*>& B)
+    {
+        return A.Key > B.Key;
+    });
+
+    for (const auto& Pair : Candidates)
+    {
+        SortedEnemies.Add(Pair.Value);
+    }
+
+    return SortedEnemies;
+}
+
+TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByLowestHealth() const
+{
+    TArray<AActor*> FoundEnemies;
+    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
+
+    TArray<AActor*> SortedEnemies;
+    AActor* Owner = GetOwner();
+    if (!Owner) return SortedEnemies;
+
+    const FVector OwnerLocation = Owner->GetActorLocation();
+    const float EffectiveRangeSq = FMath::Square(DetectionRange + DetectionBuffer);
+
+    TArray<TPair<float, AActor*>> Candidates;
+
+    for (AActor* Enemy : FoundEnemies)
+    {
+        if (!Enemy || Enemy == Owner) continue;
+
+        const FVector EnemyLocation = Enemy->GetActorLocation();
+        const float DX = EnemyLocation.X - OwnerLocation.X;
+        const float DY = EnemyLocation.Y - OwnerLocation.Y;
+        const float DistanceSq = DX * DX + DY * DY;
+
+        if (DistanceSq > EffectiveRangeSq) continue;
+
+        AEnemyBase* Typed = Cast<AEnemyBase>(Enemy);
+        if (!Typed) continue;
+
+        Candidates.Add(TPair<float, AActor*>(Typed->Health, Enemy));
+    }
+
+    // Sort ascending (lowest health first)
+    Candidates.Sort([](const TPair<float, AActor*>& A, const TPair<float, AActor*>& B)
+    {
+        return A.Key < B.Key;
+    });
+
+    for (const auto& Pair : Candidates)
+    {
+        SortedEnemies.Add(Pair.Value);
+    }
+
+    return SortedEnemies;
+}

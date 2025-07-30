@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
+#include "NiagaraSystem.h"
 #include "ProjectileBase.generated.h"
 
 UCLASS()
@@ -34,6 +35,9 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced, Category = "Setup")
     USphereComponent* MyCollisionComponent = nullptr;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VFX")
+    UNiagaraSystem* OnHitEffect = nullptr;
 
     UPROPERTY(VisibleAnywhere)
     class UProjectileMovementComponent* MovementComponent;

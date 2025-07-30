@@ -3,6 +3,7 @@
 
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/PrimitiveComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Engine/Engine.h"
 #include "Logging/LogMacros.h"
 
@@ -61,6 +62,16 @@ void AProjectileBase::OnProjectileHit(UPrimitiveComponent* HitComp, AActor* Othe
             UE_LOG(LogTemp, Log, TEXT("Damage applied: %f"), Damage);
             UE_LOG(LogTemp, Log, TEXT("Projectile ID: %s"), *GetName());
         }
+        if (OnHitEffect)
+        {
+            UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+                GetWorld(),
+                OnHitEffect,
+                GetActorLocation(),
+                GetActorRotation()
+            );
+        }
     }
+
     Destroy();
 }
