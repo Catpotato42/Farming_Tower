@@ -43,13 +43,14 @@ void AEnemySpawner::StartRound(int currentRound)
     EnemiesSpawnedInCurrentWave = 0;
 
     TotalEnemiesThisRound = 0;
-    for (const auto& Info : PendingWaves)
+    if (PendingWaves.Num() > 0)
     {
-        TotalEnemiesThisRound += Info.Quantity;
+        for (const auto& Info : PendingWaves)
+        {
+            TotalEnemiesThisRound += Info.Quantity;
+        }
+        GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AEnemySpawner::SpawnNextEnemy, PendingWaves[0].InWaveWaitTime, true);
     }
-    UE_LOG(LogTemp, Warning, TEXT("Enemies in the round: %d"), TotalEnemiesThisRound);
-
-    GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AEnemySpawner::SpawnNextEnemy, PendingWaves[0].InWaveWaitTime, true);
 }
 
 void AEnemySpawner::SpawnNextEnemy()
