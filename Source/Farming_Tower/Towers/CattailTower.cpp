@@ -1,7 +1,7 @@
-#include "Towers/CattailTower.h"
-#include "Projectiles/BeamProjectile.h"
-#include "Enemies/EnemyBase.h"
-#include "TowerRange.h"
+#include "CattailTower.h"
+#include "../Projectiles/ProjectileBeam.h"
+#include "../Enemies/EnemyBase.h"
+#include "../TowerRange.h"
 #include "Kismet/GameplayStatics.h"
 
 void ACattailTower::Tick(float DeltaTime)
@@ -48,7 +48,7 @@ void ACattailTower::Shoot_Implementation()
     SpawnParams.Instigator = GetInstigator();
 
     FVector StartLocation = GetActorLocation();
-    ABeamProjectile* Beam = GetWorld()->SpawnActor<ABeamProjectile>(
+    AProjectileBeam* Beam = GetWorld()->SpawnActor<AProjectileBeam>(
         BeamProjectileClass,
         StartLocation,
         FRotator::ZeroRotator,
@@ -59,10 +59,10 @@ void ACattailTower::Shoot_Implementation()
     {
         ActiveBeam = Beam;
         // Pass references and data to the beam
-        Beam->InitBeam(this, CurrentTarget, TowerDamage, TowerRangeComponent->GetRange());
+        Beam->InitBeam(this, CurrentTarget, TowerDamage, TowerRangeComponent->DetectionRange);
 
         // Bind a delegate or use an event so the beam can notify the tower when it is done
-        Beam->OnBeamFinished.AddUObject(this, &ACattailTower::OnBeamFinished);
+        Beam->OnBeamFinished.AddDynamic(this, &ACattailTower::OnBeamFinished);
     }
 }
 
@@ -72,4 +72,13 @@ void ACattailTower::OnBeamFinished()
     CurrentTarget = nullptr;
     BeamCooldownTimer = ShootInterval; // Start cooldown now
     TimeSinceLastShot = 0.f; // Prevent base class from shooting immediately
+}
+
+void ACattailTower::UpdateState()
+{
+}
+
+int ACattailTower::IsGoodPlacement()
+{
+    return 1;
 }

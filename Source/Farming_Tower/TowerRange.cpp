@@ -242,7 +242,7 @@ TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByHealth() const
         AEnemyBase* Typed = Cast<AEnemyBase>(Enemy);
         if (!Typed) continue;
 
-        Candidates.Add(TPair<float, AActor*>(Typed->Health, Enemy));
+        Candidates.Add(TPair<float, AActor*>(Typed->GetHealth(), Enemy));
     }
 
     // Sort descending (highest health first)
@@ -287,7 +287,7 @@ TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByLowestHealth() const
         AEnemyBase* Typed = Cast<AEnemyBase>(Enemy);
         if (!Typed) continue;
 
-        Candidates.Add(TPair<float, AActor*>(Typed->Health, Enemy));
+        Candidates.Add(TPair<float, AActor*>(Typed->GetHealth(), Enemy));
     }
 
     // Sort ascending (lowest health first)
