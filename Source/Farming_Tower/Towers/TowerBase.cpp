@@ -6,6 +6,15 @@ ATowerBase::ATowerBase()
     PrimaryActorTick.bCanEverTick = true;
 
     TowerRangeComponent = CreateDefaultSubobject<UTowerRange>(TEXT("TowerRangeComponent"));
+
+    if (TowerRangeComponent)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("TowerRangeComponent initialized, owner: %s"), TowerRangeComponent->GetOwner() ? *TowerRangeComponent->GetOwner()->GetName() : TEXT("nullptr"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("TowerRangeComponent is nullptr!"));
+    }
 }
 
 void ATowerBase::BeginPlay()
@@ -17,17 +26,23 @@ void ATowerBase::BeginPlay()
 
 void ATowerBase::Tick(float DeltaTime)
 {
+    if (HasAnyFlags(RF_ClassDefaultObject)) return;
+    UE_LOG(LogTemp, Warning, TEXT("UpdateIsEnemyInRangeOnly called on: %s, IsCDO: %d"),
+        GetOwner() ? *GetOwner()->GetName() : TEXT("nullptr"),
+        HasAnyFlags(RF_ClassDefaultObject));
+    UE_LOG(LogTemp, Warning, TEXT("Ticking: %s, IsCDO: %d"), *GetName(), HasAnyFlags(RF_ClassDefaultObject));
     Super::Tick(DeltaTime);
 
     TimeSinceLastShot += DeltaTime;
 
-    if (TowerRangeComponent)
+    if (TowerRangeComponent && TowerRangeComponent->GetOwner())
     {
         TowerRangeComponent->UpdateIsEnemyInRangeOnly();
+
         if (TowerRangeComponent->bIsEnemyInRange && TimeSinceLastShot >= ShootInterval)
         {
             Shoot();
-            TimeSinceLastShot = 0.0f;
+            TimeSinceLastShot = 0.f;
         }
     }
 

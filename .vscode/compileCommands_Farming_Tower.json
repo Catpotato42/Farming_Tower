@@ -224,6 +224,22 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Projectiles\\ProjectileBeam.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Projectiles\\ProjectileBeam.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Projectiles\\ProjectileHoming.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
@@ -313,6 +329,22 @@
 	},
 	{
 		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\CactusTower.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\CattailTower.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Unreal games storage\\Farming_Tower\\Source\\Farming_Tower\\Towers\\CattailTower.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Unreal games storage\\Farming_Tower\\.vscode\\compileCommands_Farming_Tower\\Farming_Tower.1.rsp"

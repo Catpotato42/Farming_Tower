@@ -5,11 +5,10 @@
 // Sets default values for this component's properties
 UTowerRange::UTowerRange()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	//PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
+	PrimaryComponentTick.bCanEverTick = false;
+    DetectionRange = 100.f;
+    DetectionBuffer = 25.f;
+    bIsEnemyInRange = false;
 }
 
 
@@ -17,6 +16,9 @@ UTowerRange::UTowerRange()
 void UTowerRange::BeginPlay()
 {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("TowerRange BeginPlay: Owner=%s, World=%s"),
+    GetOwner() ? *GetOwner()->GetName() : TEXT("nullptr"),
+    GetWorld() ? *GetWorld()->GetName() : TEXT("nullptr"));
 
 	// ...
 	
@@ -24,11 +26,31 @@ void UTowerRange::BeginPlay()
 
 void UTowerRange::UpdateIsEnemyInRangeOnly()
 {
-	TArray<AActor*> FoundEnemies;
-	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
+	UE_LOG(LogTemp, Warning, TEXT("UpdateIsEnemyInRangeOnly called on: %s, IsCDO: %d"),
+        GetOwner() ? *GetOwner()->GetName() : TEXT("nullptr"),
+        HasAnyFlags(RF_ClassDefaultObject));
 
-	AActor* Owner = GetOwner();
-	if (!Owner) return;
+    if (HasAnyFlags(RF_ClassDefaultObject)) return;
+
+    AActor* Owner = GetOwner();
+    if (!Owner)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("UpdateIsEnemyInRangeOnly: Owner is nullptr"));
+        return;
+    }
+
+    UWorld* World = Owner->GetWorld();
+    if (!World)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("UpdateIsEnemyInRangeOnly: World is nullptr"));
+        return;
+    }
+    TArray<AActor*> FoundEnemies;
+    if (World)
+        UGameplayStatics::GetAllActorsWithTag(World, FName("Enemy"), FoundEnemies);
+    //UE_LOG(LogTemp, Warning, TEXT("Found %d enemies"), FoundEnemies.Num());
+
+    if (!Owner) return;
 
 	FVector OwnerLocation = Owner->GetActorLocation();
 	float EffectiveRangeSq = FMath::Square(DetectionRange + DetectionBuffer);
