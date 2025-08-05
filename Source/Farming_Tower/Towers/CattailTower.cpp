@@ -31,8 +31,8 @@ void ACattailTower::Tick(float DeltaTime)
 
 void ACattailTower::Shoot_Implementation()
 {
-    // Don't shoot if already firing a beam
-    if (ActiveBeam) return;
+    //Don't shoot if firing a beam or in cooldown
+    if (ActiveBeam || BeamCooldownTimer > 0.f) return;
 
     // Get highest health enemy in range
     if (!TowerRangeComponent) return;
@@ -70,5 +70,6 @@ void ACattailTower::OnBeamFinished()
 {
     ActiveBeam = nullptr;
     CurrentTarget = nullptr;
-    // Now the base class cooldown will allow the next shot after ShootInterval
+    BeamCooldownTimer = ShootInterval; // Start cooldown now
+    TimeSinceLastShot = 0.f; // Prevent base class from shooting immediately
 }
