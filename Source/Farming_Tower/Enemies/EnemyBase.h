@@ -24,6 +24,9 @@ public:
     void SetPath(USplineComponent* InSpline);
     void SetSpawner(AEnemySpawner* InSpawner);
 
+    UFUNCTION(BlueprintCallable, Category = "Enemy")
+    float GetHealth() const { return Health; }
+
     UFUNCTION()
     void ApplyDamage(float DamageAmount);
 

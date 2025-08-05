@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Towers/TowerBase.h"
+#include "TowerBase.h"
 #include "CattailTower.generated.h"
 
 /**
  * 
  */
 class AEnemyBase;
-class ABeamProjectile;
+class AProjectileBeam;
 
 UCLASS()
 class FARMING_TOWER_API ACattailTower : public ATowerBase
@@ -23,17 +23,19 @@ public:
 	virtual void Shoot_Implementation() override;
 
 	// Called by the beam when it is destroyed or stops firing
+    UFUNCTION()
     void OnBeamFinished();
 
 private:
     UPROPERTY(EditAnywhere, Category = "Combat")
-    TSubclassOf<ABeamProjectile> BeamProjectileClass;
+    TSubclassOf<AProjectileBeam> BeamProjectileClass;
 
     UPROPERTY()
-    ABeamProjectile* ActiveBeam = nullptr;
+    float BeamCooldownTimer = 0.f;
+
+    UPROPERTY()
+    AProjectileBeam* ActiveBeam = nullptr;
 
     UPROPERTY()
     AEnemyBase* CurrentTarget = nullptr;
-
-	virtual void Tick(float DeltaTime) override;
 };
