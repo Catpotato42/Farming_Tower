@@ -10,9 +10,9 @@ int ASniperIndicator::IsGoodPlacement()
         total--;
     
     float zPos = GetActorLocation().Z;
-    if (zPos > 250)
+    if (zPos >= 700)
         total++;
-    else if (zPos < 100)
+    else if (zPos <= 400)
         total--;
 
     if (total < 0)
