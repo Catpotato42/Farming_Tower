@@ -74,11 +74,40 @@ void ACattailTower::OnBeamFinished()
     TimeSinceLastShot = 0.f; // Prevent base class from shooting immediately
 }
 
-void ACattailTower::UpdateState()
-{
-}
-
 int ACattailTower::IsGoodPlacement()
 {
-    return 1;
+    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
+    if (riverDist > 0) //decrease level if not in water
+        return -1;
+    else
+    {
+        float zPos = GetActorLocation().Z;
+        return zPos <= 550 ? 1 : 0; //better if lower
+    }
+}
+
+
+void ACattailTower::UpdateState()
+{
+    Super::UpdateState();
+    if (TowerLevel >= 15)
+    {
+        TowerDamage = 20.f;
+    }
+    else if (TowerLevel >= 11)
+    {
+        TowerDamage = 15.f;
+    }
+    else if (TowerLevel >= 7)
+    {
+        TowerDamage = 15.f;
+    }
+    else if (TowerLevel >= 4)
+    {
+        TowerDamage = 10.f;
+    }
+    else
+    {
+        TowerDamage = 10.f;
+    }
 }
