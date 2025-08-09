@@ -50,7 +50,15 @@ void AEnemySpawner::StartRound(int currentRound)
         {
             TotalEnemiesThisRound += Info.Quantity;
         }
-        GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AEnemySpawner::SpawnNextEnemy, PendingWaves[0].InWaveWaitTime, true);
+        UE_LOG(LogTemp, Log, TEXT("Before wave wait time: %f"), PendingWaves[0].WaitTime.X);
+        GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AEnemySpawner::SpawnNextEnemy, PendingWaves[0].WaitTime.Y, true, PendingWaves[0].WaitTime.X);
+    }
+    else
+    {
+        if (gameManager)
+        {
+            gameManager->OnSpawnerFinished(this);
+        }
     }
 }
 
@@ -92,15 +100,14 @@ void AEnemySpawner::SpawnNextEnemy()
                             SpawnTimerHandle,
                             this,
                             &AEnemySpawner::SpawnNextEnemy,
-                            currentWave.InWaveWaitTime,
+                            currentWave.WaitTime.Y,
                             true
                         );
                     }
                 },
-                wave.AfterWaveWaitTime,
+                wave.WaitTime.Z + PendingWaves[CurrentWaveIndex].WaitTime.X, // wait time before starting next wave
                 false
             );
-            UE_LOG(LogTemp, Warning, TEXT("AfterWaveWaitTime: %f"), wave.AfterWaveWaitTime);
         }
         else
         {
@@ -137,14 +144,11 @@ void AEnemySpawner::SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass)
             enemy->SetPath(AssignedPath->SplineComponent);
         }
     }
-
 }
 
 void AEnemySpawner::NotifyEnemyKilled()
 {
     enemiesKilledThisRound++;
-    UE_LOG(LogTemp, Warning, TEXT("Enemies killed this round: %d"), enemiesKilledThisRound);
-
     if (enemiesKilledThisRound >= TotalEnemiesThisRound && gameManager)
     {
         gameManager->OnSpawnerFinished(this);

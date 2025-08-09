@@ -61,26 +61,26 @@ void ACactusTower::UpdateState()
     if (TowerLevel >= 15)
     {
         ProjectileAmount = 16;
-        TowerDamage = 20.f;
+        TowerDamage = 30.f;
         ShootInterval = 0.75f;
     }
     else if (TowerLevel >= 11)
     {
         ProjectileAmount = 12;
-        TowerDamage = 15.f;
+        TowerDamage = 20.f;
         ShootInterval = 1.0f;
     }
     else if (TowerLevel >= 7)
     {
         ProjectileAmount = 8;
-        TowerDamage = 15.f;
+        TowerDamage = 20.f;
         ShootInterval = 1.0f;
     }
     else if (TowerLevel >= 4)
     {
         ProjectileAmount = 8;
-        TowerDamage = 10.f;
-        ShootInterval = 1.5f;
+        TowerDamage = 15.f;
+        ShootInterval = 1.2f;
     }
     else
     {

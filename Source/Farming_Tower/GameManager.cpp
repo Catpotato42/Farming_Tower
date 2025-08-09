@@ -111,6 +111,8 @@ void UGameManager::EndRound()
     {
         AAudioManager::Instance->FadeBattle(false);
     }
+
+    AddCoins(3);
 }
 
 void UGameManager::AddCoins(int n)
