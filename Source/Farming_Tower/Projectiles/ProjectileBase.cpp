@@ -40,8 +40,13 @@ void AProjectileBase::BeginPlay()
 
 void AProjectileBase::Tick(float DeltaTime)
 {
-    Super::Tick(DeltaTime);
+    Super::Tick(DeltaTime); // If any parent exists.
 
+    CheckLifetime(DeltaTime);
+}
+
+void AProjectileBase::CheckLifetime(float DeltaTime)
+{
     float DistanceTraveled = FVector::Dist(StartLocation, GetActorLocation());
     if (DistanceTraveled >= Range)
     {

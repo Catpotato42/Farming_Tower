@@ -22,6 +22,8 @@ protected:
     UFUNCTION()
     virtual void OnProjectileHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
         UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+    
+    virtual void CheckLifetime(float DeltaTime);
 
 public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
