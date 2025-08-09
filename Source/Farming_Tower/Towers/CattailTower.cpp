@@ -6,24 +6,16 @@
 
 void ACattailTower::Tick(float DeltaTime)
 {
-    // (Base Tick will call Shoot if ready)
     Super::Tick(DeltaTime);
-    GEngine->AddOnScreenDebugMessage(-1, .1f, FColor::Yellow, FString::Printf(TEXT("BeamCooldownTimer: %f"), BeamCooldownTimer));
-
-    // If beam is active, do not allow base class to reset cooldown
-    if (ActiveBeam)
-    {
-        // Optionally: update visuals or logic here
-        return;
-    }
-
     // If beam just finished, start cooldown
     if (BeamCooldownTimer > 0.f)
     {
+        GEngine->AddOnScreenDebugMessage(-1, .1f, FColor::Yellow, FString::Printf(TEXT("BeamCooldownTimer: %f"), BeamCooldownTimer));
         BeamCooldownTimer -= DeltaTime;
         if (BeamCooldownTimer <= 0.f)
         {
             BeamCooldownTimer = 0.f;
+            bDeferCooldownStart = false;
             // Allow shooting again
         }
         return;
@@ -76,6 +68,7 @@ void ACattailTower::OnBeamFinished()
     ActiveBeam = nullptr;
     CurrentTarget = nullptr;
     BeamCooldownTimer = ShootInterval; // Start cooldown now
+    bDeferCooldownStart = true;
     TimeSinceLastShot = 0.f; // Prevent base class from shooting immediately
 }
 

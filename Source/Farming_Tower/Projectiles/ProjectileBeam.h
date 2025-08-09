@@ -44,4 +44,6 @@ protected:
 
     // Helper
     bool IsTargetValid() const;
+
+    
 };

@@ -2,7 +2,7 @@
 #include "../Enemies/EnemyBase.h"
 
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Components/PrimitiveComponent.h"
+#include "Components/ShapeComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Engine/Engine.h"
 #include "Logging/LogMacros.h"

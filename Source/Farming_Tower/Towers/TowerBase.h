@@ -62,5 +62,7 @@ protected:
     int TowerLevel = 1;
     int DisplayLevel = 1;
 
+    bool bDeferCooldownStart = false;
+
     float TimeSinceLastShot = 0.0f;
 };

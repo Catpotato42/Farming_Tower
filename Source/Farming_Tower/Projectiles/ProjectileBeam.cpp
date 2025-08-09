@@ -1,6 +1,7 @@
 #include "ProjectileBeam.h"
 #include "../Towers/CattailTower.h"
 #include "../Enemies/EnemyBase.h"
+#include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 AProjectileBeam::AProjectileBeam()
