@@ -33,7 +33,7 @@ protected:
     UPROPERTY()
     AEnemyBase* TargetEnemy = nullptr;
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category="Beam")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
     UStaticMeshComponent* BeamMesh = nullptr;
 
     float DamagePerSecond = 0.f;
@@ -45,5 +45,8 @@ protected:
     // Helper
     bool IsTargetValid() const;
 
-    
+    virtual void CheckLifetime(float DeltaTime) override;
+
+    virtual void OnProjectileHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
+        UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit) override;
 };

@@ -7,10 +7,13 @@
 AProjectileBeam::AProjectileBeam()
 {
     PrimaryActorTick.bCanEverTick = true;
+    BeamMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BeamMesh"));
+    RootComponent = BeamMesh;
 }
 
 void AProjectileBeam::InitBeam(ACattailTower* InTower, AEnemyBase* InTarget, float InDamagePerSecond, float InRange)
 {
+    UE_LOG(LogTemp, Warning, TEXT("Beam Spawned"));
     SourceTower = InTower;
     TargetEnemy = InTarget;
     DamagePerSecond = InDamagePerSecond;
@@ -22,11 +25,13 @@ void AProjectileBeam::InitBeam(ACattailTower* InTower, AEnemyBase* InTarget, flo
 void AProjectileBeam::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
+    UE_LOG(LogTemp, Warning, TEXT("Beam Ticking"));
 
     if (!IsTargetValid())
     {
         if (OnBeamFinished.IsBound())
             OnBeamFinished.Broadcast();
+        UE_LOG(LogTemp, Warning, TEXT("Bye Beam"));
         Destroy();
         return;
     }
@@ -37,6 +42,7 @@ void AProjectileBeam::Tick(float DeltaTime)
     {
         if (OnBeamFinished.IsBound())
             OnBeamFinished.Broadcast();
+        UE_LOG(LogTemp, Warning, TEXT("Bye Beam"));
         Destroy();
         return;
     }
@@ -73,4 +79,15 @@ void AProjectileBeam::UpdateBeamVisual()
     FVector BeamScale = BeamMesh->GetComponentScale();
     BeamScale.Z = Length / 100.f; // assuming cylinder height is 100 units
     BeamMesh->SetWorldScale3D(BeamScale);
+}
+
+void AProjectileBeam::CheckLifetime(float DeltaTime)
+{
+    //nothing
+}
+
+void AProjectileBeam::OnProjectileHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
+    UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+    //nothing
 }
