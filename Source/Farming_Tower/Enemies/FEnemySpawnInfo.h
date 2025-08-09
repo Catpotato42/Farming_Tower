@@ -19,11 +19,8 @@ struct FEnemySpawnInfo
     int32 Quantity;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    float InWaveWaitTime;
-    
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    float AfterWaveWaitTime;
+    FVector WaitTime;
 
     FEnemySpawnInfo()
-        : EnemyClass(nullptr), Quantity(0), InWaveWaitTime(0.4f), AfterWaveWaitTime(1.0f) {}
+        : EnemyClass(nullptr), Quantity(0), WaitTime(0.f, 0.4f, 0.f) {}
 };
