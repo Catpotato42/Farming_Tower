@@ -50,7 +50,7 @@ void ASniperTower::Shoot_Implementation()
                 FRotator::ZeroRotator,
                 SpawnParams
             );
-            DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, 1.f, 0, 2.f);
+            DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, .5f, 0, 2.f);
 
             if (HomingProjectile)
             {
