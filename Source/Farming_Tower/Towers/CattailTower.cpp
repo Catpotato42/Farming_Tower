@@ -8,6 +8,7 @@ void ACattailTower::Tick(float DeltaTime)
 {
     // (Base Tick will call Shoot if ready)
     Super::Tick(DeltaTime);
+    GEngine->AddOnScreenDebugMessage(-1, .1f, FColor::Yellow, FString::Printf(TEXT("BeamCooldownTimer: %f"), BeamCooldownTimer));
 
     // If beam is active, do not allow base class to reset cooldown
     if (ActiveBeam)
@@ -32,11 +33,13 @@ void ACattailTower::Tick(float DeltaTime)
 void ACattailTower::Shoot_Implementation()
 {
     //Don't shoot if firing a beam or in cooldown
-    if (ActiveBeam || BeamCooldownTimer > 0.f) return;
+    if (ActiveBeam || BeamCooldownTimer > 0.01f) return;
+    UE_LOG(LogTemp, Warning, TEXT("Starting to shoot"));
 
     // Get highest health enemy in range
     if (!TowerRangeComponent) return;
     TArray<AActor*> SortedEnemies = TowerRangeComponent->GetSortedEnemiesInRangeByHealth();
+    UE_LOG(LogTemp, Warning, TEXT("Enemies in range: %d"), SortedEnemies.Num());
     if (SortedEnemies.Num() == 0) return;
 
     CurrentTarget = Cast<AEnemyBase>(SortedEnemies[0]);
@@ -54,6 +57,7 @@ void ACattailTower::Shoot_Implementation()
         FRotator::ZeroRotator,
         SpawnParams
     );
+    UE_LOG(LogTemp, Warning, TEXT("Spawned Beam"));
 
     if (Beam)
     {
@@ -68,6 +72,7 @@ void ACattailTower::Shoot_Implementation()
 
 void ACattailTower::OnBeamFinished()
 {
+    UE_LOG(LogTemp, Warning, TEXT("Beam finished"));
     ActiveBeam = nullptr;
     CurrentTarget = nullptr;
     BeamCooldownTimer = ShootInterval; // Start cooldown now
@@ -77,7 +82,7 @@ void ACattailTower::OnBeamFinished()
 int ACattailTower::IsGoodPlacement()
 {
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-    if (riverDist > 0) //decrease level if not in water
+    if (riverDist > 1) //decrease level if not in water
         return -1;
     else
     {

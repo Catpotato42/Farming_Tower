@@ -28,7 +28,8 @@ public:
 
 private:
     UPROPERTY(EditAnywhere, Category = "Combat")
-    TSubclassOf<AProjectileBeam> BeamProjectileClass;
+    TSubclassOf<AProjectileBeam> BeamProjectileClass; 
+    //only projectile casted to its own class specifically, inconsistent but going forward I will make that the norm
 
     UPROPERTY()
     float BeamCooldownTimer = 0.f;
