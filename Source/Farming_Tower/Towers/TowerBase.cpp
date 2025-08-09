@@ -12,6 +12,7 @@ void ATowerBase::BeginPlay()
 {
     Super::BeginPlay();
     TimeSinceLastShot = ShootInterval - .01f;
+    bDeferCooldownStart = false;
     TowerUI = FindComponentByClass<UWidgetComponent>();
 }
 
@@ -26,8 +27,12 @@ void ATowerBase::Tick(float DeltaTime)
         TowerRangeComponent->UpdateIsEnemyInRangeOnly();
         if (TowerRangeComponent->bIsEnemyInRange && TimeSinceLastShot >= ShootInterval)
         {
+            
             Shoot();
-            TimeSinceLastShot = 0.0f;
+            if (!bDeferCooldownStart)
+            {
+                TimeSinceLastShot = 0.0f;
+            }
         }
     }
 

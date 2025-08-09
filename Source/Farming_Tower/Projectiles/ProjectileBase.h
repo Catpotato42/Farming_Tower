@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/SphereComponent.h"
+#include "Components/ShapeComponent.h"
 #include "NiagaraSystem.h"
 #include "ProjectileBase.generated.h"
 
@@ -34,7 +34,7 @@ public:
     bool Gravity = false;  //Gravity on
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced, Category = "Setup")
-    USphereComponent* MyCollisionComponent = nullptr;
+    UShapeComponent* MyCollisionComponent = nullptr;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VFX")
     UNiagaraSystem* OnHitEffect = nullptr;
