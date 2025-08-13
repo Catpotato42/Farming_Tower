@@ -214,7 +214,7 @@ TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByEndProgress() const
 	return SortedEnemies;
 }
 
-TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByHealth() const
+TArray<AActor*> UTowerRange::GetSortedEnemiesInRangeByHighestHealth() const
 {
     TArray<AActor*> FoundEnemies;
     UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Enemy"), FoundEnemies);
