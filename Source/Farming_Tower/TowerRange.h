@@ -40,6 +40,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
 	TArray<AActor*> GetSortedEnemiesInRangeByEndProgress() const;
 
+	// Returns all enemy actors within range of tower sorted ascending by closeness to the beginning
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	TArray<AActor*> GetSortedEnemiesInRangeByStartProgress() const;
+
 	// Returns all enemy actors within range of tower sorted descending by health
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
 	TArray<AActor*> GetSortedEnemiesInRangeByHighestHealth() const;
@@ -47,6 +51,10 @@ public:
 	// Returns all enemy actors within range of tower sorted ascending by health
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
 	TArray<AActor*> GetSortedEnemiesInRangeByLowestHealth() const;
+
+	// Returns all enemy actors within range of tower sorted ascending by distance from tower
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	TArray<AActor*> GetSortedEnemiesInRangeByDistance() const;
 
 	// Indicates whether closest enemy is in range
 	UPROPERTY(BlueprintReadOnly, Category = "Targeting")

@@ -88,4 +88,19 @@ protected:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Targeting")
     int32 CurrentModeIndex = 0;
+
+    /*
+    FText ATowerBase::GetTargetModeName() const
+    {
+        switch (CurrentMode)
+        {
+        case ETargetingMode::ClosestToEnd:        return FText::FromString("Closest to End");
+        case ETargetingMode::HighestHealth:       return FText::FromString("Highest Health");
+        case ETargetingMode::LowestHealth:        return FText::FromString("Lowest Health");
+        case ETargetingMode::ClosestToBeginning:  return FText::FromString("Closest to Beginning");
+        case ETargetingMode::ClosestToTower:      return FText::FromString("Closest to Tower");
+        default:                                  return FText::FromString("Unknown");
+        }
+    }
+    */
 };
