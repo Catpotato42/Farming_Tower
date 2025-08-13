@@ -19,7 +19,7 @@ void ASniperTower::Shoot_Implementation()
 {
     if (!ProjectileClass || !TowerRangeComponent) return;
 
-    TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRangeByEndProgress();
+    TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRange(CurrentMode);
     FVector StartLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset);
     FCollisionQueryParams TraceParams(FName(TEXT("SniperTrace")), true, this);
     TraceParams.AddIgnoredActor(this);

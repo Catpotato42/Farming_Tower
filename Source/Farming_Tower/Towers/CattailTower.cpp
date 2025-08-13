@@ -28,13 +28,12 @@ void ACattailTower::Shoot_Implementation()
     if (ActiveBeam || BeamCooldownTimer > 0.01f) return;
     UE_LOG(LogTemp, Warning, TEXT("Starting to shoot"));
 
-    // Get highest health enemy in range
     if (!TowerRangeComponent) return;
-    TArray<AActor*> SortedEnemies = TowerRangeComponent->GetSortedEnemiesInRangeByHealth();
-    UE_LOG(LogTemp, Warning, TEXT("Enemies in range: %d"), SortedEnemies.Num());
-    if (SortedEnemies.Num() == 0) return;
+    TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRange(CurrentMode);
+    UE_LOG(LogTemp, Warning, TEXT("Enemies in range: %d"), EnemyList.Num());
+    if (EnemyList.Num() == 0) return;
 
-    CurrentTarget = Cast<AEnemyBase>(SortedEnemies[0]);
+    CurrentTarget = Cast<AEnemyBase>(EnemyList[0]);
     if (!CurrentTarget) return;
 
     // Spawn the beam projectile

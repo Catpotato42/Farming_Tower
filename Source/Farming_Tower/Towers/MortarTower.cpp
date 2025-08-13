@@ -71,7 +71,7 @@ void AMortarTower::Shoot_Implementation()
 {
     if (!ProjectileClass || !TowerRangeComponent) return;
 
-    TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRangeByEndProgress();
+    TArray<AActor*> EnemyList = TowerRangeComponent->GetSortedEnemiesInRange(CurrentMode);
     FVector StartLocation = GetActorLocation() + FVector(0, 0, SpawnHeightOffset); // Projectile spawns above tower
 
     for (AActor* Actor : EnemyList) // Every actor in range (Closest enemies to end first!)
