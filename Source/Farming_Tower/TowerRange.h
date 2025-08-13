@@ -42,7 +42,7 @@ public:
 
 	// Returns all enemy actors within range of tower sorted descending by health
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
-	TArray<AActor*> GetSortedEnemiesInRangeByHealth() const;
+	TArray<AActor*> GetSortedEnemiesInRangeByHighestHealth() const;
 
 	// Returns all enemy actors within range of tower sorted ascending by health
 	UFUNCTION(BlueprintCallable, Category = "Targeting")

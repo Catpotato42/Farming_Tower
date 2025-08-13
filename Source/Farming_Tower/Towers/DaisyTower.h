@@ -30,7 +30,7 @@ public:
 	
 protected:
     virtual void Shoot_Implementation() override;
-	void ShootSecondShot();
+	void ShootSecondShot(AActor* TargetEnemy);
 
 private:
 	FTimerHandle SecondShotTimerHandle;

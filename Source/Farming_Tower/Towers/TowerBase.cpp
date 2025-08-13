@@ -6,6 +6,15 @@ ATowerBase::ATowerBase()
     PrimaryActorTick.bCanEverTick = true;
 
     TowerRangeComponent = CreateDefaultSubobject<UTowerRange>(TEXT("TowerRangeComponent"));
+
+    TargetingModes = {
+        ETargetingMode::ClosestToEnd,
+        ETargetingMode::HighestHealth,
+        ETargetingMode::LowestHealth,
+        ETargetingMode::ClosestToBeginning,
+        ETargetingMode::ClosestToTower
+    };
+    CurrentMode = TargetingModes[0];
 }
 
 void ATowerBase::BeginPlay()
@@ -102,4 +111,16 @@ void ATowerBase::UpdateTowerUI()
             UIScript->UpdateUI(dir, riverDist, lvlUp);
         }
     }
+}
+
+void ATowerBase::NextTargetMode()
+{
+    CurrentModeIndex = (CurrentModeIndex + 1) % TargetingModes.Num();
+    CurrentMode = TargetingModes[CurrentModeIndex];
+}
+
+void ATowerBase::PreviousTargetMode()
+{
+    CurrentModeIndex = (CurrentModeIndex - 1 + TargetingModes.Num()) % TargetingModes.Num();
+    CurrentMode = TargetingModes[CurrentModeIndex];
 }
