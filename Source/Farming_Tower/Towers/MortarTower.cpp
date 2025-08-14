@@ -37,7 +37,7 @@ void AMortarTower::UpdateState()
     if (TowerLevel >= 15)
     {
         TowerDamage = 25.f;
-        ProjectileSize = 2.0f;
+        ProjectileSize = 3.0f;
         ShootInterval = 2.f;
     }
     else if (TowerLevel >= 11)

@@ -89,19 +89,19 @@ void ACattailTower::UpdateState()
     Super::UpdateState();
     if (TowerLevel >= 15)
     {
-        TowerDamage = 20.f;
+        TowerDamage = 40.f;
     }
     else if (TowerLevel >= 11)
     {
-        TowerDamage = 15.f;
+        TowerDamage = 30.f;
     }
     else if (TowerLevel >= 7)
     {
-        TowerDamage = 15.f;
+        TowerDamage = 20.f;
     }
     else if (TowerLevel >= 4)
     {
-        TowerDamage = 10.f;
+        TowerDamage = 15.f;
     }
     else
     {

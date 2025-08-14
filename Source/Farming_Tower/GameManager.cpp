@@ -7,7 +7,11 @@
 void UGameManager::Init()
 {
     Super::Init();
+    SetupGame();
+}
 
+void UGameManager::SetupGame()
+{
     coins = 20;
     round = 1;
     health = 20;
@@ -78,41 +82,44 @@ void UGameManager::StartRound()
 
 void UGameManager::EndRound()
 {
-    //update river flood
-    if (!Environment)
+    if (health > 0)
     {
-        TArray<AActor*> FoundEnvironments;
-        UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnvironmentManager::StaticClass(), FoundEnvironments);
-        if (FoundEnvironments.Num() > 0)
+        //update river flood
+        if (!Environment)
         {
-            Environment = Cast<AEnvironmentManager>(FoundEnvironments[0]);
+            TArray<AActor*> FoundEnvironments;
+            UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnvironmentManager::StaticClass(), FoundEnvironments);
+            if (FoundEnvironments.Num() > 0)
+            {
+                Environment = Cast<AEnvironmentManager>(FoundEnvironments[0]);
+            }
         }
-    }
-    if (Environment)
-        canvas->SpawnWeatherIcon(FVector2D(660, 0), Environment->UpdateForecast());
+        if (Environment)
+            canvas->SpawnWeatherIcon(FVector2D(660, 0), Environment->UpdateForecast());
 
-    //update towers
-    TArray<AActor*> AllTowers;
-    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Tower"), AllTowers);
-    for (AActor* Actor : AllTowers)
-    {
-        ATowerBase* Tower = Cast<ATowerBase>(Actor);
-        if (Tower)
+        //update towers
+        TArray<AActor*> AllTowers;
+        UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Tower"), AllTowers);
+        for (AActor* Actor : AllTowers)
         {
-            Tower->UpdateTowerUI();
+            ATowerBase* Tower = Cast<ATowerBase>(Actor);
+            if (Tower)
+            {
+                Tower->UpdateTowerUI();
+            }
         }
-    }
 
-    setup = true;
-    round++;
-    canvas->UpdateRound(round);
-    canvas->ShowTowerUI();
-    if (AAudioManager::Instance)
-    {
-        AAudioManager::Instance->FadeBattle(false);
-    }
+        setup = true;
+        round++;
+        canvas->UpdateRound(round);
+        canvas->ShowTowerUI();
+        if (AAudioManager::Instance)
+        {
+            AAudioManager::Instance->FadeBattle(false);
+        }
 
-    AddCoins(3);
+        AddCoins(3);
+    }
 }
 
 void UGameManager::AddCoins(int n)
@@ -138,8 +145,7 @@ void UGameManager::DecreaseHealth(int n)
     canvas->UpdateHealth(health);
     if (health <= 0)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Game Over!"));
-        //show game over UI
+        canvas->GameOver(round);
     }
 }
 

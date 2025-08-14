@@ -51,4 +51,13 @@ public:
 	//time dilation
 	UFUNCTION(BlueprintCallable)
 	void SetAudioDilation();
+
+	//game over
+	UFUNCTION()
+	void GameOver(int round);
+
+	UPROPERTY(meta = (BindWidget))
+	class UCanvasPanel* GameOverUI;
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock* GameOverRounds;
 };

@@ -107,11 +107,11 @@ void ASniperTower::UpdateState()
     else if (TowerLevel >= 4)
     {
         TowerDamage = 30.f;
-        ShootInterval = 4.f;
+        ShootInterval = 3.5f;
     }
     else
     {
         TowerDamage = 25.f;
-        ShootInterval = 5.f;
+        ShootInterval = 4.5f;
     }
 }

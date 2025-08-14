@@ -19,9 +19,10 @@ class FARMING_TOWER_API UGameManager : public UGameInstance
 	GENERATED_BODY()
 
 public:
-	virtual void Init() override;
-
 	//Game State
+	virtual void Init() override;
+	UFUNCTION(BlueprintCallable)
+	void SetupGame();
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	int32 round;
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))

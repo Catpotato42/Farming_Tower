@@ -1,5 +1,6 @@
 #include "CanvasManager.h"
 #include "../AudioManager.h"
+#include "../EnvironmentManager.h"
 
 #include "Components/CanvasPanelSlot.h"
 #include "Components/TextBlock.h"
@@ -49,6 +50,40 @@ void UCanvasManager::UpdateHealth(int32 n)
     {
         FString txt = FString::Printf(TEXT("Health: %d"), n);
         HealthText->SetText(FText::FromString(txt));
+    }
+}
+
+
+void UCanvasManager::GameOver(int round)
+{
+    if (GameOverUI)
+    {
+        GameOverUI->SetVisibility(ESlateVisibility::Visible);
+        if (AAudioManager::Instance)
+        {
+            TArray<AActor*> FoundEnvironments;
+            UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnvironmentManager::StaticClass(), FoundEnvironments);
+            if (FoundEnvironments.Num() > 0)
+            {
+                AEnvironmentManager* Environment = Cast<AEnvironmentManager>(FoundEnvironments[0]);
+                if (Environment)
+                {
+                    if (Environment->WeatherForecast[0] == "Sunny")
+                        AAudioManager::Instance->FadeSun(false);
+                    else if (Environment->WeatherForecast[0] == "Half Flood")
+                        AAudioManager::Instance->FadeLightRain(false);
+                    else if (Environment->WeatherForecast[0] == "Flood")
+                        AAudioManager::Instance->FadeRain(false);
+                }
+            }
+            AAudioManager::Instance->FadeBattle(false);
+            AAudioManager::Instance->FadeBase(false);
+        }
+        if (GameOverRounds)
+        {
+            FString txt = FString::Printf(TEXT("You defended nature for %d rounds..."), round);
+            GameOverRounds->SetText(FText::FromString(txt));
+        }
     }
 }
 
