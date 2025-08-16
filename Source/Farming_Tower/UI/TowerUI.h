@@ -13,13 +13,16 @@ class FARMING_TOWER_API UTowerUI : public UUserWidget
 
 public:
 	void UpdateLevel(int32 newLevel);
-	void UpdateUI(int32 dir, int32 water, bool lvlUp);
+	void UpdateUI(int32 dir, int32 water, bool lvlUp, int elevation);
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* LevelText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* WaterText;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UTextBlock* ElevationText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* StateText;
