@@ -39,7 +39,7 @@ void UCanvasManager::UpdateRound(int32 n)
 {
     if (CoinsText)
     {
-        FString txt = FString::Printf(TEXT("Round: %d"), n);
+        FString txt = FString::Printf(TEXT("Round %d"), n);
         RoundText->SetText(FText::FromString(txt));
     }
 }
