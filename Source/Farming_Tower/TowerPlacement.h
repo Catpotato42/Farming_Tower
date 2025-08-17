@@ -15,6 +15,7 @@ public:
     ATowerPlacement();
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
     virtual void Tick(float DeltaTime) override;
+    virtual void BeginPlay() override;
 
     void PressWidget();
     void ReleaseWidget();

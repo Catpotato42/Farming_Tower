@@ -6,11 +6,18 @@
 ATowerPlacement::ATowerPlacement()
 {
     PrimaryActorTick.bCanEverTick = true;
+    AutoPossessPlayer = EAutoReceiveInput::Player0;
 
     WidgetInteraction = CreateDefaultSubobject<UWidgetInteractionComponent>(TEXT("WidgetInteraction"));
     WidgetInteraction->InteractionDistance = 100000.f; // far enough
     WidgetInteraction->InteractionSource = EWidgetInteractionSource::Mouse; // mouse input
     WidgetInteraction->bShowDebug = true;
+}
+
+void ATowerPlacement::BeginPlay()
+{
+    Super::BeginPlay();
+    EnableInput(GetWorld()->GetFirstPlayerController());
 }
 
 void ATowerPlacement::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
