@@ -90,7 +90,7 @@ void ACattailTower::UpdateState()
     if (TowerLevel >= 8)
     {
         TowerDamage = 40.f;
-        ShootInterval = 1.f
+        ShootInterval = 1.f;
     }
     else if (TowerLevel >= 6)
     {
