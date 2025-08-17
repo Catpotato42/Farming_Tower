@@ -95,7 +95,7 @@ void UTowerUI::SetOwningTower(ATowerBase* InTower)
 {
     OwningTower = InTower;
 
-    if (TargetModeText)
+    /*if (TargetModeText)
     {
         if (OwningTower && OwningTower->SupportsTargetingModes())
         {
@@ -114,5 +114,5 @@ void UTowerUI::SetOwningTower(ATowerBase* InTower)
 
         if (PrevTargetModeButton)
             PrevTargetModeButton->OnClicked.AddDynamic(this, &UTowerUI::OnPreviousTargetMode);
-    }
+    }*/
 }

@@ -30,7 +30,8 @@ void ASniperTower::Shoot_Implementation()
 
         FHitResult HitResult;
         FVector EndLocation = Enemy->GetActorLocation() + FVector(0, 0, AimHeightOffset);
-
+        FRotator LookAtRotation = (EndLocation - StartLocation).Rotation();
+        SetActorRotation(LookAtRotation);
 
         bool bHit = GetWorld()->LineTraceSingleByChannel(
             HitResult,
