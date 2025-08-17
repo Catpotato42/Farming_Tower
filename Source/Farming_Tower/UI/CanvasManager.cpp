@@ -81,7 +81,7 @@ void UCanvasManager::GameOver(int round)
         }
         if (GameOverRounds)
         {
-            FString txt = FString::Printf(TEXT("You defended nature for %d rounds..."), round);
+            FString txt = FString::Printf(TEXT("You survived for %d rounds..."), round);
             GameOverRounds->SetText(FText::FromString(txt));
         }
     }

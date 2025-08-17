@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
+#include "Components/CanvasPanel.h"
+
 #include "TowerUI.generated.h"
 
 
@@ -29,6 +31,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* LevelDir;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UCanvasPanel* HideDuringCombat;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	FLinearColor RedColor = FLinearColor(1.0f, 0.0f, 0.0f, 1.0f);

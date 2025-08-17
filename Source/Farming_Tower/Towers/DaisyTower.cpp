@@ -144,12 +144,12 @@ void ADaisyTower::UpdateState()
     }
     else if (TowerLevel >= 4)
     {
-        TowerDamage = 5.f;
-        ShootInterval = 2.f;
+        TowerDamage = 4.f;
+        ShootInterval = 1.8f;
     }
     else
     {
         TowerDamage = 3.f;
-        ShootInterval = 2.f;
+        ShootInterval = 2.2f;
     }
 }

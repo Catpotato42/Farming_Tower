@@ -13,7 +13,9 @@ void AInputManager::BeginPlay()
         InputComponent->BindKey(EKeys::C, IE_Pressed, this, &AInputManager::AddCoins);
 
     if (InputComponent)
-        InputComponent->BindKey(EKeys::R, IE_Pressed, this, &AInputManager::ToggleRain);
+        InputComponent->BindKey(EKeys::N, IE_Pressed, this, &AInputManager::NextRound);
+    if (InputComponent)
+        InputComponent->BindKey(EKeys::M, IE_Pressed, this, &AInputManager::RoundPlus);
 }
 
 void AInputManager::SetupInputComponent() {}
@@ -27,18 +29,17 @@ void AInputManager::NextRound()
         GameManager->EndRound();
 }
 
+void AInputManager::RoundPlus()
+{
+    UGameManager* GameManager = GetGameInstance<UGameManager>();
+    GameManager->round += 1;
+    if (GameManager->canvas)
+        GameManager->canvas->UpdateRound(GameManager->round);
+}
+
 void AInputManager::AddCoins()
 {
     UGameManager* GameManager = GetGameInstance<UGameManager>();
     if (GameManager)
         GameManager->AddCoins(5);
-}
-
-void AInputManager::ToggleRain()
-{
-    raining = !raining;
-    if (AAudioManager::Instance)
-    {
-        AAudioManager::Instance->FadeRain(raining);
-    }
 }
