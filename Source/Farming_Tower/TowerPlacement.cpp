@@ -16,6 +16,7 @@ ATowerPlacement::ATowerPlacement()
 void ATowerPlacement::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
+    UE_LOG(LogTemp, Warning, TEXT("Called SetupPlayerInputComponent"));
 
     PlayerInputComponent->BindAction("LeftClick", IE_Pressed, this, &ATowerPlacement::PressWidget);
     PlayerInputComponent->BindAction("LeftClick", IE_Released, this, &ATowerPlacement::ReleaseWidget);
