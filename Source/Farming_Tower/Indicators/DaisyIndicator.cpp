@@ -9,6 +9,7 @@ int ADaisyIndicator::IsGoodPlacement()
         total--;
     
     float zPos = GetActorLocation().Z;
+    UE_LOG(LogTemp, Log, TEXT("Daisy Z Pos: %f"), zPos);
     if (zPos >= 700)
         total--;
     else if (zPos <= 500)

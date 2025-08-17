@@ -36,31 +36,31 @@ void AMortarTower::UpdateState()
     Super::UpdateState();
     if (TowerLevel >= 15)
     {
-        TowerDamage = 25.f;
-        ProjectileSize = 2.0f;
+        TowerDamage = 35.f;
+        ProjectileSize = 3.0f;
         ShootInterval = 2.f;
     }
     else if (TowerLevel >= 11)
     { 
-        TowerDamage = 15.f;
-        ProjectileSize = 2.0f;
+        TowerDamage = 25.f;
+        ProjectileSize = 2.f;
         ShootInterval = 2.5f;
     }
     else if (TowerLevel >= 7)
     {
-        TowerDamage = 15.f;
-        ProjectileSize = 1.5f;
+        TowerDamage = 20.f;
+        ProjectileSize = 2.f;
         ShootInterval = 3.f;
     }
     else if (TowerLevel >= 4)
     {
-        TowerDamage = 15.f;
+        TowerDamage = 20.f;
         ProjectileSize = 1.5f;
-        ShootInterval = 3.f;
+        ShootInterval = 3.5f;
     }
     else
     {
-        TowerDamage = 10.f;
+        TowerDamage = 15.f;
         ProjectileSize = 1.5f;
         ShootInterval = 3.5f;
     }

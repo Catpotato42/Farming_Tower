@@ -14,6 +14,7 @@ protected:
     virtual void SetupInputComponent();
 	
 	void NextRound();
+    void RoundPlus();
     void AddCoins();
     
     void ToggleRain();

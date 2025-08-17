@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
+#include "Components/CanvasPanel.h"
+
 #include "Components/Button.h"
 #include "TowerUI.generated.h"
 
@@ -16,7 +18,7 @@ class FARMING_TOWER_API UTowerUI : public UUserWidget
 
 public:
 	void UpdateLevel(int32 newLevel);
-	void UpdateUI(int32 dir, int32 water, bool lvlUp);
+	void UpdateUI(int32 dir, int32 water, bool lvlUp, int elevation);
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* LevelText;
@@ -25,10 +27,16 @@ public:
 	class UTextBlock* WaterText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UTextBlock* ElevationText;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* StateText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* LevelDir;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UCanvasPanel* HideDuringCombat;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UTextBlock* TargetModeText;

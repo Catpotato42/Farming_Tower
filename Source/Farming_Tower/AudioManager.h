@@ -26,4 +26,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void FadeRain(bool in);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void FadeBase(bool in);
 };
