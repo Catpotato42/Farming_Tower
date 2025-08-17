@@ -39,7 +39,7 @@ void UTowerUI::UpdateUI(int32 dir, int32 water, bool lvlUp, int32 altitude, bool
         LevelDir->SetText(FText::FromString(FString::Printf(TEXT("%d"), dir)));
         LevelDir->SetColorAndOpacity(FSlateColor(RedColor));
     }
-    else if (dir < 0 && dying)
+    else if (dying)
     {
         StateText->SetText(FText::FromString(TEXT("Dying From Old Age")));
         StateText->SetColorAndOpacity(FSlateColor(RedColor));
