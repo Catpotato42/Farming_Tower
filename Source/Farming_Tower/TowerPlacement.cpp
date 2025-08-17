@@ -1,82 +1,77 @@
 #include "TowerPlacement.h"
 #include "Components/WidgetInteractionComponent.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "Components/WidgetComponent.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
-
-ATowerPlacement::ATowerPlacement()
-{
-    PrimaryActorTick.bCanEverTick = true;
-    AutoPossessPlayer = EAutoReceiveInput::Player0;
-
-    WidgetInteraction = CreateDefaultSubobject<UWidgetInteractionComponent>(TEXT("WidgetInteraction"));
-    WidgetInteraction->InteractionDistance = 100000.f; // far enough
-    WidgetInteraction->InteractionSource = EWidgetInteractionSource::Mouse; // mouse input
-    WidgetInteraction->bShowDebug = true;
-}
 
 void ATowerPlacement::BeginPlay()
 {
     Super::BeginPlay();
-    EnableInput(GetWorld()->GetFirstPlayerController());
-}
 
-void ATowerPlacement::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-    Super::SetupPlayerInputComponent(PlayerInputComponent);
-    UE_LOG(LogTemp, Warning, TEXT("Called SetupPlayerInputComponent"));
+    if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
+    {
+        EnableInput(PC);
 
-    PlayerInputComponent->BindAction("LeftClick", IE_Pressed, this, &ATowerPlacement::PressWidget);
-    PlayerInputComponent->BindAction("LeftClick", IE_Released, this, &ATowerPlacement::ReleaseWidget);
+        if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
+        {
+            // Bind Enhanced Input actions
+            EnhancedInput->BindAction(LeftClickAction, ETriggerEvent::Started, this, &ATowerPlacement::PressWidget);
+            EnhancedInput->BindAction(LeftClickAction, ETriggerEvent::Completed, this, &ATowerPlacement::ReleaseWidget);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("TowerPlacement has no EnhancedInputComponent!"));
+        }
+
+        // Add input mapping context to player
+        if (UEnhancedInputLocalPlayerSubsystem* Subsystem = 
+            ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+        {
+            Subsystem->AddMappingContext(InputMappingContext, 0);
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("No PlayerController found in BeginPlay"));
+    }
 }
 
 void ATowerPlacement::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
+    if (!WidgetInteraction)
+        return;
+
     if (APlayerController* PC = Cast<APlayerController>(GetController()))
     {
         FHitResult Hit;
         if (PC->GetHitResultUnderCursor(ECC_Visibility, false, Hit))
         {
-            if (WidgetInteraction)
-                WidgetInteraction->SetCustomHitResult(Hit);
-            else
-                UE_LOG(LogTemp, Warning, TEXT("WidgetInteraction is null in Tick"));
+            WidgetInteraction->SetCustomHitResult(Hit);
         }
         else
         {
-            UE_LOG(LogTemp, Warning, TEXT("No hit under cursor in Tick"));
+            WidgetInteraction->SetCustomHitResult(FHitResult());
         }
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Pawn does not have a PlayerController in Tick"));
     }
 }
 
+// Widget interaction functions
 void ATowerPlacement::PressWidget()
 {
     if (WidgetInteraction)
-    {
         WidgetInteraction->PressPointerKey(EKeys::LeftMouseButton);
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("WidgetInteraction is null in PressWidget"));
-    }
 }
 
 void ATowerPlacement::ReleaseWidget()
 {
     if (WidgetInteraction)
-    {
         WidgetInteraction->ReleasePointerKey(EKeys::LeftMouseButton);
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("WidgetInteraction is null in ReleaseWidget"));
-    }
 }
+
 
 int ATowerPlacement::GetRiverDistance(FVector loc)
 {

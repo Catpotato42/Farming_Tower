@@ -2,8 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Components/WidgetInteractionComponent.h"
+#include "InputActionValue.h"
 #include "TowerPlacement.generated.h"
+
+class UWidgetInteractionComponent;
+class UInputMappingContext;
+class UInputAction;
 
 
 UCLASS()
@@ -29,4 +33,10 @@ private:
 	bool CheckRiverDistance(FVector loc, int distance);
     UPROPERTY(VisibleAnywhere)
     UWidgetInteractionComponent* WidgetInteraction;
+
+    UPROPERTY(EditAnywhere, Category="Input")
+    UInputMappingContext* InputMappingContext;
+
+    UPROPERTY(EditAnywhere, Category="Input")
+    UInputAction* LeftClickAction;
 };
