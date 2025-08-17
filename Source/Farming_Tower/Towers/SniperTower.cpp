@@ -89,17 +89,17 @@ int ASniperTower::IsGoodPlacement()
 void ASniperTower::UpdateState()
 {
     Super::UpdateState();
-    if (TowerLevel >= 15)
+    if (TowerLevel >= 10)
     {
         TowerDamage = 60.f;
         ShootInterval = 1.5f;
     }
-    else if (TowerLevel >= 11)
+    else if (TowerLevel >= 8)
     {
         TowerDamage = 40.f;
         ShootInterval = 2.f;
     }
-    else if (TowerLevel >= 7)
+    else if (TowerLevel >= 6)
     {
         TowerDamage = 40.f;
         ShootInterval = 3.f;

@@ -87,21 +87,17 @@ int ACattailTower::IsGoodPlacement()
 void ACattailTower::UpdateState()
 {
     Super::UpdateState();
-    if (TowerLevel >= 15)
+    if (TowerLevel >= 8)
     {
         TowerDamage = 40.f;
     }
-    else if (TowerLevel >= 11)
+    else if (TowerLevel >= 6)
     {
         TowerDamage = 30.f;
     }
-    else if (TowerLevel >= 7)
-    {
-        TowerDamage = 20.f;
-    }
     else if (TowerLevel >= 4)
     {
-        TowerDamage = 15.f;
+        TowerDamage = 20.f;
     }
     else
     {

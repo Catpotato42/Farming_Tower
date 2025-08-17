@@ -58,19 +58,13 @@ int ACactusTower::IsGoodPlacement()
 void ACactusTower::UpdateState()
 {
     Super::UpdateState();
-    if (TowerLevel >= 15)
-    {
-        ProjectileAmount = 16;
-        TowerDamage = 30.f;
-        ShootInterval = 0.75f;
-    }
-    else if (TowerLevel >= 11)
+    if (TowerLevel >= 8)
     {
         ProjectileAmount = 12;
         TowerDamage = 20.f;
         ShootInterval = 1.2f;
     }
-    else if (TowerLevel >= 7)
+    else if (TowerLevel >= 6)
     {
         ProjectileAmount = 8;
         TowerDamage = 15.f;

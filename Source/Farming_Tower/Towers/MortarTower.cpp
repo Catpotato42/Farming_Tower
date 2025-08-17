@@ -34,19 +34,13 @@ int AMortarTower::IsGoodPlacement()
 void AMortarTower::UpdateState()
 {
     Super::UpdateState();
-    if (TowerLevel >= 15)
-    {
+    if (TowerLevel >= 8)
+    { 
         TowerDamage = 35.f;
-        ProjectileSize = 3.0f;
+        ProjectileSize = 3.f;
         ShootInterval = 2.f;
     }
-    else if (TowerLevel >= 11)
-    { 
-        TowerDamage = 25.f;
-        ProjectileSize = 2.f;
-        ShootInterval = 2.5f;
-    }
-    else if (TowerLevel >= 7)
+    else if (TowerLevel >= 6)
     {
         TowerDamage = 20.f;
         ProjectileSize = 2.f;

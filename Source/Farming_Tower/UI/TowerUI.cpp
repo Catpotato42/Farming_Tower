@@ -1,6 +1,6 @@
+#include "TowerUI.h"
 #include "../Towers/TowerBase.h"
 #include "Engine/Engine.h"
-#include "TowerUI.h"
 
 
 void UTowerUI::UpdateLevel(int32 n)

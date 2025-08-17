@@ -50,6 +50,7 @@ public:
     virtual void UpdateState();
     UFUNCTION(BlueprintCallable)
     virtual void UpdateTowerUI();
+    virtual void ChangeDisplayLevel(int TowerLevel);
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tower Placement")
     ATowerPlacement* TowerPlacement;
@@ -82,6 +83,8 @@ protected:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
     int TowerLevel = 1;
     int DisplayLevel = 1;
+    int RoundsLived = 1;
+    bool dying = false;
 
     bool bDeferCooldownStart = false;
 

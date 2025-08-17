@@ -73,18 +73,11 @@ void ATowerBase::Shoot_Implementation()
     UE_LOG(LogTemp, Warning, TEXT("Base tower shoot called - override this."));
 }
 
-void ATowerBase::UpdateState()
+void ATowerBase::ChangeDisplayLevel(int TowerLevel)
 {
-    // Compute level change based on resources
-    int dir = IsGoodPlacement();
-    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
-
-    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 15);
-    if (TowerLevel >= 15)
-        DisplayLevel = 5;
-    else if (TowerLevel >= 11)
+    if (TowerLevel >= 8)
         DisplayLevel = 4;
-    else if (TowerLevel >= 7)
+    else if (TowerLevel >= 6)
         DisplayLevel = 3;
     else if (TowerLevel >= 4)
         DisplayLevel = 2;
@@ -95,6 +88,23 @@ void ATowerBase::UpdateState()
     {
         Destroy();
     }
+}
+
+void ATowerBase::UpdateState()
+{
+    RoundsLived++;
+    if (RoundsLived >= 9) {
+        dying = true;
+    }
+    // Compute level change based on resources
+    if (dying) {
+        int dir = -2;
+    } else {
+        int dir = IsGoodPlacement();
+    }
+    int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
+    TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 15);
+    ChangeDisplayLevel(TowerLevel);
 
     // Update UI & scale
     if (TowerUI)

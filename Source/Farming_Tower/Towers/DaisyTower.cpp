@@ -127,24 +127,19 @@ int ADaisyTower::IsGoodPlacement()
 void ADaisyTower::UpdateState()
 {
     Super::UpdateState();
-    if (TowerLevel >= 15)
+    if (TowerLevel >= 8)
     {
         TowerDamage = 10.f;
         ShootInterval = .5f;
     }
-    else if (TowerLevel >= 11)
+    else if (TowerLevel >= 6)
     {
         TowerDamage = 7.f;
-        ShootInterval = 1.f;
-    }
-    else if (TowerLevel >= 7)
-    {
-        TowerDamage = 5.f;
         ShootInterval = 1.5f;
     }
     else if (TowerLevel >= 4)
     {
-        TowerDamage = 4.f;
+        TowerDamage = 5.f;
         ShootInterval = 1.8f;
     }
     else
