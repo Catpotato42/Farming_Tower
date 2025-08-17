@@ -16,8 +16,6 @@ class FARMING_TOWER_API ATowerPlacement : public APawn
 	GENERATED_BODY()
 
 public:
-    ATowerPlacement();
-	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
     virtual void Tick(float DeltaTime) override;
     virtual void BeginPlay() override;
 
