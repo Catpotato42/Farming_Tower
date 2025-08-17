@@ -16,6 +16,7 @@ public:
 
 protected:
     virtual void Shoot_Implementation() override;
+    virtual bool SupportsTargetingModes_Implementation() const;
 
 public:
     // Projectile to spawn

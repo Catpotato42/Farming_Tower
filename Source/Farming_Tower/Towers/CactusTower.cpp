@@ -89,3 +89,8 @@ void ACactusTower::UpdateState()
         ShootInterval = 1.5f;
     }
 }
+
+bool ACactusTower::SupportsTargetingModes_Implementation() const
+{
+    return false;
+}

@@ -1,3 +1,5 @@
+#include "../Towers/TowerBase.h"
+#include "Engine/Engine.h"
 #include "TowerUI.h"
 
 
@@ -52,5 +54,61 @@ void UTowerUI::UpdateUI(int32 dir, int32 water, bool lvlUp)
         StateText->SetText(FText::FromString(TEXT("Stable")));
         StateText->SetColorAndOpacity(FSlateColor(YellowColor));
         LevelDir->SetText(FText::FromString(TEXT("")));
+    }
+}
+
+void UTowerUI::SetTargetModeText(const FText& NewText)
+{
+    if (TargetModeText)
+    {
+        TargetModeText->SetText(NewText);
+    }
+}
+
+void UTowerUI::OnNextTargetMode()
+{
+    if (GEngine)
+        GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, TEXT("NextTargetMode clicked"));
+    if (OwningTower)
+    {
+        OwningTower->NextTargetMode();
+        OwningTower->UpdateTowerUI();
+    }
+}
+
+void UTowerUI::OnPreviousTargetMode()
+{
+    if (GEngine)
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("PrevTargetMode clicked"));
+    if (OwningTower)
+    {
+        OwningTower->PreviousTargetMode();
+        OwningTower->UpdateTowerUI();
+    }
+}
+
+void UTowerUI::SetOwningTower(ATowerBase* InTower)
+{
+    OwningTower = InTower;
+
+    if (TargetModeText)
+    {
+        if (OwningTower && OwningTower->SupportsTargetingModes())
+        {
+            TargetModeText->SetVisibility(ESlateVisibility::Visible);
+            NextTargetModeButton->SetVisibility(ESlateVisibility::Visible);
+            PrevTargetModeButton->SetVisibility(ESlateVisibility::Visible);
+        }
+        else
+        {
+            TargetModeText->SetVisibility(ESlateVisibility::Collapsed);
+            NextTargetModeButton->SetVisibility(ESlateVisibility::Collapsed);
+            PrevTargetModeButton->SetVisibility(ESlateVisibility::Collapsed);
+        }
+        if (NextTargetModeButton)
+            NextTargetModeButton->OnClicked.AddDynamic(this, &UTowerUI::OnNextTargetMode);
+
+        if (PrevTargetModeButton)
+            PrevTargetModeButton->OnClicked.AddDynamic(this, &UTowerUI::OnPreviousTargetMode);
     }
 }

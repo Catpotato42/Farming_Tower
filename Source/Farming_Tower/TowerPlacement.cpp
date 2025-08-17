@@ -1,4 +1,74 @@
 #include "TowerPlacement.h"
+#include "Components/WidgetInteractionComponent.h"
+#include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
+
+ATowerPlacement::ATowerPlacement()
+{
+    PrimaryActorTick.bCanEverTick = true;
+
+    WidgetInteraction = CreateDefaultSubobject<UWidgetInteractionComponent>(TEXT("WidgetInteraction"));
+    WidgetInteraction->InteractionDistance = 100000.f; // far enough
+    WidgetInteraction->InteractionSource = EWidgetInteractionSource::Mouse; // mouse input
+    WidgetInteraction->bShowDebug = true;
+}
+
+void ATowerPlacement::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+    Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+    PlayerInputComponent->BindAction("LeftClick", IE_Pressed, this, &ATowerPlacement::PressWidget);
+    PlayerInputComponent->BindAction("LeftClick", IE_Released, this, &ATowerPlacement::ReleaseWidget);
+}
+
+void ATowerPlacement::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+
+    if (APlayerController* PC = Cast<APlayerController>(GetController()))
+    {
+        FHitResult Hit;
+        if (PC->GetHitResultUnderCursor(ECC_Visibility, false, Hit))
+        {
+            if (WidgetInteraction)
+                WidgetInteraction->SetCustomHitResult(Hit);
+            else
+                UE_LOG(LogTemp, Warning, TEXT("WidgetInteraction is null in Tick"));
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("No hit under cursor in Tick"));
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Pawn does not have a PlayerController in Tick"));
+    }
+}
+
+void ATowerPlacement::PressWidget()
+{
+    if (WidgetInteraction)
+    {
+        WidgetInteraction->PressPointerKey(EKeys::LeftMouseButton);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("WidgetInteraction is null in PressWidget"));
+    }
+}
+
+void ATowerPlacement::ReleaseWidget()
+{
+    if (WidgetInteraction)
+    {
+        WidgetInteraction->ReleasePointerKey(EKeys::LeftMouseButton);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("WidgetInteraction is null in ReleaseWidget"));
+    }
+}
 
 int ATowerPlacement::GetRiverDistance(FVector loc)
 {

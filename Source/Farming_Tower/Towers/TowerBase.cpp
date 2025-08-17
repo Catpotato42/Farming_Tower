@@ -23,6 +23,16 @@ void ATowerBase::BeginPlay()
     TimeSinceLastShot = ShootInterval - .01f;
     bDeferCooldownStart = false;
     TowerUI = FindComponentByClass<UWidgetComponent>();
+    if (TowerUI) {
+        TowerUI->SetWidgetSpace(EWidgetSpace::World);
+        TowerUI->SetTranslucentSortPriority(10);
+        UTowerUI* UIScript = Cast<UTowerUI>(TowerUI->GetUserWidgetObject());
+        
+        if (UIScript)
+        {
+            UIScript->SetOwningTower(this);
+        }
+    }
 }
 
 void ATowerBase::Tick(float DeltaTime)
@@ -109,6 +119,7 @@ void ATowerBase::UpdateTowerUI()
         {
             bool lvlUp = ((dir == 1) && (TowerLevel == 14 || TowerLevel == 10 || TowerLevel == 6 || TowerLevel == 3)) || ((dir == -1) && (TowerLevel == 15 || TowerLevel == 11 || TowerLevel == 7 || TowerLevel == 4 || TowerLevel == 1));
             UIScript->UpdateUI(dir, riverDist, lvlUp);
+            UIScript->SetTargetModeText(UEnum::GetDisplayValueAsText(CurrentMode));
         }
     }
 }
