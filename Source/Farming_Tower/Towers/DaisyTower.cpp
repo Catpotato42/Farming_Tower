@@ -30,6 +30,8 @@ void ADaisyTower::Shoot_Implementation()
 
         FHitResult HitResult;
         FVector EndLocation = Enemy->GetActorLocation() + FVector(0, 0, AimHeightOffset);
+        FRotator LookAtRotation = (EndLocation - StartLocation).Rotation();
+        SetActorRotation(LookAtRotation);
 
         bool bHit = GetWorld()->LineTraceSingleByChannel(
             HitResult,
@@ -41,8 +43,6 @@ void ADaisyTower::Shoot_Implementation()
 
         if (bHit && HitResult.GetActor() == Enemy)
         {
-            UE_LOG(LogTemp, Warning, TEXT("Shoot Interval: %f"), ShootInterval);
-
             FActorSpawnParameters SpawnParams;
 
             AProjectileHoming* HomingProjectile = GetWorld()->SpawnActor<AProjectileHoming>(
@@ -135,7 +135,7 @@ void ADaisyTower::UpdateState()
     else if (TowerLevel >= 6)
     {
         TowerDamage = 7.f;
-        ShootInterval = 1.5f;
+        ShootInterval = 1.2f;
     }
     else if (TowerLevel >= 4)
     {

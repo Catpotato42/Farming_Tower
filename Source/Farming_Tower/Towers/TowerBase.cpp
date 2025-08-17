@@ -97,11 +97,7 @@ void ATowerBase::UpdateState()
         dying = true;
     }
     // Compute level change based on resources
-    if (dying) {
-        int dir = -2;
-    } else {
-        int dir = IsGoodPlacement();
-    }
+    int dir = (dying) ? -2 : IsGoodPlacement();
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
     TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 15);
     ChangeDisplayLevel();
