@@ -15,7 +15,7 @@ void UTowerUI::UpdateLevel(int32 n)
 }
 
 
-void UTowerUI::UpdateUI(int32 dir, int32 water, bool lvlUp, int32 altitude)
+void UTowerUI::UpdateUI(int32 dir, int32 water, bool lvlUp, int32 altitude, bool dying)
 {
     if (HideDuringCombat)
         HideDuringCombat->SetVisibility(ESlateVisibility::Visible);
@@ -32,9 +32,16 @@ void UTowerUI::UpdateUI(int32 dir, int32 water, bool lvlUp, int32 altitude)
     if (ElevationText)
         ElevationText->SetText(FText::FromString(FString::Printf(TEXT("%dm"), altitude)));
 
-    if (dir < 0)
+    if (dir < 0 && !dying)
     {
         StateText->SetText(FText::FromString(TEXT("Dying")));
+        StateText->SetColorAndOpacity(FSlateColor(RedColor));
+        LevelDir->SetText(FText::FromString(FString::Printf(TEXT("%d"), dir)));
+        LevelDir->SetColorAndOpacity(FSlateColor(RedColor));
+    }
+    else if (dir < 0 && dying)
+    {
+        StateText->SetText(FText::FromString(TEXT("Dying From Old Age")));
         StateText->SetColorAndOpacity(FSlateColor(RedColor));
         LevelDir->SetText(FText::FromString(FString::Printf(TEXT("%d"), dir)));
         LevelDir->SetColorAndOpacity(FSlateColor(RedColor));

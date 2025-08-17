@@ -50,7 +50,7 @@ public:
     virtual void UpdateState();
     UFUNCTION(BlueprintCallable)
     virtual void UpdateTowerUI();
-    virtual void ChangeDisplayLevel(int TowerLevel);
+    virtual void ChangeDisplayLevel();
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tower Placement")
     ATowerPlacement* TowerPlacement;

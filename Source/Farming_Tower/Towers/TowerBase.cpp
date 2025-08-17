@@ -73,7 +73,7 @@ void ATowerBase::Shoot_Implementation()
     UE_LOG(LogTemp, Warning, TEXT("Base tower shoot called - override this."));
 }
 
-void ATowerBase::ChangeDisplayLevel(int TowerLevel)
+void ATowerBase::ChangeDisplayLevel()
 {
     if (TowerLevel >= 8)
         DisplayLevel = 4;
@@ -104,7 +104,7 @@ void ATowerBase::UpdateState()
     }
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
     TowerLevel = FMath::Clamp(TowerLevel + dir, 0, 15);
-    ChangeDisplayLevel(TowerLevel);
+    ChangeDisplayLevel();
 
     // Update UI & scale
     if (TowerUI)
@@ -129,7 +129,7 @@ void ATowerBase::UpdateTowerUI()
         {
             int elevation = FMath::RoundToInt(GetActorLocation().Z / 100.0f) * 10 - 20;
             bool lvlUp = ((dir == 1) && (TowerLevel == 14 || TowerLevel == 10 || TowerLevel == 6 || TowerLevel == 3)) || ((dir == -1) && (TowerLevel == 15 || TowerLevel == 11 || TowerLevel == 7 || TowerLevel == 4 || TowerLevel == 1));
-            UIScript->UpdateUI(dir, riverDist, lvlUp, elevation);
+            UIScript->UpdateUI(dir, riverDist, lvlUp, elevation, dying);
             UIScript->SetTargetModeText(UEnum::GetDisplayValueAsText(CurrentMode));
         }
     }
