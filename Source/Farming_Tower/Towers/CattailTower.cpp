@@ -91,12 +91,12 @@ void ACattailTower::UpdateState()
     if (TowerLevel >= 8)
     {
         TowerDamage = 80.f;
-        ShootInterval = .8f;
+        ShootInterval = .5f;
     }
     else if (TowerLevel >= 6)
     {
         TowerDamage = 60.f;
-        ShootInterval = 1.1f;
+        ShootInterval = .8f;
     }
     else if (TowerLevel >= 4)
     {
@@ -106,6 +106,6 @@ void ACattailTower::UpdateState()
     else
     {
         TowerDamage = 20.f;
-        ShootInterval = 1.6f;
+        ShootInterval = 1.5f;
     }
 }
