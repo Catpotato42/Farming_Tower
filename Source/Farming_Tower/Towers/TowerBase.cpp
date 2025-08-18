@@ -84,7 +84,7 @@ void ATowerBase::ChangeDisplayLevel()
     else
         DisplayLevel = 1;
 
-    if (TowerLevel == 0)
+    if ((TowerLevel <= 1 && dying) || (TowerLevel <= 0 && !dying))
     {
         Destroy();
     }
@@ -92,10 +92,6 @@ void ATowerBase::ChangeDisplayLevel()
 
 void ATowerBase::UpdateState()
 {
-    RoundsLived++;
-    if (RoundsLived >= 9) {
-        dying = true;
-    }
     // Compute level change based on resources
     int dir = (dying) ? -2 : IsGoodPlacement();
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
@@ -116,6 +112,10 @@ void ATowerBase::UpdateState()
 
 void ATowerBase::UpdateTowerUI()
 {
+    RoundsLived++;
+    if (RoundsLived >= 10)
+        dying = true;
+
     int dir = (dying) ? -2 : IsGoodPlacement();
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
     if (TowerUI)
@@ -124,7 +124,7 @@ void ATowerBase::UpdateTowerUI()
         if (UIScript)
         {
             int elevation = FMath::RoundToInt(GetActorLocation().Z / 100.0f) * 10 - 20;
-            bool lvlUp = ((dir == 1) && (TowerLevel == 14 || TowerLevel == 10 || TowerLevel == 6 || TowerLevel == 3)) || ((dir == -1) && (TowerLevel == 15 || TowerLevel == 11 || TowerLevel == 7 || TowerLevel == 4 || TowerLevel == 1));
+            bool lvlUp = ((dir == 1) && (TowerLevel == 7 || TowerLevel == 5 || TowerLevel == 3)) || ((dir == -1) && (TowerLevel == 8 || TowerLevel == 6 || TowerLevel == 4 || TowerLevel == 1));
             UIScript->UpdateUI(dir, riverDist, lvlUp, elevation, dying);
             UIScript->SetTargetModeText(UEnum::GetDisplayValueAsText(CurrentMode));
         }

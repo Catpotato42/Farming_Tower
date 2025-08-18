@@ -34,14 +34,14 @@ void UTowerUI::UpdateUI(int32 dir, int32 water, bool lvlUp, int32 altitude, bool
 
     if (dir < 0 && !dying)
     {
-        StateText->SetText(FText::FromString(TEXT("Dying")));
+        StateText->SetText(FText::FromString(TEXT("Bad Environment")));
         StateText->SetColorAndOpacity(FSlateColor(RedColor));
         LevelDir->SetText(FText::FromString(FString::Printf(TEXT("%d"), dir)));
         LevelDir->SetColorAndOpacity(FSlateColor(RedColor));
     }
     else if (dying)
     {
-        StateText->SetText(FText::FromString(TEXT("Dying From Old Age")));
+        StateText->SetText(FText::FromString(TEXT("Dying (old)")));
         StateText->SetColorAndOpacity(FSlateColor(RedColor));
         LevelDir->SetText(FText::FromString(FString::Printf(TEXT("%d"), dir)));
         LevelDir->SetColorAndOpacity(FSlateColor(RedColor));
