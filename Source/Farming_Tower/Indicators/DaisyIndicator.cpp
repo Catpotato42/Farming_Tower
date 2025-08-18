@@ -12,7 +12,7 @@ int ADaisyIndicator::IsGoodPlacement()
     UE_LOG(LogTemp, Log, TEXT("Daisy Z Pos: %f"), zPos);
     if (zPos >= 700)
         total--;
-    else if (zPos <= 500)
+    else if (zPos <= 400)
         total--;
     else
         total++;

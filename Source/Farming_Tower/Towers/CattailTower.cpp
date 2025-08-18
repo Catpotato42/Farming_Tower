@@ -108,4 +108,7 @@ void ACattailTower::UpdateState()
         TowerDamage = 20.f;
         ShootInterval = 1.f;
     }
+    bDeferCooldownStart = false;
+    BeamCooldownTimer = 0.f;
+    ActiveBeam = nullptr;
 }

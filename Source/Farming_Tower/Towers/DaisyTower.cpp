@@ -112,7 +112,7 @@ int ADaisyTower::IsGoodPlacement()
     float zPos = GetActorLocation().Z;
     if (zPos >= 700)
         total--;
-    else if (zPos <= 500)
+    else if (zPos <= 400)
         total--;
     else
         total++;
