@@ -20,7 +20,7 @@ public:
     virtual void Tick(float DeltaTime) override;
 
     // Call this to initialize the beam after spawning
-    void InitBeam(ACattailTower* InTower, AEnemyBase* InTarget, float InDamagePerSecond, float InRange);
+    void InitBeam(ACattailTower* InTower, AEnemyBase* InTarget, float InDamagePerSecond, float InRange, float SpawnHeightOffset);
 
     // Delegate to notify tower when beam is finished
     UPROPERTY(BlueprintAssignable)
@@ -36,8 +36,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
     UStaticMeshComponent* BeamMesh = nullptr;
 
-    float DamagePerSecond = 0.f;
+    float MaxDamagePerSecond = 0.f;
+    float CurrDamagePerSecond = 0.f;
     float MaxRange = 0.f;
+    float HeightOffset = 0.f;
+    float ParticleTimer = 0.1f; // Timer for particle effects
+    float DamageDone = 0.f;
 
     // Optionally: Visuals
     void UpdateBeamVisual();

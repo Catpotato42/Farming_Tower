@@ -8,7 +8,8 @@ int ACattailIndicator::IsGoodPlacement()
         return -1;
     else
     {
-        float zPos = GetActorLocation().Z;
-        return zPos <= 550 ? 1 : 0; //better if lower
+        return 1;
+        //float zPos = GetActorLocation().Z;
+        //return zPos <= 550 ? 1 : 0; //better if lower
     }
 }

@@ -2,6 +2,7 @@
 #include "../Towers/CattailTower.h"
 #include "../Enemies/EnemyBase.h"
 #include "Components/BoxComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
 
 AProjectileBeam::AProjectileBeam()
@@ -11,13 +12,16 @@ AProjectileBeam::AProjectileBeam()
     RootComponent = BeamMesh;
 }
 
-void AProjectileBeam::InitBeam(ACattailTower* InTower, AEnemyBase* InTarget, float InDamagePerSecond, float InRange)
+void AProjectileBeam::InitBeam(ACattailTower* InTower, AEnemyBase* InTarget, float InDamagePerSecond, float InRange, float SpawnHeightOffset)
 {
     UE_LOG(LogTemp, Warning, TEXT("Beam Spawned"));
     SourceTower = InTower;
     TargetEnemy = InTarget;
-    DamagePerSecond = InDamagePerSecond;
+    MaxDamagePerSecond = InDamagePerSecond;
+    UE_LOG(LogTemp, Warning, TEXT("Beam Damage: %f"), MaxDamagePerSecond);
+    CurrDamagePerSecond = 1.f;
     MaxRange = InRange;
+    HeightOffset = SpawnHeightOffset;
     SetActorTickEnabled(true);
     // Optionally: Initialize visuals here
 }
@@ -25,7 +29,6 @@ void AProjectileBeam::InitBeam(ACattailTower* InTower, AEnemyBase* InTarget, flo
 void AProjectileBeam::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    UE_LOG(LogTemp, Warning, TEXT("Beam Ticking"));
 
     if (!IsTargetValid())
     {
@@ -46,9 +49,16 @@ void AProjectileBeam::Tick(float DeltaTime)
         Destroy();
         return;
     }
+    //Change DPS based on time alive
+    CurrDamagePerSecond = FMath::Clamp(CurrDamagePerSecond + (MaxDamagePerSecond/2.5f)*DeltaTime, 0.f, MaxDamagePerSecond);
+    UE_LOG(LogTemp, Warning, TEXT("Curr Damage: %f"), CurrDamagePerSecond);
+    // Update particle timer
+    ParticleTimer -= DeltaTime;
+
 
     // Apply damage using DeltaTime for consistency
-    TargetEnemy->ApplyDamage(DamagePerSecond * DeltaTime);
+    TargetEnemy->ApplyDamage(CurrDamagePerSecond * DeltaTime);
+    DamageDone += CurrDamagePerSecond * DeltaTime;
 
     // Update beam position/visuals
     UpdateBeamVisual();
@@ -69,16 +79,28 @@ void AProjectileBeam::UpdateBeamVisual()
     float Length = Direction.Size();
 
     // Set the beam's position to the midpoint
-    FVector MidPoint = Start + 0.5f * Direction;
-    BeamMesh->SetWorldLocation(MidPoint);
+    Direction.Normalize();
+    FVector MidPoint = Start + 0.6f * Direction;
+    BeamMesh->SetWorldLocation(MidPoint + FVector(0.f, 0.f, HeightOffset));
 
-    // Set the beam's rotation to face the target
-    FRotator BeamRotation = Direction.Rotation();
+    // Set the beam's rotation to face the target plus 90 degrees along the z-axis
+    FRotator BeamRotation = Direction.Rotation() + FRotator(0.f, -90.f, 90.f);
     BeamMesh->SetWorldRotation(BeamRotation);
 
     FVector BeamScale = BeamMesh->GetComponentScale();
     BeamScale.Z = Length / 100.f; // assuming cylinder height is 100 units
     BeamMesh->SetWorldScale3D(BeamScale);
+
+    if (OnHitEffect && ParticleTimer <= 0.f)
+        {
+            ParticleTimer = 0.1f; // Reset timer
+            UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+                GetWorld(),
+                OnHitEffect,
+                End,
+                GetActorRotation()
+            );
+        }
 }
 
 void AProjectileBeam::CheckLifetime(float DeltaTime)

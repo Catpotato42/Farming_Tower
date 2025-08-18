@@ -54,7 +54,7 @@ void ACattailTower::Shoot_Implementation()
     {
         ActiveBeam = Beam;
         // Pass references and data to the beam
-        Beam->InitBeam(this, CurrentTarget, TowerDamage, TowerRangeComponent->DetectionRange);
+        Beam->InitBeam(this, CurrentTarget, TowerDamage, TowerRangeComponent->DetectionRange, SpawnHeightOffset);
 
         // Bind a delegate or use an event so the beam can notify the tower when it is done
         Beam->OnBeamFinished.AddDynamic(this, &ACattailTower::OnBeamFinished);
@@ -78,8 +78,9 @@ int ACattailTower::IsGoodPlacement()
         return -1;
     else
     {
-        float zPos = GetActorLocation().Z;
-        return zPos <= 550 ? 1 : 0; //better if lower
+        return 1;
+        //float zPos = GetActorLocation().Z;
+        //return zPos <= 550 ? 1 : 0; //better if lower
     }
 }
 
@@ -89,22 +90,22 @@ void ACattailTower::UpdateState()
     Super::UpdateState();
     if (TowerLevel >= 8)
     {
-        TowerDamage = 40.f;
-        ShootInterval = 1.f;
+        TowerDamage = 80.f;
+        ShootInterval = .8f;
     }
     else if (TowerLevel >= 6)
     {
-        TowerDamage = 30.f;
-        ShootInterval = 1.5f;
+        TowerDamage = 60.f;
+        ShootInterval = 1.1f;
     }
     else if (TowerLevel >= 4)
     {
-        TowerDamage = 20.f;
-        ShootInterval = 1.7f;
+        TowerDamage = 40.f;
+        ShootInterval = 1.3f;
     }
     else
     {
-        TowerDamage = 10.f;
-        ShootInterval = 2.f;
+        TowerDamage = 20.f;
+        ShootInterval = 1.6f;
     }
 }
