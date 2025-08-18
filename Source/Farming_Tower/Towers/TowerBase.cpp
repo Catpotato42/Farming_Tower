@@ -116,7 +116,7 @@ void ATowerBase::UpdateState()
 
 void ATowerBase::UpdateTowerUI()
 {
-    int dir = IsGoodPlacement();
+    int dir = (dying) ? -2 : IsGoodPlacement();
     int riverDist = TowerPlacement->GetRiverDistance(GetActorLocation());
     if (TowerUI)
     {
