@@ -39,24 +39,28 @@ void AMortarTower::UpdateState()
         TowerDamage = 35.f;
         ProjectileSize = 3.f;
         ShootInterval = 2.f;
+        ExplosionRadius = 250.f;
     }
     else if (TowerLevel >= 6)
     {
         TowerDamage = 25.f;
         ProjectileSize = 2.f;
         ShootInterval = 3.f;
+        ExplosionRadius = 215.f;
     }
     else if (TowerLevel >= 4)
     {
         TowerDamage = 20.f;
         ProjectileSize = 1.5f;
         ShootInterval = 3.5f;
+        ExplosionRadius = 140.f;
     }
     else
     {
         TowerDamage = 15.f;
         ProjectileSize = 1.5f;
         ShootInterval = 3.5f;
+        ExplosionRadius = 125.f; // Default
     }
 }
 

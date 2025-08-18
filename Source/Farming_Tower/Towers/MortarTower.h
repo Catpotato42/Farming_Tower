@@ -28,7 +28,7 @@ public:
 	float ProjectileSize = 10.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-    float ExplosionRadius = 150.0f;
+    float ExplosionRadius = 100.0f;
 
 protected:
     virtual void Shoot_Implementation() override;
