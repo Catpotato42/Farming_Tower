@@ -27,6 +27,11 @@ public:
     UPROPERTY(EditAnywhere)
     TArray<FRoundInfo> RoundInfos;
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UStaticMeshComponent* IndicatorArrowSpawn;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UStaticMeshComponent* IndicatorArrowTurn1;
+
     UPROPERTY(EditAnywhere)
     class UGameManager* gameManager;
 
