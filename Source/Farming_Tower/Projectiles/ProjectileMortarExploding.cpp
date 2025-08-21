@@ -32,7 +32,7 @@ void AProjectileMortarExploding::OnProjectileHit(UPrimitiveComponent* HitComp, A
     // Spawn a temporary white sphere for explosion VFX
     FActorSpawnParameters VFXSpawnParams;
     AActor* ExplosionVFX = GetWorld()->SpawnActor<AActor>(
-        AExplosionSphereActor::StaticClass(), // Replace with your sphere actor class
+        AExplosionSphereActor::StaticClass(),
         ExplosionLocation,
         FRotator::ZeroRotator,
         VFXSpawnParams

@@ -28,9 +28,17 @@ public:
     TArray<FRoundInfo> RoundInfos;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
-    UStaticMeshComponent* IndicatorArrowSpawn;
+    UStaticMeshComponent* IndicatorArrowSpawnCube;
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
-    UStaticMeshComponent* IndicatorArrowTurn1;
+    UStaticMeshComponent* IndicatorArrowSpawnTri;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UStaticMeshComponent* IndicatorArrowTurn1Cube;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UStaticMeshComponent* IndicatorArrowTurn1Tri;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UStaticMeshComponent* IndicatorArrowTurn2Cube;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UStaticMeshComponent* IndicatorArrowTurn2Tri;
 
     UPROPERTY(EditAnywhere)
     class UGameManager* gameManager;
