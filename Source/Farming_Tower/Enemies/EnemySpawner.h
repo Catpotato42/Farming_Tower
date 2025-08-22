@@ -15,29 +15,28 @@ class FARMING_TOWER_API AEnemySpawner : public AActor
     GENERATED_BODY()
 
 public:
-    // Constructor declaration
     AEnemySpawner();
 
-    // Called when the game starts or when spawned
     virtual void BeginPlay() override;
 
     void StartRound(int currentRound);
     void NotifyEnemyKilled();
+    void CheckNextWaveEmpty(int nextRound);
 
     UPROPERTY(EditAnywhere)
     TArray<FRoundInfo> RoundInfos;
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Indicators")
     UStaticMeshComponent* IndicatorArrowSpawnCube;
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Indicators")
     UStaticMeshComponent* IndicatorArrowSpawnTri;
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Indicators")
     UStaticMeshComponent* IndicatorArrowTurn1Cube;
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Indicators")
     UStaticMeshComponent* IndicatorArrowTurn1Tri;
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Indicators")
     UStaticMeshComponent* IndicatorArrowTurn2Cube;
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawning")
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Indicators")
     UStaticMeshComponent* IndicatorArrowTurn2Tri;
 
     UPROPERTY(EditAnywhere)
@@ -59,6 +58,7 @@ private:
 
     void SpawnNextEnemy();
     void SpawnEnemy(TSubclassOf<AEnemyBase> enemyClass);
+    void ShowWaveIndicators(bool bShow);
 
     UPROPERTY(VisibleAnywhere)
     USceneComponent* Root;

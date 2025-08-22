@@ -18,6 +18,32 @@ void UGameManager::SetupGame()
     setup = true;
 }
 
+void UGameManager::InitializeFirstIndicators()
+{
+    UE_LOG(LogTemp, Warning, TEXT("Initializing First Indicators"));
+    //Find enemy spawners
+    TArray<AActor*> FoundSpawners;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), FoundSpawners);
+    EnemySpawners.Empty();
+    UE_LOG(LogTemp, Warning, TEXT("Found Spawners: %d"), FoundSpawners.Num());
+    for (AActor* Actor : FoundSpawners)
+    {
+        AEnemySpawner* Spawner = Cast<AEnemySpawner>(Actor);
+        if (Spawner)
+        {
+            EnemySpawners.Add(Spawner);
+        }
+    }
+    //update spawner indicators
+    for (AEnemySpawner* Spawner : EnemySpawners)
+    {
+        if (Spawner)
+        {
+            Spawner->CheckNextWaveEmpty(1);
+        }
+    }
+}
+
 
 void UGameManager::InitializeWeather()
 {
@@ -43,7 +69,7 @@ void UGameManager::StartRound()
         }
     }
 
-    //spawn enemies
+    //Find enemy spawners
     TArray<AActor*> FoundSpawners;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), FoundSpawners);
     EnemySpawners.Empty();
@@ -109,6 +135,17 @@ void UGameManager::EndRound()
             }
         }
 
+        //update spawner indicators
+        for (AEnemySpawner* Spawner : EnemySpawners)
+        {
+            if (Spawner)
+            {
+                Spawner->CheckNextWaveEmpty(round + 1); //Round is incremented after this, so make sure not to move that around.
+            }
+        }
+
+
+        //Increment round
         setup = true;
         round++;
         canvas->UpdateRound(round);

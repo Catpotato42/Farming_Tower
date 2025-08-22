@@ -6,23 +6,31 @@
 
 #include "Kismet/GameplayStatics.h"
 
-void AEnemySpawner::BeginPlay()
-{
-    Super::BeginPlay();
-}
-
 AEnemySpawner::AEnemySpawner()
 {
     PrimaryActorTick.bCanEverTick = false;
 
     Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
     RootComponent = Root;
-    //could make like a sphere for now to see location
+}
+
+void AEnemySpawner::BeginPlay()
+{
+    Super::BeginPlay();
+    gameManager = Cast<UGameManager>(UGameplayStatics::GetGameInstance(GetWorld()));
+    if (!gameManager)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("GameManager not found in EnemySpawner"));
+    } else {
+        gameManager->InitializeFirstIndicators();
+    }
 }
 
 void AEnemySpawner::StartRound(int currentRound)
 {
     PendingWaves.Empty();
+
+    ShowWaveIndicators(false);
 
     if (currentRound - 1 < RoundInfos.Num())
     {
@@ -153,4 +161,30 @@ void AEnemySpawner::NotifyEnemyKilled()
     {
         gameManager->OnSpawnerFinished(this);
     }
+}
+
+void AEnemySpawner::CheckNextWaveEmpty(int nextRound)
+{
+    if (nextRound - 1 < RoundInfos.Num())
+    {
+        ShowWaveIndicators(RoundInfos[nextRound - 1].EnemiesToSpawn.Num() > 0);
+    }
+    else {
+        ShowWaveIndicators(RoundInfos.Last().EnemiesToSpawn.Num() > 0);
+        //TODO: if all infinite waves will have enemies in them (I assume they eventually will), just show indicators forever after.
+        //ShowWaveIndicators(true);
+    }
+}
+
+void AEnemySpawner::ShowWaveIndicators(bool bShow)
+{
+    if (bShow) {
+        UE_LOG(LogTemp, Log, TEXT("Showing wave indicators for enemy spawner: %s"), *GetName());
+    }
+    IndicatorArrowSpawnCube->SetVisibility(bShow);
+    IndicatorArrowSpawnTri->SetVisibility(bShow);
+    IndicatorArrowTurn1Cube->SetVisibility(bShow);
+    IndicatorArrowTurn1Tri->SetVisibility(bShow);
+    IndicatorArrowTurn2Cube->SetVisibility(bShow);
+    IndicatorArrowTurn2Tri->SetVisibility(bShow);
 }

@@ -60,6 +60,7 @@ public:
     TArray<AEnemySpawner*> FinishedSpawners;
 
 	void OnSpawnerFinished(AEnemySpawner* Spawner);
+	void InitializeFirstIndicators();
 
 	//Music
 	UPROPERTY(BlueprintReadWrite)
