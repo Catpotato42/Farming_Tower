@@ -29,7 +29,7 @@ public:
 
 private:
 	bool CheckRiverDistance(FVector loc, int distance);
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(EditAnywhere)
     UWidgetInteractionComponent* WidgetInteraction;
 
     UPROPERTY(EditAnywhere, Category="Input")

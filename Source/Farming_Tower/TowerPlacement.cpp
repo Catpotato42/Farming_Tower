@@ -37,6 +37,13 @@ void ATowerPlacement::BeginPlay()
     {
         UE_LOG(LogTemp, Warning, TEXT("No PlayerController found in BeginPlay"));
     }
+    if (WidgetInteraction)
+    {
+        // Give widget interaction a valid user/pointer so clicks register
+        WidgetInteraction->VirtualUserIndex = 0;
+        WidgetInteraction->PointerIndex = 0;
+        WidgetInteraction->bShowDebug = true;
+    }
 }
 
 void ATowerPlacement::Tick(float DeltaTime)
@@ -63,14 +70,38 @@ void ATowerPlacement::Tick(float DeltaTime)
 // Widget interaction functions
 void ATowerPlacement::PressWidget()
 {
-    if (WidgetInteraction)
-        WidgetInteraction->PressPointerKey(EKeys::LeftMouseButton);
+    if (!WidgetInteraction)
+        return;
+
+    FHitResult Hit = WidgetInteraction->GetLastHitResult();
+    if (Hit.GetActor())
+    {
+        UE_LOG(LogTemp, Warning, TEXT("PressWidget: Hit Actor = %s"), *Hit.GetActor()->GetName());
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("PressWidget: No hit actor"));
+    }
+
+    WidgetInteraction->PressPointerKey(EKeys::LeftMouseButton);
 }
 
 void ATowerPlacement::ReleaseWidget()
 {
-    if (WidgetInteraction)
-        WidgetInteraction->ReleasePointerKey(EKeys::LeftMouseButton);
+    if (!WidgetInteraction)
+        return;
+
+    FHitResult Hit = WidgetInteraction->GetLastHitResult();
+    if (Hit.GetActor())
+    {
+        UE_LOG(LogTemp, Warning, TEXT("ReleaseWidget: Hit Actor = %s"), *Hit.GetActor()->GetName());
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("ReleaseWidget: No hit actor"));
+    }
+
+    WidgetInteraction->ReleasePointerKey(EKeys::LeftMouseButton);
 }
 
 

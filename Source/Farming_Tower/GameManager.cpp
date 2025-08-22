@@ -20,12 +20,11 @@ void UGameManager::SetupGame()
 
 void UGameManager::InitializeFirstIndicators()
 {
-    UE_LOG(LogTemp, Warning, TEXT("Initializing First Indicators"));
+    //This is called three separate times by each spawner but it's fine
     //Find enemy spawners
     TArray<AActor*> FoundSpawners;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), FoundSpawners);
     EnemySpawners.Empty();
-    UE_LOG(LogTemp, Warning, TEXT("Found Spawners: %d"), FoundSpawners.Num());
     for (AActor* Actor : FoundSpawners)
     {
         AEnemySpawner* Spawner = Cast<AEnemySpawner>(Actor);
