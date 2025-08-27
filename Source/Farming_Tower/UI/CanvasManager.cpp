@@ -156,3 +156,8 @@ void UCanvasManager::SetAudioDilation()
         AAudioManager::Instance->CustomTimeDilation = 1.0f / UGameplayStatics::GetGlobalTimeDilation(GetWorld());
     }
 }
+
+void UCanvasManager::EnableStartButton()
+{
+    StartButton->SetIsEnabled(true);
+}

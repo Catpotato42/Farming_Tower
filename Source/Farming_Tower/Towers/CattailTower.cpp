@@ -10,7 +10,6 @@ void ACattailTower::Tick(float DeltaTime)
     // If beam just finished, start cooldown
     if (BeamCooldownTimer > 0.f)
     {
-        GEngine->AddOnScreenDebugMessage(-1, .1f, FColor::Yellow, FString::Printf(TEXT("BeamCooldownTimer: %f"), BeamCooldownTimer));
         BeamCooldownTimer -= DeltaTime;
         if (BeamCooldownTimer <= 0.f)
         {
@@ -90,7 +89,7 @@ void ACattailTower::UpdateState()
     Super::UpdateState();
     if (TowerLevel >= 8)
     {
-        TowerDamage = 80.f;
+        TowerDamage = 100.f;
         ShootInterval = .3f;
     }
     else if (TowerLevel >= 6)

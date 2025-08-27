@@ -155,6 +155,9 @@ void UGameManager::EndRound()
         }
 
         AddCoins(3);
+
+        //re-enable start button
+        canvas->EnableStartButton();
     }
 }
 

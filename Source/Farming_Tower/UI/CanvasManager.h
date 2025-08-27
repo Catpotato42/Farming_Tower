@@ -1,9 +1,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "Components/CanvasPanel.h"
 #include "Components/Image.h"
+#include "Components/Button.h"
 #include "Blueprint/UserWidget.h"
+
 #include "CanvasManager.generated.h"
 
 
@@ -60,4 +63,10 @@ public:
 	class UCanvasPanel* GameOverUI;
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* GameOverRounds;
+
+	//enable start button
+	UFUNCTION()
+	void EnableStartButton();
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	class UButton* StartButton;
 };
